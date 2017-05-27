@@ -1,0 +1,7 @@
+D:\Git\PersonalLab\test\bin\Debug\test.exe.config
+D:\Git\PersonalLab\test\obj\x86\Debug\test.csprojResolveAssemblyReference.cache
+D:\Git\PersonalLab\test\obj\x86\Debug\test.Form1.resources
+D:\Git\PersonalLab\test\obj\x86\Debug\test.Form2.resources
+D:\Git\PersonalLab\test\obj\x86\Debug\test.Properties.Resources.resources
+D:\Git\PersonalLab\test\obj\x86\Debug\test.csproj.GenerateResource.Cache
+D:\Git\PersonalLab\test\obj\x86\Debug\test.exe.licenses

@@ -1,0 +1,6 @@
+D:\Git\PersonalLab\ConsoleAppTest\bin\Debug\ConsoleAppTest.exe.config
+D:\Git\PersonalLab\ConsoleAppTest\bin\Debug\ConsoleAppTest.exe
+D:\Git\PersonalLab\ConsoleAppTest\bin\Debug\ConsoleAppTest.pdb
+D:\Git\PersonalLab\ConsoleAppTest\obj\Debug\ConsoleAppTest.csprojResolveAssemblyReference.cache
+D:\Git\PersonalLab\ConsoleAppTest\obj\Debug\ConsoleAppTest.exe
+D:\Git\PersonalLab\ConsoleAppTest\obj\Debug\ConsoleAppTest.pdb

@@ -1,0 +1,11 @@
+D:\Git\PersonalLab\_Output\Debug\testLicensesClear.exe.config
+D:\Git\PersonalLab\_Output\Debug\testLicensesClear.exe.manifest
+D:\Git\PersonalLab\_Output\Debug\testLicensesClear.application
+D:\Git\PersonalLab\_Output\Debug\testLicensesClear.exe
+D:\Git\PersonalLab\_Output\Debug\testLicensesClear.pdb
+D:\Git\PersonalLab\testLicensesClear\obj\Debug\testLicensesClear.csprojResolveAssemblyReference.cache
+D:\Git\PersonalLab\testLicensesClear\obj\Debug\testLicensesClear.TrustInfo.xml
+D:\Git\PersonalLab\testLicensesClear\obj\Debug\testLicensesClear.exe.manifest
+D:\Git\PersonalLab\testLicensesClear\obj\Debug\testLicensesClear.application
+D:\Git\PersonalLab\testLicensesClear\obj\Debug\testLicensesClear.exe
+D:\Git\PersonalLab\testLicensesClear\obj\Debug\testLicensesClear.pdb

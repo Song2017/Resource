@@ -1,0 +1,4 @@
+D:\Git\PersonalLab\testSecurity\obj\Debug\testSecurity.Form1.resources
+D:\Git\PersonalLab\testSecurity\obj\Debug\testSecurity.Properties.Resources.resources
+D:\Git\PersonalLab\testSecurity\obj\Debug\testSecurity.csproj.GenerateResource.Cache
+D:\Git\PersonalLab\testSecurity\obj\Debug\testSecurity.exe.licenses
