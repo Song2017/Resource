@@ -11,3 +11,4 @@ README.md
 Windows-KB841290-x86-ENU-fciv.exe
 winrar-x64-540scp.exe
 WinSCP-5.9.5-Setup.exe
+python 3.6.1
