@@ -1,4 +1,0 @@
-D:\Git\PersonalLab\AppJsonSerialiser\obj\x86\Debug\AppJsonSerialize.csprojResolveAssemblyReference.cache
-D:\Git\PersonalLab\AppJsonSerialiser\obj\x86\Debug\AppJsonSerialiser.Form1.resources
-D:\Git\PersonalLab\AppJsonSerialiser\obj\x86\Debug\AppJsonSerialiser.Properties.Resources.resources
-D:\Git\PersonalLab\AppJsonSerialiser\obj\x86\Debug\AppJsonSerialize.csproj.GenerateResource.Cache

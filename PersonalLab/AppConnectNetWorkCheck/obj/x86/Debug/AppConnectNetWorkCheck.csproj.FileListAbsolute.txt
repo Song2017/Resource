@@ -1,5 +1,0 @@
-D:\Git\PersonalLab\AppConnectNetWorkCheck\obj\x86\Debug\AppConnectNetWorkCheck.csprojResolveAssemblyReference.cache
-D:\Git\PersonalLab\AppConnectNetWorkCheck\obj\x86\Debug\AppConnectNetWorkCheck.Form1.resources
-D:\Git\PersonalLab\AppConnectNetWorkCheck\obj\x86\Debug\AppConnectNetWorkCheck.Properties.Resources.resources
-D:\Git\PersonalLab\AppConnectNetWorkCheck\obj\x86\Debug\AppConnectNetWorkCheck.csproj.GenerateResource.Cache
-D:\Git\PersonalLab\AppConnectNetWorkCheck\obj\x86\Debug\AppConnectNetWorkCheck.exe.licenses
