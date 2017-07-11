@@ -1,0 +1,9 @@
+<parameters> 
+<setParameter name="AppPath" value="rgbstomcat2" /> 
+<setParameter name="DbServer" value="" /> 
+<setParameter name="DbName" value="" /> 
+<setParameter name="DbUsername" value="" /> 
+<setParameter name="DbPassword" value="" /> 
+<setParameter name="DbAdminUsername" value="" />
+<setParameter name="DbAdminPassword" value="" /> 
+</parameters>

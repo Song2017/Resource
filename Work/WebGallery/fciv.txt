@@ -1,0 +1,27 @@
+C:\Users\song>cd c:/fciv
+
+Joomla
+c:\fciv>fciv.exe D:\Git\Joomla_Windows_GalleryPackage\Joomla_3.7.1-Stable-Full_Package.zip -sha1
+//
+// File Checksum Integrity Verifier version 2.05.
+//
+ef4f75e46b9e02a6c749ec74f19d923ebd0c15d4 d:\git\joomla_windows_gallerypackage\joomla_3.7.1-stable-full_package.zip
+
+c:\fciv>fciv.exe C:\Git\WindowsWebAppGallery\Joomla_Windows_GalleryPackage\Joomla_3.7.2-Stable-Full_Package.zip -sha1
+//
+// File Checksum Integrity Verifier version 2.05.
+//
+35a950102331bfa98b7ed463a9101c2ecfab2afb c:\git\windowswebappgallery\joomla_windows_gallerypackage\joomla_3.7.2-stable-full_package.zip
+
+
+WordPress
+c:\fciv>fciv.exe C:\Git\WordPress_Windows_package\wordpress-4.7.5-IIS.zip -sha1
+//
+// File Checksum Integrity Verifier version 2.05.
+//
+a5b37df1861766338851a8ab1fd65166a6912d44 c:\git\wordpress_windows_package\wordpress-4.7.5-iis.zip
+Microsoft Windows [Version 6.2.9200]
+
+42fc5c3a1d31e20d90cc4c4984cc9414053a5399 c:\git\wordpress_windows_package\wordpress-4.8-iis.zip
+
+C:\fciv>

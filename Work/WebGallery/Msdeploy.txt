@@ -1,0 +1,1 @@
+Msdeploy.exe -verb:sync -source:package='C:\Users\song\Desktop\WebPI\Tomcat\Tomcat8044.zip' -dest:auto,computername='https://waws-prod-bay-033.ftp.azurewebsites.windows.net:443/msdeploy.axd?site=rgbstomcat2',username='$rgbstomcat2',password='Q8PAdqa7o1hv1ds7CnbrwjMjeHfE6ybRBoqMlT3QhXugqRGG8A2FrwhAnnpg',authtype=basic -setParamFile:"C:\Users\song\Desktop\WebPI\setparameters.xml"
