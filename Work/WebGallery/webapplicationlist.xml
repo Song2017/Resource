@@ -85,23 +85,38 @@
     <productId>SmartStoreNET</productId>
     <title resourceName="Entry_SmartStoreNET_Title">SmartStore.NET</title>
     <id>http://www.microsoft.com/web/webpi/2.0/SmartStoreNET</id>
-    <summary resourceName="Entry_SmartStoreNET_Summary">SmartStore.NET is a free, open source, full-featured e-commerce solution for companies of any size. It is web standards compliant and incorporates the newest Microsoft web technology stack. SmartStore.NET includes all essential features to create multilingual and multi-currency stores targeting desktop or mobile devices and enabling SEO optimized rich product catalogs with support for an unlimited number of products and categories, variants, datasheets, ESD, discounts, coupons and many more. A comprehensive set of tools for CRM &amp; CMS, sales, marketing, payment &amp; shipping handling among others makes SmartStore.NET a powerful all-in-one solution fulfilling all your needs.Totally FREE! SmartStore.NET delivers a beautiful and configurable shop frontend out-of-the-box built with a design approach on the highest level, including components like Twitter Bootstrap, LESS CSS and others. The innovative ShopBar, a powerful layered navigation, reviews &amp; ratings, an optimized checkout process. They all provide a perfect shopping experience to your buyers. The State-of-the-art architecture of SmartStore.NET - with ASP.NET 4.5 , MVC 4, Entity Framework 5 and Domain Driven Design approach makes it easy to extend, extremely flexible and essentially fun to work with. </summary>
-    <updated>2016-07-17T20:24:59Z</updated>
-    <published>2016-07-17T20:24:59Z</published>
-    <longSummary resourceName="Entry_SmartStoreNET_LongSummary">SmartStore.NET is a free, open source, full-featured e-commerce solution for companies of any size. It is web standards compliant and incorporates the newest Microsoft web technology stack.</longSummary>
-    <version>2.6.0</version>
-    <link href="http://www.smartstore.net" />
+    <summary resourceName="Entry_SmartStoreNET_Summary">SmartStore.NET is a free, open source, full-featured e-commerce solution for companies of any size. It is web standards compliant and incorporates the newest Microsoft web technology stack.</summary>
+    <updated>2016-05-16T00:00:00Z</updated>
+    <published>2017-07-24T13:08:05Z</published>
+    <longSummary resourceName="Entry_SmartStoreNET_LongSummary">SmartStore.NET is a free, open source, full-featured e-commerce solution for companies of any size. It is web standards compliant and incorporates the newest Microsoft web technology stack.
+
+SmartStore.NET includes all essential features to create multilingual and multi-currency stores targeting desktop or mobile devices and enabling SEO optimized rich product catalogs with support for an unlimited number of products and categories, variants, bundles, datasheets, ESD, discounts, coupons and many more.
+
+A comprehensive set of tools for CRM &amp; CMS, sales, marketing, payment &amp; shipping handling, etc. makes SmartStore.NET a powerful all-in-one solution fulfilling all your needs.
+
+SmartStore.NET delivers a beautiful and configurable shop front-end out-of-the-box, built with a design approach on the highest level, including components like Bootstrap 4, Sass and others. The supplied theme Flex is modern, clean and fully responsive, giving buyers the best possible shopping experience on any device.
+
+The state-of-the-art architecture of SmartStore.NET - with ASP.NET 4.5 + MVC 5, Entity Framework 6 and Domain Driven Design approach - makes it easy to extend, extremely flexible and essentially fun to work with ;-)</longSummary>
+    <version>3.0</version>
+    <link href="http://community.smartstore.com/" />
+    <author>
+      <name>SmartStore AG</name>
+      <uri>http://www.smartstore.com</uri>
+    </author>
     <images>
-      <icon>https://webpihandler.azurewebsites.net/webpi.ashx?command=getimage&amp;guid=35D06A3F-285D-46D2-B394-6F382EC42C2D</icon>
+      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/SmartStoreNET-logo</icon>
+      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/SmartStoreNET-screenshot1</screenshot>
+      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/SmartStoreNET-screenshot2</screenshot>
+      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/SmartStoreNET-screenshot3</screenshot>
+      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/SmartStoreNET-screenshot4</screenshot>
+      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/SmartStoreNET-screenshot5</screenshot>
+      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/SmartStoreNET-screenshot6</screenshot>
     </images>
     <keywords>
+      <keywordId>ContentMgmt</keywordId>
       <keywordId>eCommerce</keywordId>
       <keywordId>SQL</keywordId>
     </keywords>
-    <author>
-      <name>SmartStore AG</name>
-      <uri>http://www.smartstore.net</uri>
-    </author>
     <dependency>
       <and>
         <dependency idref="MVC4App" />
@@ -115,15 +130,15 @@
         <languageId>en</languageId>
         <osList idref="SupportedAppPlatforms" />
         <installerFile>
-          <fileSize>20292</fileSize>
-          <trackingURL>http://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=SmartStoreNET&amp;version=2.6.0&amp;applang=en</trackingURL>
-          <installerURL>http://www.smartstore.com/downloads/pub/SmartStoreNET.WebPI.2.6.0.zip</installerURL>
-          <sha1>730cf226eb623874d564cebb4fd8bb1df6bd6015</sha1>
+          <fileSize>93442</fileSize>
+          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=SmartStoreNET&amp;version=3.0&amp;applang=en</trackingURL>
+          <installerURL>https://github.com/smartstoreag/SmartStoreNET/releases/download/3.0.2/SmartStoreNET.WebPI.3.0.2.zip</installerURL>
+          <sha1>5f288724a3785cbe6a73fe492c90f9150c5e2d95</sha1>
         </installerFile>
         <msDeploy>
           <startPage>/</startPage>
         </msDeploy>
-        <helpLink>http://www.smartstore.net</helpLink>
+        <helpLink>http://community.smartstore.com/</helpLink>
       </installer>
     </installers>
     <addToFeedDate>10-04-2013</addToFeedDate>
@@ -467,59 +482,59 @@ Should you have any questions regarding SepPortal please contact us at any time.
     <productFamily resourceName="Applications">Applications</productFamily>
   </entry>
   <!--Magento -->
-  <entry type="application">
-    <productId>Magento</productId>
-    <title resourceName="Entry_Magento_Title">Magento</title>
-    <id>http://www.microsoft.com/web/webpi/2.0/Magento</id>
-    <summary resourceName="Entry_Magento_Summary">Deep development and technical resources, powerful and flexible technology and more than 200,000 customer sites combine to make Magento the choice of more eCommerce developers.</summary>
-    <updated>2015-10-27T00:00:00Z</updated>
-    <published>2017-03-23T16:20:36Z</published>
-    <longSummary resourceName="Entry_Magento_LongSummary">Magento Community Edition is perfect if you're a developer or tech-savvy merchant that wants to explore the flexibility of the Magento platform. You can modify – and even contribute to – the core code and engage with our passionate community for support and guidance.</longSummary>
-    <version>1.9.3.2</version>
-    <link href="http://magento.com/help/overview" />
-    <author>
-      <name>AppDirect</name>
-      <uri>http://www.appdirect.com</uri>
-    </author>
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/Magento-logo</icon>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/Magento-screenshot1</screenshot>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/Magento-screenshot2</screenshot>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/Magento-screenshot3</screenshot>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/Magento-screenshot4</screenshot>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/Magento-screenshot5</screenshot>
-    </images>
-    <keywords>
-      <keywordId>eCommerce</keywordId>
-      <keywordId>MySQL</keywordId>
-    </keywords>
-    <dependency>
-      <and>
-        <dependency idref="PHP55App" />
-        <dependency idref="MySQLApp" />
-      </and>
-    </dependency>
-    <installers>
-      <installer>
-        <id>1</id>
-        <languageId>en</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <installerFile>
-          <fileSize>35265</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=Magento&amp;version=1.9.3.2&amp;applang=en</trackingURL>
-          <installerURL>http://closest.repo.standingcloud.net/repo/azure/packages/magento-1.9.3.2.zip</installerURL>
-          <sha1>382366499cd19f0860acfb2f1bd322423fe8da62</sha1>
-        </installerFile>
-        <msDeploy>
-          <startPage>/index.php/install</startPage>
-        </msDeploy>
-        <helpLink>http://magento.com/help/overview</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>10-15-2014</addToFeedDate>
-    <pageName>Magento</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
-  </entry>
+  <!--  <entry type="application">
+        <productId>Magento</productId>
+        <title resourceName="Entry_Magento_Title">Magento</title>
+        <id>http://www.microsoft.com/web/webpi/2.0/Magento</id>
+        <summary resourceName="Entry_Magento_Summary">Deep development and technical resources, powerful and flexible technology and more than 200,000 customer sites combine to make Magento the choice of more eCommerce developers.</summary>
+        <updated>2015-10-27T00:00:00Z</updated>
+        <published>2017-03-23T16:20:36Z</published>
+        <longSummary resourceName="Entry_Magento_LongSummary">Magento Community Edition is perfect if you're a developer or tech-savvy merchant that wants to explore the flexibility of the Magento platform. You can modify – and even contribute to – the core code and engage with our passionate community for support and guidance.</longSummary>
+        <version>1.9.3.2</version>
+        <link href="http://magento.com/help/overview" />
+        <author>
+            <name>AppDirect</name>
+            <uri>http://www.appdirect.com</uri>
+        </author>
+        <images>
+            <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/Magento-logo</icon>
+            <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/Magento-screenshot1</screenshot>
+            <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/Magento-screenshot2</screenshot>
+            <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/Magento-screenshot3</screenshot>
+            <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/Magento-screenshot4</screenshot>
+            <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/Magento-screenshot5</screenshot>
+        </images>
+        <keywords>
+            <keywordId>eCommerce</keywordId>
+            <keywordId>MySQL</keywordId>
+        </keywords>
+        <dependency>
+            <and>
+                <dependency idref="PHP56App" />
+                <dependency idref="MySQLApp" />
+            </and>
+        </dependency>
+        <installers>
+            <installer>
+                <id>1</id>
+                <languageId>en</languageId>
+                <osList idref="SupportedAppPlatforms" />
+                <installerFile>
+                    <fileSize>35265</fileSize>
+                    <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=Magento&amp;version=1.9.3.2&amp;applang=en</trackingURL>
+                    <installerURL>http://closest.repo.standingcloud.net/repo/azure/packages/magento-1.9.3.2.zip</installerURL>
+                    <sha1>382366499cd19f0860acfb2f1bd322423fe8da62</sha1>
+                </installerFile>
+                <msDeploy>
+                    <startPage>/index.php/install</startPage>
+                </msDeploy>
+                <helpLink>http://magento.com/help/overview</helpLink>
+            </installer>
+        </installers>
+        <addToFeedDate>10-15-2014</addToFeedDate>
+        <pageName>Magento</pageName>
+        <productFamily resourceName="Applications">Applications</productFamily>
+    </entry> -->
   <!-- Concrete5-->
   <entry type="application">
     <productId>Concrete5</productId>
@@ -548,7 +563,7 @@ Should you have any questions regarding SepPortal please contact us at any time.
     </keywords>
     <dependency>
       <and>
-        <dependency idref="PHP55App" />
+        <dependency idref="PHP56App" />
         <dependency idref="MySQLApp" />
       </and>
     </dependency>
@@ -722,7 +737,7 @@ Should you have any questions regarding SepPortal please contact us at any time.
     </keywords>
     <dependency>
       <and>
-        <dependency idref="PHP55App" />
+        <dependency idref="PHP56App" />
         <dependency idref="MySQLApp" />
       </and>
     </dependency>
@@ -771,7 +786,7 @@ Should you have any questions regarding SepPortal please contact us at any time.
     </author>
     <dependency>
       <and>
-        <dependency idref="PHP55App" />
+        <dependency idref="PHP56App" />
         <dependency idref="MySQLApp" />
       </and>
     </dependency>
@@ -827,7 +842,7 @@ Should you have any questions regarding SepPortal please contact us at any time.
     </author>
     <dependency>
       <and>
-        <dependency idref="PHP55App" />
+        <dependency idref="PHP56App" />
         <dependency idref="MySQLApp" />
       </and>
     </dependency>
@@ -1421,7 +1436,7 @@ The product can easily handle millions of products and has the following feature
     </author>
     <dependency>
       <and>
-        <dependency idref="PHP55App" />
+        <dependency idref="PHP56App" />
         <dependency idref="MySQLApp" />
       </and>
     </dependency>
@@ -1624,7 +1639,7 @@ The product can easily handle millions of products and has the following feature
     </author>
     <dependency>
       <and>
-        <dependency idref="PHP55App" />
+        <dependency idref="PHP56App" />
         <dependency idref="MySQLApp" />
       </and>
     </dependency>
@@ -1768,10 +1783,10 @@ The product can easily handle millions of products and has the following feature
     <title resourceName="Entry_DotNetNuke_Title">DNN Platform®</title>
     <id>http://www.microsoft.com/web/webpi/2.0/DotNetNuke</id>
     <summary resourceName="Entry_DotNetNuke_Summary">DNN® is the leading web content management platform ( CMS ) for building professional websites with dynamic content and interactive features. Through an intuitive, menu-driven interface, even non-technical users can use DNN Platform to easily create powerful websites or extend the functionality and features of existing web applications. </summary>
-    <updated>2017-02-09T00:00:00Z</updated>
-    <published>2017-03-14T14:20:39Z</published>
+    <updated>2017-07-05T00:00:00Z</updated>
+    <published>2017-07-05T22:04:23Z</published>
     <longSummary resourceName="Entry_DotNetNuke_LongSummary">DNN® is the leading web content management platform ( CMS ) for building professional websites with dynamic content and interactive features. With over 700,000 web sites deployed in production and thousands of third-party extensions available for immediate installation, DNN® makes it quick and affordable to develop a commercial website, a community portal, or an intranet solution.</longSummary>
-    <version>9.0.2 Platform</version>
+    <version>9.1.1 Platform</version>
     <link href="http://support.dotnetnuke.com" />
     <author>
       <name>DNN Corporation</name>
@@ -1797,10 +1812,10 @@ The product can easily handle millions of products and has the following feature
         <languageId>en</languageId>
         <osList idref="SupportedAppPlatforms" />
         <installerFile>
-          <fileSize>64144</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=DotNetNuke&amp;version=9.0.2+Platform&amp;applang=en</trackingURL>
-          <installerURL>https://github.com/dnnsoftware/Dnn.Platform/releases/download/v9.0.2/DNN_Platform_9.0.2_Deploy.zip</installerURL>
-          <sha1>EBB4132A0DE15AD871794F679DB8ACF421B3A6AF</sha1>
+          <fileSize>48335</fileSize>
+          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=DotNetNuke&amp;version=9.1.1+Platform&amp;applang=en</trackingURL>
+          <installerURL>https://github.com/dnnsoftware/Dnn.Platform/releases/download/v9.1.1/DNN_Platform_9.1.1.129-232_Deploy.zip</installerURL>
+          <sha1>53057ECF8221DE94AD7A78A938ECA37C0C7AF017</sha1>
         </installerFile>
         <msDeploy>
           <startPage>default.aspx</startPage>
@@ -1817,25 +1832,24 @@ The product can easily handle millions of products and has the following feature
     <productId>Umbraco</productId>
     <title resourceName="Entry_Umbraco_Title">Umbraco CMS</title>
     <id>http://www.microsoft.com/web/webpi/2.0/Umbraco</id>
-    <summary resourceName="Entry_Umbraco_Summary">The modern, robust, developer and designer friendly CMS used by more than 250,000 sites.  Easy to use and simple to extend.  Getting started is simple, adding features flexible, and customizing is without limits.</summary>
-    <updated>2016-04-29T20:24:59Z</updated>
-    <published>2016-04-29T20:24:59Z</published>
-    <longSummary resourceName="Entry_Umbraco_LongSummary">Umbraco CMS is the framework that http://www.asp.net/, http://www.wired.co.uk/, and over 250,000 other sites use to manage and deliver content and applications to millions of users.  Umbraco’s modern UI, pure .NET architecture, and active community make it the best choice for web CMS.  Umbraco supports both MVC and WebForms.  Umbraco is easy to use, simple to extend, and integrates with existing systems.</longSummary>
-    <version>7.4.3</version>
-    <link href="http://our.umbraco.org/" />
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/umbraco-logo</icon>
-    </images>
-    <keywords>
-      <keywordId>ContentMgmt</keywordId>
-      <keywordId>Blogs</keywordId>
-      <keywordId>SQL</keywordId>
-      <keywordId>SQLCE</keywordId>
-    </keywords>
+    <summary resourceName="Entry_Umbraco_Summary">The modern, robust, developer and designer friendly CMS used by more than 320,000 sites.  Easy to use and simple to extend.  Getting started is simple, adding features flexible, and customizing is without limits.</summary>
+    <updated>2016-10-20T00:00:00Z</updated>
+    <published>2017-06-02T18:05:26Z</published>
+    <longSummary resourceName="Entry_Umbraco_LongSummary">Umbraco CMS is the framework that http://www.asp.net/, http://www.wired.co.uk/, and over 320,000 other sites use to manage and deliver content and applications to millions of users.  Umbraco’s modern UI, pure .NET architecture, and active community make it the best choice for web CMS.  Umbraco supports both MVC and WebForms.  Umbraco is easy to use, simple to extend, and integrates with existing systems.</longSummary>
+    <version>7.5.4</version>
+    <link href="https://our.umbraco.org/" />
     <author>
       <name>umbraco.com</name>
-      <uri>http://umbraco.com/</uri>
+      <uri>https://umbraco.com/</uri>
     </author>
+    <images>
+      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/Umbraco-logo</icon>
+    </images>
+    <keywords>
+      <keywordId>Blogs</keywordId>
+      <keywordId>ContentMgmt</keywordId>
+      <keywordId>SQL</keywordId>
+    </keywords>
     <dependency>
       <and>
         <dependency idref="MVC4App" />
@@ -1849,15 +1863,15 @@ The product can easily handle millions of products and has the following feature
         <languageId>en</languageId>
         <osList idref="SupportedAppPlatforms" />
         <installerFile>
-          <fileSize>20292</fileSize>
-          <trackingURL>http://www.microsoft.com/web/handlers/webpi.ashx?command=incrementappdownloadcount&amp;appid=Umbraco&amp;version=7.4.3&amp;applang=en</trackingURL>
-          <installerURL>https://our.umbraco.org/ReleaseDownload?id=153962</installerURL>
-          <sha1>f22f1127c9d43e7feebfc345b4e927fc24ba259c</sha1>
+          <fileSize>20384</fileSize>
+          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=Umbraco&amp;version=7.5.4&amp;applang=en</trackingURL>
+          <installerURL>https://auxmktplceprod.blob.core.windows.net/packages/UmbracoCms.WebPI.7.5.4.zip</installerURL>
+          <sha1>318ae839941f03f2e3ed9d1862b098e392f80380</sha1>
         </installerFile>
         <msDeploy>
           <startPage>install/</startPage>
         </msDeploy>
-        <helpLink>http://our.umbraco.org/</helpLink>
+        <helpLink>https://our.umbraco.org/</helpLink>
       </installer>
     </installers>
     <addToFeedDate>10-04-2013</addToFeedDate>
@@ -2155,20 +2169,13 @@ The product can easily handle millions of products and has the following feature
     <productFamily resourceName="Applications">Applications</productFamily>
   </entry>
   <!-- MageliaWebStore-->
-  <entry type="application">
-    <productId>MageliaWebStore</productId>
-    <title resourceName="Entry_MageliaWebStore_Title">Magelia WebStore</title>
-    <id>http://www.microsoft.com/web/webpi/2.0/MageliaWebStore</id>
-    <summary resourceName="Entry_MageliaWebStore_Summary">
+  <!--  <entry type="application"><productId>MageliaWebStore</productId><title resourceName="Entry_MageliaWebStore_Title">Magelia WebStore</title><id>http://www.microsoft.com/web/webpi/2.0/MageliaWebStore</id><summary resourceName="Entry_MageliaWebStore_Summary">
       Adopted by major brands and retailers, Magelia WebStore is a powerful and extensible e-commerce software for .NET and Cloud environments such as Azure.
 
       With Magelia WebStore, provide your customers with a beautiful responsive store that automatically adapts to PCs, tablets, and smartphones’ screens.
 
       Install Magelia WebStore and get your online demo store in 3 minutes.
-    </summary>
-    <updated>2015-04-14T21:22:32Z</updated>
-    <published>2015-04-14T21:22:32Z</published>
-    <longSummary resourceName="Entry_MageliaWebStore_LongSummary">
+    </summary><updated>2015-04-14T21:22:32Z</updated><published>2015-04-14T21:22:32Z</published><longSummary resourceName="Entry_MageliaWebStore_LongSummary">
       Adopted by major brands and retailers, Magelia WebStore is a powerful and extensible e-commerce software for .NET and Cloud environments such as Azure.
 
       With Magelia WebStore, provide your customers with a beautiful responsive store that automatically adapts to PCs, tablets, and smartphones’ screens.
@@ -2180,59 +2187,7 @@ The product can easily handle millions of products and has the following feature
       Magelia WebStore Community edition is a free and open-source software based on the latest Microsoft .NET technologies. Magelia proposes a rich and flexible alternative to other major e-commerce software, such as Magento, Demandware, Hybris or SMBs e-commerce software such as Prestashop or NopCommerce.  To learn more about Magelia WebStore, please visit www.magelia.org.
 
       Install Magelia WebStore and get your online demo store in 3 minutes.
-    </longSummary>
-    <version>3.1.82.4</version>
-    <link href="http://magelia.org/contact" />
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/mageliawebstore-logo</icon>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/mageliawebstore-screenshot1</screenshot>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/mageliawebstore-screenshot2</screenshot>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/mageliawebstore-screenshot3</screenshot>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/mageliawebstore-screenshot4</screenshot>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/mageliawebstore-screenshot5</screenshot>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/mageliawebstore-screenshot6</screenshot>
-    </images>
-    <keywords>
-      <keywordId>eCommerce</keywordId>
-      <keywordId>ContentMgmt</keywordId>
-    </keywords>
-    <author>
-      <name>Magelia SAS</name>
-      <uri>http://www.magelia.org</uri>
-    </author>
-    <dependency idref="MVC4ASPNET45App" />
-    <installers>
-      <installer>
-        <id>1</id>
-        <languageId>en</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <installerFile>
-          <fileSize>5964</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=MageliaWebStore&amp;version=3.1.82.4&amp;applang=en</trackingURL>
-          <installerURL>http://mageliawebstore.codeplex.com/Project/Download/FileDownload.aspx?DownloadId=1435626</installerURL>
-          <sha1>43c37e8cf2f55bc6d6fc1d78d72718211451e162</sha1>
-        </installerFile>
-        <msDeploy />
-        <helpLink>http://magelia.org/contact</helpLink>
-      </installer>
-      <installer>
-        <id>2</id>
-        <languageId>fr</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <installerFile>
-          <fileSize>5964</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=MageliaWebStore&amp;version=3.1.82.4&amp;applang=fr</trackingURL>
-          <installerURL>http://mageliawebstore.codeplex.com/Project/Download/FileDownload.aspx?DownloadId=1435626</installerURL>
-          <sha1>43c37e8cf2f55bc6d6fc1d78d72718211451e162</sha1>
-        </installerFile>
-        <msDeploy />
-        <helpLink>http://magelia.org/contact</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>03-12-2013</addToFeedDate>
-    <pageName>MageliaWebStore</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
-  </entry>
+    </longSummary><version>3.1.82.4</version><link href="http://magelia.org/contact" /><images><icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/mageliawebstore-logo</icon><screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/mageliawebstore-screenshot1</screenshot><screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/mageliawebstore-screenshot2</screenshot><screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/mageliawebstore-screenshot3</screenshot><screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/mageliawebstore-screenshot4</screenshot><screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/mageliawebstore-screenshot5</screenshot><screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/mageliawebstore-screenshot6</screenshot></images><keywords><keywordId>eCommerce</keywordId><keywordId>ContentMgmt</keywordId></keywords><author><name>Magelia SAS</name><uri>http://www.magelia.org</uri></author><dependency idref="MVC4ASPNET45App" /><installers><installer><id>1</id><languageId>en</languageId><osList idref="SupportedAppPlatforms" /><installerFile><fileSize>5964</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=MageliaWebStore&amp;version=3.1.82.4&amp;applang=en</trackingURL><installerURL>http://mageliawebstore.codeplex.com/Project/Download/FileDownload.aspx?DownloadId=1435626</installerURL><sha1>43c37e8cf2f55bc6d6fc1d78d72718211451e162</sha1></installerFile><msDeploy /><helpLink>http://magelia.org/contact</helpLink></installer><installer><id>2</id><languageId>fr</languageId><osList idref="SupportedAppPlatforms" /><installerFile><fileSize>5964</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=MageliaWebStore&amp;version=3.1.82.4&amp;applang=fr</trackingURL><installerURL>http://mageliawebstore.codeplex.com/Project/Download/FileDownload.aspx?DownloadId=1435626</installerURL><sha1>43c37e8cf2f55bc6d6fc1d78d72718211451e162</sha1></installerFile><msDeploy /><helpLink>http://magelia.org/contact</helpLink></installer></installers><addToFeedDate>03-12-2013</addToFeedDate><pageName>MageliaWebStore</pageName><productFamily resourceName="Applications">Applications</productFamily></entry> -->
   <!-- tomeCMS-->
   <entry type="application">
     <productId>tomeCMS</productId>
@@ -2527,7 +2482,7 @@ MediaWiki is free and open source software and is distributed under the terms of
     </keywords>
     <dependency>
       <and>
-        <dependency idref="PHP55App" />
+        <dependency idref="PHP56App" />
         <dependency idref="MySQLApp" />
       </and>
     </dependency>
@@ -2878,10 +2833,10 @@ MediaWiki is free and open source software and is distributed under the terms of
     <title resourceName="Entry_Incentive_Title">Incentive</title>
     <id>http://www.microsoft.com/web/webpi/2.0/Incentive</id>
     <summary resourceName="Entry_Incentive_Summary">Incentive is a complete social intranet for mid-market organizations and enterprise teams. Incentive enables users to leverage existing workflow apps, storage systems, and document management tools in one central location. Its features include wikis, blogs, micro blogging, document collaboration, file sharing, instant messaging, video conversations, and a social behavior UX.</summary>
-    <updated>2017-04-07T00:00:00Z</updated>
-    <published>2017-04-11T12:27:22Z</published>
+    <updated>2017-06-27T00:00:00Z</updated>
+    <published>2017-06-27T09:40:54Z</published>
     <longSummary resourceName="Entry_Incentive_LongSummary">Incentive is a complete social intranet for mid-market organizations and enterprise teams. With an easy-to-use interface, Incentive's platform enables businesses to capture and secure enterprise knowledge and collaborate across the entire organization, delivering improved profitability, increased efficiency, and accelerated business results.Incentive enables users to leverage existing workflow apps, storage systems, and document management tools, in one central location. Its features include wikis, blogs, micro blogging, document collaboration, file sharing, instant messaging, video conversations, a social behavior UX, and an API-based platform for app development.</longSummary>
-    <version>4.9.1</version>
+    <version>4.9.3</version>
     <link href="http://support.incentive-inc.com/" />
     <author>
       <name>Incentive, Inc.</name>
@@ -2912,10 +2867,10 @@ MediaWiki is free and open source software and is distributed under the terms of
         <languageId>en</languageId>
         <osList idref="SupportedAppPlatforms" />
         <installerFile>
-          <fileSize>56694</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=Incentive&amp;version=4.9.1&amp;applang=en</trackingURL>
-          <installerURL>http://files.incentive-inc.com/releases/4.9.1-wag.zip</installerURL>
-          <sha1>3be21c5616255776e7191bbb9502183d2bbd53ff</sha1>
+          <fileSize>56703</fileSize>
+          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=Incentive&amp;version=4.9.3&amp;applang=en</trackingURL>
+          <installerURL>http://files.incentive-inc.com/releases/4.9.3-wag.zip</installerURL>
+          <sha1>e54cd66ce3a160e41f128697f50fa71d364b2f9c</sha1>
         </installerFile>
         <msDeploy>
           <startPage>/</startPage>
@@ -2982,12 +2937,12 @@ MediaWiki is free and open source software and is distributed under the terms of
     <title resourceName="Entry_Schlix_Title">Schlix CMS</title>
     <id>http://www.microsoft.com/web/webpi/2.0/Schlix</id>
     <summary resourceName="Entry_Schlix_Summary">SCHLIX CMS is an extensible content management system with pluggable extensions and themes.</summary>
-    <updated>2017-05-15T00:00:00Z</updated>
-    <published>2017-05-16T00:07:43Z</published>
+    <updated>2017-07-05T00:00:00Z</updated>
+    <published>2017-07-05T19:57:31Z</published>
     <longSummary resourceName="Entry_Schlix_LongSummary">SCHLIX CMS is a high performance, multi-site content management system that allows users to build websites and blogs with ease. It's open, extensible, scalable, and able to handle high load traffic. With its intuitive and easy to use interface, SCHLIX CMS will save your time and allow you to accomplish more with your site.
 
 As of version 2.0, you will need ECMAScript 6 compatible browsers: Firefox 45+, Chrome 35+, Internet Explorer Edge 14.0, or Opera 37+. </longSummary>
-    <version>2.1.2-3</version>
+    <version>2.1.4-1</version>
     <link href="https://www.schlix.com/forum/" />
     <author>
       <name>Schlix CMS</name>
@@ -3019,10 +2974,10 @@ As of version 2.0, you will need ECMAScript 6 compatible browsers: Firefox 45+, 
         <languageId>en</languageId>
         <osList idref="SupportedAppPlatforms" />
         <installerFile>
-          <fileSize>14405</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=Schlix&amp;version=2.1.2-3&amp;applang=en</trackingURL>
-          <installerURL>https://www.schlix.com/downloads/schlix-cms/iis/iis_schlix-cms-v2.1.2-3.zip</installerURL>
-          <sha1>413bdc403d4c0cd6cfd3ad848f6b977b22db8ffb</sha1>
+          <fileSize>14434</fileSize>
+          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=Schlix&amp;version=2.1.4-1&amp;applang=en</trackingURL>
+          <installerURL>https://www.schlix.com/downloads/schlix-cms/iis/iis_schlix-cms-v2.1.4-1.zip</installerURL>
+          <sha1>b012979d6fb3cd8c4f8189f158dd58427ae99914</sha1>
         </installerFile>
         <msDeploy>
           <startPage />
@@ -3103,10 +3058,10 @@ As of version 2.0, you will need ECMAScript 6 compatible browsers: Firefox 45+, 
     <title resourceName="Entry_Joomla_Title">Joomla!</title>
     <id>http://www.microsoft.com/web/webpi/2.0/Joomla</id>
     <summary resourceName="Entry_Joomla_Summary">Joomla! is an award-winning content management system (CMS), which enables you to build Web sites and powerful online applications. Many aspects, including its ease-of-use and extensibility, have made Joomla! the most popular Web site software available. Best of all, Joomla! is an open source solution that is freely available to everyone.</summary>
-    <updated>2017-05-05T00:00:00Z</updated>
-    <published>2017-05-05T06:22:09Z</published>
+    <updated>2017-05-25T00:00:00Z</updated>
+    <published>2017-05-25T08:49:10Z</published>
     <longSummary resourceName="Entry_Joomla_LongSummary">Joomla! is an open source content management system (CMS). Joomla!'s powerful application framework makes it easy for developers to create sophisticated add-ons that extend the power of Joomla! into virtually unlimited directions. The core Joomla! framework enables developers to quickly and easily build Inventory control systems, Data reporting tools, Custom product catalogs, Integrated e-commerce systems, Complex business directories, Reservation systems, Communication tools and many more. Since Joomla! is based on PHP and MySQL, you're building powerful applications on an open platform anyone can use, share, and support.</longSummary>
-    <version>3.7.0</version>
+    <version>3.7.2</version>
     <link href="http://forum.joomla.org" />
     <author>
       <name>Joomla</name>
@@ -3133,9 +3088,9 @@ As of version 2.0, you will need ECMAScript 6 compatible browsers: Firefox 45+, 
         <languageId>en</languageId>
         <osList idref="SupportedAppPlatforms" />
         <installerFile>
-          <fileSize>12762</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=Joomla&amp;version=3.7.0&amp;applang=en</trackingURL>
-          <installerURL>https://raw.githubusercontent.com/Song2017/WindowsWebAppGallery/master/Joomla_Windows_GalleryPackage/Joomla_3.7.2-Stable-Full_Package.zip</installerURL>
+          <fileSize>12795</fileSize>
+          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=Joomla&amp;version=3.7.2&amp;applang=en</trackingURL>
+          <installerURL>https://raw.githubusercontent.com/Song2017/Joomla_Windows_GalleryPackage/master/Joomla_3.7.2-Stable-Full_Package.zip</installerURL>
           <sha1>35a950102331bfa98b7ed463a9101c2ecfab2afb</sha1>
         </installerFile>
         <msDeploy>
@@ -3539,48 +3494,28 @@ As of version 2.0, you will need ECMAScript 6 compatible browsers: Firefox 45+, 
     <productId>surveyproject</productId>
     <title resourceName="Entry_surveyproject_Title">Survey Project</title>
     <id>http://www.microsoft.com/web/webpi/2.0/surveyproject</id>
-    <summary resourceName="Entry_surveyproject_Summary">
-      Survey™ Project is a free web based survey and (data entry) forms toolkit for processing &amp; gathering data online.
-
-      Survey™ Project is ideal for anyone who needs to collect valuable information from customers, visitors or employees efficiently.
-
-      It enables users without coding knowledge to develop and publish surveys through the internet.
-    </summary>
-    <updated>2012-06-11T22:16:14Z</updated>
-    <published>2012-06-11T00:00:00Z</published>
-    <longSummary resourceName="Entry_surveyproject_LongSummary">
-      Survey™ Project is a free web based survey and (data entry) forms toolkit for processing &amp; gathering data online.
-
-      Survey™ Project is ideal for anyone who needs to collect valuable information from customers, visitors or employees efficiently. It enables users without coding knowledge to develop and publish surveys through the internet.
-
-      Survey™ Project is an open source web application written in C# .NET based on a MSSQL database. The Survey™ Project sources save .NET developers time and effort in creating surveys in web application projects and provides many features to fit different requirements and business needs.
-
-      Also it's easy to add new types of questions or answers because of an object oriented and modular architecture.
-
-      Features include:
-      - Folder structure for surveys
-      - Survey designer and form builder (including text/html editor)
-      - Survey security options
-      - Token Management
-      - Multi-language options
-      - Question libraries
-      - Answer type editor
-      - Results and reporting options
-      - Import and export features
-      - Mailing options
-      - Users and roles administration
-      - Integrated Help files and tooltips
-      - Friendly Url for surveys
-
-      Special features:
-      - branching and skip logic
-      - answer piping
-      - randomize question order
-      - rating and scored surveys
-      - fileupload answer options
-    </longSummary>
-    <version>2.0</version>
+    <summary resourceName="Entry_surveyproject_Summary">Survey™ Project:
+- a free open source survey and (data entry) forms web application to collect and proces data online;
+- ideal to collect valuable information from customers, employees or visitors;
+- enables users without technical knowledge to create and publish surveys through the internet;</summary>
+    <updated>2017-04-27T00:00:00Z</updated>
+    <published>2017-05-29T10:51:08Z</published>
+    <longSummary resourceName="Entry_surveyproject_LongSummary">Survey™ Project is a free survey and (data entry) forms web application to collect and proces data online.
+Survey™ Project is ideal for anyone who needs to collect valuable information from customers, visitors or employees efficiently.
+It enables users without technical knowledge to create and publish surveys through the internet. 
+Survey™ Project is a free open source web application written in C# .NET (MSSQL database). 
+Special features:
+- branching and skip logic
+- answer piping
+- randomize question order
+- rating and scored surveys
+- file upload answer options</longSummary>
+    <version>2.4</version>
     <link href="http://www.surveyproject.org/Forums/tabid/107/Default.aspx" />
+    <author>
+      <name>Survey™ Project</name>
+      <uri>http://www.surveyproject.org</uri>
+    </author>
     <images>
       <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/surveyproject-logo</icon>
       <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/surveyproject-screenshot1</screenshot>
@@ -3593,10 +3528,6 @@ As of version 2.0, you will need ECMAScript 6 compatible browsers: Firefox 45+, 
       <keywordId>Tools</keywordId>
       <keywordId>SQL</keywordId>
     </keywords>
-    <author>
-      <name>Survey™ Project</name>
-      <uri>http://www.surveyproject.org</uri>
-    </author>
     <dependency idref="SQL_ASPNET4App" />
     <installers>
       <installer>
@@ -3604,12 +3535,14 @@ As of version 2.0, you will need ECMAScript 6 compatible browsers: Firefox 45+, 
         <languageId>en</languageId>
         <osList idref="SupportedAppPlatforms" />
         <installerFile>
-          <fileSize>2806</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=surveyproject&amp;version=2.0&amp;applang=en</trackingURL>
-          <installerURL>http://www.surveyproject.org/portals/1/surveydeploy/Survey20DeployPackage.zip</installerURL>
-          <sha1>7369dc5b7891f967dbb080f60c836ff4852cc975</sha1>
+          <fileSize>7565</fileSize>
+          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=surveyproject&amp;version=2.4&amp;applang=en</trackingURL>
+          <installerURL>https://github.com/surveyproject/surveyproject_main_public/releases/download/v2.4-wpi/SP24Package_WPI.zip</installerURL>
+          <sha1>60b4abfbf05aa5603c488f1d4170be4aff6346ff</sha1>
         </installerFile>
-        <msDeploy />
+        <msDeploy>
+          <startPage>/default.aspx</startPage>
+        </msDeploy>
         <helpLink>http://www.surveyproject.org/Forums/tabid/107/Default.aspx</helpLink>
       </installer>
     </installers>
@@ -3951,101 +3884,13 @@ As of version 2.0, you will need ECMAScript 6 compatible browsers: Firefox 45+, 
     <productFamily resourceName="Applications">Applications</productFamily>
   </entry>
   <!-- wordpressptportugal-->
-  <entry type="application">
-    <productId>wordpressptportugal</productId>
-    <title resourceName="Entry_wordpressptportugal_Title">WordPress PT Portugal</title>
-    <id>http://www.microsoft.com/web/webpi/2.0/wordpressptportugal</id>
-    <summary resourceName="Entry_wordpressptportugal_Summary">WordPress is web software you can use to create a beautiful website or blog. We like to say that WordPress is both free and priceless at the same time.</summary>
-    <updated>2012-03-20T17:04:18Z</updated>
-    <published>2012-03-20T00:00:00Z</published>
-    <longSummary resourceName="Entry_wordpressptportugal_LongSummary">
+  <!--   <entry type="application"><productId>wordpressptportugal</productId><title resourceName="Entry_wordpressptportugal_Title">WordPress PT Portugal</title><id>http://www.microsoft.com/web/webpi/2.0/wordpressptportugal</id><summary resourceName="Entry_wordpressptportugal_Summary">WordPress is web software you can use to create a beautiful website or blog. We like to say that WordPress is both free and priceless at the same time.</summary><updated>2012-03-20T17:04:18Z</updated><published>2012-03-20T00:00:00Z</published><longSummary resourceName="Entry_wordpressptportugal_LongSummary">
       WordPress is web software you can use to create a beautiful website or blog. We like to say that WordPress is both free and priceless at the same time.
 
       The core software is built by hundreds of community volunteers, and when you’re ready for more there are thousands of plugins and themes available to transform your site into almost anything you can imagine. Over 25 million people have chosen WordPress to power the place on the web they call “home” — we’d love you to join the family.
-    </longSummary>
-    <version>3.3.1</version>
-    <link href="http://pt.forums.wordpress.org" />
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressptportugal-logo</icon>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressptportugal-screenshot1</screenshot>
-    </images>
-    <keywords>
-      <keywordId>ContentMgmt</keywordId>
-      <keywordId>Blogs</keywordId>
-      <keywordId>PHP</keywordId>
-      <keywordId>MySQL</keywordId>
-    </keywords>
-    <author>
-      <name>WordPress Portugal</name>
-      <uri>http://pt.wordpress.org</uri>
-    </author>
-    <dependency>
-      <and>
-        <dependency idref="PHP56App" />
-        <dependency idref="MySQLApp" />
-      </and>
-    </dependency>
-    <installers>
-      <installer>
-        <id>1</id>
-        <languageId>pt-pt</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <installerFile>
-          <fileSize>4651</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=wordpressptportugal&amp;version=3.3.1&amp;applang=pt-pt</trackingURL>
-          <installerURL>http://pt.wordpress.org/builds/pt_PT/tags/3.3.1/wordpress-3.3.1-IIS-pt_PT.zip</installerURL>
-          <sha1>CE392D8891B39043F1BEF5106FE7D7179FA49400</sha1>
-        </installerFile>
-        <msDeploy />
-        <helpLink>http://pt.forums.wordpress.org</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>03-20-2012</addToFeedDate>
-    <pageName>wordpressptportugal</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
-  </entry>
+    </longSummary><version>3.3.1</version><link href="http://pt.forums.wordpress.org" /><images><icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressptportugal-logo</icon><screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressptportugal-screenshot1</screenshot></images><keywords><keywordId>ContentMgmt</keywordId><keywordId>Blogs</keywordId><keywordId>PHP</keywordId><keywordId>MySQL</keywordId></keywords><author><name>WordPress Portugal</name><uri>http://pt.wordpress.org</uri></author><dependency><and><dependency idref="PHP56App" /><dependency idref="MySQLApp" /></and></dependency><installers><installer><id>1</id><languageId>pt-pt</languageId><osList idref="SupportedAppPlatforms" /><installerFile><fileSize>4651</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=wordpressptportugal&amp;version=3.3.1&amp;applang=pt-pt</trackingURL><installerURL>http://pt.wordpress.org/builds/pt_PT/tags/3.3.1/wordpress-3.3.1-IIS-pt_PT.zip</installerURL><sha1>CE392D8891B39043F1BEF5106FE7D7179FA49400</sha1></installerFile><msDeploy /><helpLink>http://pt.forums.wordpress.org</helpLink></installer></installers><addToFeedDate>03-20-2012</addToFeedDate><pageName>wordpressptportugal</pageName><productFamily resourceName="Applications">Applications</productFamily></entry> -->
   <!-- OrchardTaiwan-->
-  <entry type="application">
-    <productId>OrchardTaiwan</productId>
-    <title resourceName="Entry_OrchardTaiwan_Title">Orchard CMS Taiwan</title>
-    <id>http://www.microsoft.com/web/webpi/2.0/OrchardTaiwan</id>
-    <summary resourceName="Entry_OrchardTaiwan_Summary">Orchard CMS is a free, open source content management system that allows users to rapidly create web sites on the Microsoft ASP.NET platform. It is built on a flexible extensibility framework that enables developers and customizers to provide additional functionality through extensions and themes.</summary>
-    <updated>2011-06-16T16:16:15Z</updated>
-    <published>2011-06-16T00:00:00Z</published>
-    <longSummary resourceName="Entry_OrchardTaiwan_LongSummary">Orchard CMS is a free, open source content management system that allows users to rapidly create web sites on the Microsoft ASP.NET platform. It is built on a flexible extensibility framework that enables developers and customizers to provide additional functionality through extensions and themes.</longSummary>
-    <version>1.1.30</version>
-    <link href="http://www.outercurve.org/" />
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/orchardtaiwan-logo</icon>
-    </images>
-    <keywords>
-      <keywordId>ContentMgmt</keywordId>
-      <keywordId>SQL</keywordId>
-    </keywords>
-    <author>
-      <name>多奇數位創意有限公司</name>
-      <uri>http://www.miniasp.com/</uri>
-    </author>
-    <dependency idref="SQL_ASPNET4App" />
-    <installers>
-      <installer>
-        <id>1</id>
-        <languageId>zh-tw</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <installerFile>
-          <fileSize>8675</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=OrchardTaiwan&amp;version=1.1.30&amp;applang=zh-tw</trackingURL>
-          <installerURL>http://dl.dropbox.com/u/1011445/WebPI_and_WebMatrix/Packages/Orchard.Web.1.1.30-zh_TW-IIS.zip</installerURL>
-          <sha1>c96e2166a0fcf2955f733bafe5db21b1ad835c3d</sha1>
-        </installerFile>
-        <msDeploy />
-        <helpLink>http://www.outercurve.org/</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>6-16-2011</addToFeedDate>
-    <pageName>OrchardTaiwan</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
-  </entry>
+  <!--    <entry type="application"><productId>OrchardTaiwan</productId><title resourceName="Entry_OrchardTaiwan_Title">Orchard CMS Taiwan</title><id>http://www.microsoft.com/web/webpi/2.0/OrchardTaiwan</id><summary resourceName="Entry_OrchardTaiwan_Summary">Orchard CMS is a free, open source content management system that allows users to rapidly create web sites on the Microsoft ASP.NET platform. It is built on a flexible extensibility framework that enables developers and customizers to provide additional functionality through extensions and themes.</summary><updated>2011-06-16T16:16:15Z</updated><published>2011-06-16T00:00:00Z</published><longSummary resourceName="Entry_OrchardTaiwan_LongSummary">Orchard CMS is a free, open source content management system that allows users to rapidly create web sites on the Microsoft ASP.NET platform. It is built on a flexible extensibility framework that enables developers and customizers to provide additional functionality through extensions and themes.</longSummary><version>1.1.30</version><link href="http://www.outercurve.org/" /><images><icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/orchardtaiwan-logo</icon></images><keywords><keywordId>ContentMgmt</keywordId><keywordId>SQL</keywordId></keywords><author><name>多奇數位創意有限公司</name><uri>http://www.miniasp.com/</uri></author><dependency idref="SQL_ASPNET4App" /><installers><installer><id>1</id><languageId>zh-tw</languageId><osList idref="SupportedAppPlatforms" /><installerFile><fileSize>8675</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=OrchardTaiwan&amp;version=1.1.30&amp;applang=zh-tw</trackingURL><installerURL>http://dl.dropbox.com/u/1011445/WebPI_and_WebMatrix/Packages/Orchard.Web.1.1.30-zh_TW-IIS.zip</installerURL><sha1>c96e2166a0fcf2955f733bafe5db21b1ad835c3d</sha1></installerFile><msDeploy /><helpLink>http://www.outercurve.org/</helpLink></installer></installers><addToFeedDate>6-16-2011</addToFeedDate><pageName>OrchardTaiwan</pageName><productFamily resourceName="Applications">Applications</productFamily></entry>-->
   <!-- KoobooCommunicator-->
   <entry type="application">
     <productId>KoobooCommunicator</productId>
@@ -4106,8 +3951,8 @@ As of version 2.0, you will need ECMAScript 6 compatible browsers: Firefox 45+, 
     <title resourceName="Entry_ocPortal_Title">Composr CMS</title>
     <id>http://www.microsoft.com/web/webpi/2.0/ocPortal</id>
     <summary resourceName="Entry_ocPortal_Summary">Composr is a powerful and flexible CMS, with an emphasis on building social, dynamic, and interactive websites. Composr provides features for blogging, running a forum, providing downloads, hosting galleries, serving your own databases, eCommerce, and much more. Everything is customisable, done to high standards, and streamlined.</summary>
-    <updated>2017-04-25T00:00:00Z</updated>
-    <published>2017-04-25T21:12:47Z</published>
+    <updated>2017-06-28T00:00:00Z</updated>
+    <published>2017-06-28T01:17:05Z</published>
     <longSummary resourceName="Entry_ocPortal_LongSummary">Composr is a CMS with many social media features, for building modern, sophisticated websites. Composr supports many types of content (galleries, news/newsletters, etc.) - and integrating rich media and advertising into them. Social features include forums, member blogs, chat rooms, wiki, and content commenting/rating.
 
 Composr lets you decide how your site will look and behave. Features are plentiful, but also optional. Feature integration is at the core of the Composr philosophy - for example, the site-wide search engine, and the unified member profiles.
@@ -4115,7 +3960,7 @@ Composr lets you decide how your site will look and behave. Features are plentif
 Out-of-the-box your site will meet the highest accessibility and professional standards, and will appear higher in Google due to automatic SEO. Your website will automatically block and record hacking attempts, and you can control access in different ways such as via paid subscription.
 
 Composr is designed as the software that'll handle all your needs; you’ll get much more than just a Content Management System.</longSummary>
-    <version>10.0.4</version>
+    <version>10.0.6</version>
     <link href="https://compo.sr/support.htm" />
     <author>
       <name>ocProducts</name>
@@ -4147,10 +3992,10 @@ Composr is designed as the software that'll handle all your needs; you’ll get 
         <languageId>en</languageId>
         <osList idref="SupportedAppPlatforms" />
         <installerFile>
-          <fileSize>15929</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=ocPortal&amp;version=10.0.4&amp;applang=en</trackingURL>
-          <installerURL>https://compo.sr/site/dload.php?id=268</installerURL>
-          <sha1>6d5f243d825395b189c429e0e4655d1cb50b1c5b</sha1>
+          <fileSize>15962</fileSize>
+          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=ocPortal&amp;version=10.0.6&amp;applang=en</trackingURL>
+          <installerURL>https://compo.sr/site/dload.php?id=377</installerURL>
+          <sha1>bc54d6d41a23ab78b997b37f5bb5cb448659e949</sha1>
         </installerFile>
         <msDeploy>
           <startPage>/index.php</startPage>
@@ -4310,52 +4155,7 @@ Composr is designed as the software that'll handle all your needs; you’ll get 
     <productFamily resourceName="Applications">Applications</productFamily>
   </entry>
   <!-- TurkishWordPress-->
-  <entry type="application">
-    <productId>TurkishWordPress</productId>
-    <title resourceName="Entry_TurkishWordPress_Title">Wordpress (Turkish)</title>
-    <id>http://www.microsoft.com/web/webpi/2.0/TurkishWordPress</id>
-    <summary resourceName="Entry_TurkishWordPress_Summary">WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.</summary>
-    <updated>2014-04-18T17:33:20Z</updated>
-    <published>2014-04-18T17:33:20Z</published>
-    <longSummary resourceName="Entry_TurkishWordPress_LongSummary">WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on hundreds of thousands of sites and seen by tens of millions of people every day.</longSummary>
-    <version>3.9</version>
-    <link href="http://www.wp-tr.org/forum/" />
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/turkishwordpress-logo</icon>
-    </images>
-    <keywords>
-      <keywordId>Blogs</keywordId>
-      <keywordId>MySQL</keywordId>
-    </keywords>
-    <author>
-      <name>WordPress Türkçe</name>
-      <uri>http://www.wp-tr.org/</uri>
-    </author>
-    <dependency>
-      <and>
-        <dependency idref="PHP56App" />
-        <dependency idref="MySQLApp" />
-      </and>
-    </dependency>
-    <installers>
-      <installer>
-        <id>1</id>
-        <languageId>tr</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <installerFile>
-          <fileSize>6745</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=TurkishWordPress&amp;version=3.9&amp;applang=tr</trackingURL>
-          <installerURL>http://tr.wordpress.org/builds/tr_TR/tags/3.9/wordpress-3.9-IIS-tr_TR.zip</installerURL>
-          <sha1>117163eca75b8e50912617308075bac5b570a815</sha1>
-        </installerFile>
-        <msDeploy />
-        <helpLink>http://www.wp-tr.org/forum/</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>11-12-2013</addToFeedDate>
-    <pageName>TurkishWordPress</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
-  </entry>
+  <!--<entry type="application"><productId>TurkishWordPress</productId><title resourceName="Entry_TurkishWordPress_Title">Wordpress (Turkish)</title><id>http://www.microsoft.com/web/webpi/2.0/TurkishWordPress</id><summary resourceName="Entry_TurkishWordPress_Summary">WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.</summary><updated>2014-04-18T17:33:20Z</updated><published>2014-04-18T17:33:20Z</published><longSummary resourceName="Entry_TurkishWordPress_LongSummary">WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on hundreds of thousands of sites and seen by tens of millions of people every day.</longSummary><version>3.9</version><link href="http://www.wp-tr.org/forum/" /><images><icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/turkishwordpress-logo</icon></images><keywords><keywordId>Blogs</keywordId><keywordId>MySQL</keywordId></keywords><author><name>WordPress Türkçe</name><uri>http://www.wp-tr.org/</uri></author><dependency><and><dependency idref="PHP56App" /><dependency idref="MySQLApp" /></and></dependency><installers><installer><id>1</id><languageId>tr</languageId><osList idref="SupportedAppPlatforms" /><installerFile><fileSize>6745</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=TurkishWordPress&amp;version=3.9&amp;applang=tr</trackingURL><installerURL>http://tr.wordpress.org/builds/tr_TR/tags/3.9/wordpress-3.9-IIS-tr_TR.zip</installerURL><sha1>117163eca75b8e50912617308075bac5b570a815</sha1></installerFile><msDeploy /><helpLink>http://www.wp-tr.org/forum/</helpLink></installer></installers><addToFeedDate>11-12-2013</addToFeedDate><pageName>TurkishWordPress</pageName><productFamily resourceName="Applications">Applications</productFamily></entry>-->
   <!-- drupal7heb-->
   <entry type="application">
     <productId>drupal7heb</productId>
@@ -4580,118 +4380,9 @@ Composr is designed as the software that'll handle all your needs; you’ll get 
     <productFamily resourceName="Applications">Applications</productFamily>
   </entry>
   <!-- WordPressGerman-->
-  <entry type="application">
-    <productId>WordPressGerman</productId>
-    <title resourceName="Entry_WordPressGerman_Title">WordPress German</title>
-    <id>http://www.microsoft.com/web/webpi/2.0/WordPressGerman</id>
-    <summary resourceName="Entry_WordPressGerman_Summary">WordPress is web software you can use to create a beautiful website or blog. We like to say that WordPress is both free and priceless at the same time.</summary>
-    <updated>2011-04-21T21:24:39Z</updated>
-    <published>2011-02-11T00:00:00Z</published>
-    <longSummary resourceName="Entry_WordPressGerman_LongSummary">The core software is built by hundreds of community volunteers, and when you’re ready for more there are thousands of plugins and themes available to transform your site into almost anything you can imagine. Over 25 million people have chosen WordPress to power the place on the web they call “home” — we’d love you to join the family.</longSummary>
-    <version>3.0.5</version>
-    <link href="http://forum.wordpress-deutschland.org/" />
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressgerman-logo</icon>
-    </images>
-    <keywords>
-      <keywordId>Blogs</keywordId>
-      <keywordId>PHP</keywordId>
-      <keywordId>MySQL</keywordId>
-    </keywords>
-    <author>
-      <name>Schweizer WordPress Magazin</name>
-      <uri>http://wp-magazin.ch/</uri>
-    </author>
-    <dependency>
-      <and>
-        <dependency idref="PHP56App" />
-        <dependency idref="MySQLApp" />
-      </and>
-    </dependency>
-    <installers>
-      <installer>
-        <id>1</id>
-        <languageId>de</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <installerFile>
-          <fileSize>3331</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPressGerman&amp;version=3.0.5&amp;applang=de</trackingURL>
-          <installerURL>http://wp-magazin.ch/download/wordpress-3.0.5-de_DE-IIS.zip</installerURL>
-          <sha1>a9c04f1d857721c6234ff80e5806cb98dde42b6b</sha1>
-        </installerFile>
-        <msDeploy />
-        <helpLink>http://forum.wordpress-deutschland.org/</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>2-11-2011</addToFeedDate>
-    <pageName>WordPressGerman</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
-  </entry>
+  <!--<entry type="application"><productId>WordPressGerman</productId><title resourceName="Entry_WordPressGerman_Title">WordPress German</title><id>http://www.microsoft.com/web/webpi/2.0/WordPressGerman</id><summary resourceName="Entry_WordPressGerman_Summary">WordPress is web software you can use to create a beautiful website or blog. We like to say that WordPress is both free and priceless at the same time.</summary><updated>2011-04-21T21:24:39Z</updated><published>2011-02-11T00:00:00Z</published><longSummary resourceName="Entry_WordPressGerman_LongSummary">The core software is built by hundreds of community volunteers, and when you’re ready for more there are thousands of plugins and themes available to transform your site into almost anything you can imagine. Over 25 million people have chosen WordPress to power the place on the web they call “home” — we’d love you to join the family.</longSummary><version>3.0.5</version><link href="http://forum.wordpress-deutschland.org/" /><images><icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressgerman-logo</icon></images><keywords><keywordId>Blogs</keywordId><keywordId>PHP</keywordId><keywordId>MySQL</keywordId></keywords><author><name>Schweizer WordPress Magazin</name><uri>http://wp-magazin.ch/</uri></author><dependency><and><dependency idref="PHP56App" /><dependency idref="MySQLApp" /></and></dependency><installers><installer><id>1</id><languageId>de</languageId><osList idref="SupportedAppPlatforms" /><installerFile><fileSize>3331</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPressGerman&amp;version=3.0.5&amp;applang=de</trackingURL><installerURL>http://wp-magazin.ch/download/wordpress-3.0.5-de_DE-IIS.zip</installerURL><sha1>a9c04f1d857721c6234ff80e5806cb98dde42b6b</sha1></installerFile><msDeploy /><helpLink>http://forum.wordpress-deutschland.org/</helpLink></installer></installers><addToFeedDate>2-11-2011</addToFeedDate><pageName>WordPressGerman</pageName><productFamily resourceName="Applications">Applications</productFamily></entry>-->
   <!-- WordPressPTBrasil-->
-  <entry type="application">
-    <productId>WordPressPTBrasil</productId>
-    <title resourceName="Entry_WordPressPTBrasil_Title">WordPress PT Brasil</title>
-    <id>http://www.microsoft.com/web/webpi/2.0/WordPressPTBrasil</id>
-    <summary resourceName="Entry_WordPressPTBrasil_Summary">WordPress is web software you can use to create a beautiful website or blog. We like to say that WordPress is both free and priceless at the same time.</summary>
-    <updated>2013-11-12T21:40:02Z</updated>
-    <published>2013-11-12T21:40:02Z</published>
-    <longSummary resourceName="Entry_WordPressPTBrasil_LongSummary">WordPress is web software you can use to create a beautiful website or blog. We like to say that WordPress is both free and priceless at the same time.</longSummary>
-    <version>3.7.1</version>
-    <link href="http://br.forums.wordpress.org/" />
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressptbrasil-logo</icon>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressptbrasil-screenshot1</screenshot>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressptbrasil-screenshot2</screenshot>
-    </images>
-    <keywords>
-      <keywordId>Blogs</keywordId>
-      <keywordId>ContentMgmt</keywordId>
-      <keywordId>PHP</keywordId>
-      <keywordId>MySQL</keywordId>
-      <keywordId>AzureReady</keywordId>
-    </keywords>
-    <author>
-      <name>Wordpress Brasil</name>
-      <uri>http://br.wordpress.org</uri>
-    </author>
-    <dependency>
-      <and>
-        <dependency idref="PHP56App" />
-        <dependency idref="MySQLApp" />
-      </and>
-    </dependency>
-    <installers>
-      <installer>
-        <id>1</id>
-        <languageId>pt-br</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <installerFile>
-          <fileSize>5472</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPressPTBrasil&amp;version=3.7.1&amp;applang=pt-br</trackingURL>
-          <installerURL>http://br.wordpress.org/builds/pt_BR/tags/3.7.1/wordpress-3.7.1-IIS-pt_BR.zip</installerURL>
-          <sha1>2dc845843bf8665bdd07b177883c45ab8146956a</sha1>
-        </installerFile>
-        <msDeploy />
-        <helpLink>http://br.forums.wordpress.org/</helpLink>
-      </installer>
-      <installer>
-        <id>2</id>
-        <languageId>en</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <installerFile>
-          <fileSize>5472</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPressPTBrasil&amp;version=3.7.1&amp;applang=en</trackingURL>
-          <installerURL>http://br.wordpress.org/builds/pt_BR/tags/3.7.1/wordpress-3.7.1-IIS-pt_BR.zip</installerURL>
-          <sha1>2dc845843bf8665bdd07b177883c45ab8146956a</sha1>
-        </installerFile>
-        <msDeploy />
-        <helpLink>http://br.forums.wordpress.org/</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>11-12-2013</addToFeedDate>
-    <pageName>WordPressPTBrasil</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
-  </entry>
+  <!--<entry type="application"><productId>WordPressPTBrasil</productId><title resourceName="Entry_WordPressPTBrasil_Title">WordPress PT Brasil</title><id>http://www.microsoft.com/web/webpi/2.0/WordPressPTBrasil</id><summary resourceName="Entry_WordPressPTBrasil_Summary">WordPress is web software you can use to create a beautiful website or blog. We like to say that WordPress is both free and priceless at the same time.</summary><updated>2013-11-12T21:40:02Z</updated><published>2013-11-12T21:40:02Z</published><longSummary resourceName="Entry_WordPressPTBrasil_LongSummary">WordPress is web software you can use to create a beautiful website or blog. We like to say that WordPress is both free and priceless at the same time.</longSummary><version>3.7.1</version><link href="http://br.forums.wordpress.org/" /><images><icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressptbrasil-logo</icon><screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressptbrasil-screenshot1</screenshot><screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressptbrasil-screenshot2</screenshot></images><keywords><keywordId>Blogs</keywordId><keywordId>ContentMgmt</keywordId><keywordId>PHP</keywordId><keywordId>MySQL</keywordId><keywordId>AzureReady</keywordId></keywords><author><name>Wordpress Brasil</name><uri>http://br.wordpress.org</uri></author><dependency><and><dependency idref="PHP56App" /><dependency idref="MySQLApp" /></and></dependency><installers><installer><id>1</id><languageId>pt-br</languageId><osList idref="SupportedAppPlatforms" /><installerFile><fileSize>5472</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPressPTBrasil&amp;version=3.7.1&amp;applang=pt-br</trackingURL><installerURL>http://br.wordpress.org/builds/pt_BR/tags/3.7.1/wordpress-3.7.1-IIS-pt_BR.zip</installerURL><sha1>2dc845843bf8665bdd07b177883c45ab8146956a</sha1></installerFile><msDeploy /><helpLink>http://br.forums.wordpress.org/</helpLink></installer><installer><id>2</id><languageId>en</languageId><osList idref="SupportedAppPlatforms" /><installerFile><fileSize>5472</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPressPTBrasil&amp;version=3.7.1&amp;applang=en</trackingURL><installerURL>http://br.wordpress.org/builds/pt_BR/tags/3.7.1/wordpress-3.7.1-IIS-pt_BR.zip</installerURL><sha1>2dc845843bf8665bdd07b177883c45ab8146956a</sha1></installerFile><msDeploy /><helpLink>http://br.forums.wordpress.org/</helpLink></installer></installers><addToFeedDate>11-12-2013</addToFeedDate><pageName>WordPressPTBrasil</pageName><productFamily resourceName="Applications">Applications</productFamily></entry> -->
   <!-- SplendidCRM-->
   <entry type="application">
     <productId>SplendidCRM</productId>
@@ -4753,53 +4444,7 @@ Composr is designed as the software that'll handle all your needs; you’ll get 
     <productFamily resourceName="Applications">Applications</productFamily>
   </entry>
   <!-- WordpressHebrew-->
-  <entry type="application">
-    <productId>WordpressHebrew</productId>
-    <title resourceName="Entry_WordpressHebrew_Title">WordPress Hebrew version</title>
-    <id>http://www.microsoft.com/web/webpi/2.0/WordpressHebrew</id>
-    <summary resourceName="Entry_WordpressHebrew_Summary">WordPress including hebrew translation.</summary>
-    <updated>2011-12-28T15:46:58Z</updated>
-    <published>2011-12-28T00:00:00Z</published>
-    <longSummary resourceName="Entry_WordpressHebrew_LongSummary">WordPress including hebrew translation.</longSummary>
-    <version>3.3</version>
-    <link href="http://he.wordpress.org/" />
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpresshebrew-logo</icon>
-    </images>
-    <keywords>
-      <keywordId>Blogs</keywordId>
-      <keywordId>PHP</keywordId>
-      <keywordId>MySQL</keywordId>
-    </keywords>
-    <author>
-      <name>Ran Bar-Zik</name>
-      <uri>http://www.internet-israel.com</uri>
-    </author>
-    <dependency>
-      <and>
-        <dependency idref="PHP56App" />
-        <dependency idref="MySQLApp" />
-      </and>
-    </dependency>
-    <installers>
-      <installer>
-        <id>1</id>
-        <languageId>he</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <installerFile>
-          <fileSize>4673</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordpressHebrew&amp;version=3.3&amp;applang=he</trackingURL>
-          <installerURL>http://www.internet-israel.com/internet_files/microsoft/wordpress-3.3-IIS-he_IL.zip</installerURL>
-          <sha1>c78cbb1791226a982b453945e4d01da424eac5fd</sha1>
-        </installerFile>
-        <msDeploy />
-        <helpLink>http://he.wordpress.org/</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>12-28-2011</addToFeedDate>
-    <pageName>WordpressHebrew</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
-  </entry>
+  <!--<entry type="application"><productId>WordpressHebrew</productId><title resourceName="Entry_WordpressHebrew_Title">WordPress Hebrew version</title><id>http://www.microsoft.com/web/webpi/2.0/WordpressHebrew</id><summary resourceName="Entry_WordpressHebrew_Summary">WordPress including hebrew translation.</summary><updated>2011-12-28T15:46:58Z</updated><published>2011-12-28T00:00:00Z</published><longSummary resourceName="Entry_WordpressHebrew_LongSummary">WordPress including hebrew translation.</longSummary><version>3.3</version><link href="http://he.wordpress.org/" /><images><icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpresshebrew-logo</icon></images><keywords><keywordId>Blogs</keywordId><keywordId>PHP</keywordId><keywordId>MySQL</keywordId></keywords><author><name>Ran Bar-Zik</name><uri>http://www.internet-israel.com</uri></author><dependency><and><dependency idref="PHP56App" /><dependency idref="MySQLApp" /></and></dependency><installers><installer><id>1</id><languageId>he</languageId><osList idref="SupportedAppPlatforms" /><installerFile><fileSize>4673</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordpressHebrew&amp;version=3.3&amp;applang=he</trackingURL><installerURL>http://www.internet-israel.com/internet_files/microsoft/wordpress-3.3-IIS-he_IL.zip</installerURL><sha1>c78cbb1791226a982b453945e4d01da424eac5fd</sha1></installerFile><msDeploy /><helpLink>http://he.wordpress.org/</helpLink></installer></installers><addToFeedDate>12-28-2011</addToFeedDate><pageName>WordpressHebrew</pageName><productFamily resourceName="Applications">Applications</productFamily></entry>-->
   <!-- DotNetAge-->
   <entry type="application">
     <productId>DotNetAge</productId>
@@ -4905,19 +4550,12 @@ Composr is designed as the software that'll handle all your needs; you’ll get 
     <productFamily resourceName="Applications">Applications</productFamily>
   </entry>
   <!-- drupalcommercesql-->
-  <entry type="application">
-    <productId>drupalcommercesql</productId>
-    <title resourceName="Entry_drupalcommercesql_Title">Drupal Commerce Kickstart</title>
-    <id>http://www.microsoft.com/web/webpi/2.0/drupalcommercesql</id>
-    <summary resourceName="Entry_drupalcommercesql_Summary">
+  <!-- <entry type="application"><productId>drupalcommercesql</productId><title resourceName="Entry_drupalcommercesql_Title">Drupal Commerce Kickstart</title><id>http://www.microsoft.com/web/webpi/2.0/drupalcommercesql</id><summary resourceName="Entry_drupalcommercesql_Summary">
       Drupal Commerce is a lean and mean open source
       e-commerce framework built on Drupal 7. Use it
       to build flexible and highly customizable websites
       based on the best platform for social commerce.
-    </summary>
-    <updated>2012-06-04T13:31:00Z</updated>
-    <published>2012-06-04T13:31:00Z</published>
-    <longSummary resourceName="Entry_drupalcommercesql_LongSummary">
+    </summary><updated>2012-06-04T13:31:00Z</updated><published>2012-06-04T13:31:00Z</published><longSummary resourceName="Entry_drupalcommercesql_LongSummary">
       Drupal Commerce is a lean and mean open source
       e-commerce framework built on Drupal 7. Use it
       to build flexible and highly customizable websites
@@ -4926,47 +4564,7 @@ Composr is designed as the software that'll handle all your needs; you’ll get 
       Drupal is a free software package that allows anyone to easily publish, manage and organize a wide variety of content on a website. Hundreds of thousands of people and organizations are using Drupal to power an endless variety of sites.
 
       Drupal is maintained and developed by a community of hundreds of thousands of users and developers. It's distributed under the terms of the GNU General Public License (or "GPL"), which means anyone is free to download it, share it with others, and contribute back to the project. This open development model means that people are constantly working to make sure Drupal is a cutting-edge platform that supports the latest technologies that the Web has to offer.
-    </longSummary>
-    <version>1.8.1</version>
-    <link href="http://www.commerceguys.com" />
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/drupalcommercesql-logo</icon>
-    </images>
-    <keywords>
-      <keywordId>eCommerce</keywordId>
-      <keywordId>ContentMgmt</keywordId>
-      <keywordId>PHP</keywordId>
-      <keywordId>SQL</keywordId>
-      <keywordId>MySQL</keywordId>
-      <keywordId>AzureReady</keywordId>
-      <keywordId>KatalReady</keywordId>
-    </keywords>
-    <author>
-      <name>Commerce Guys</name>
-      <uri>http://www.commerceguys.com</uri>
-    </author>
-    <dependency idref="PHP53_MySQL_SQL_App" />
-    <installers>
-      <installer>
-        <id>1</id>
-        <languageId>en</languageId>
-        <osList idref="SupportedAppPlatformsExcludeXP" />
-        <installerFile>
-          <fileSize>7066</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=drupalcommercesql&amp;version=1.8.1&amp;applang=en</trackingURL>
-          <installerURL>https://ms.commerceguys.com/kickstart/commerce-kickstart-azure-1.8.1.zip</installerURL>
-          <sha1>3da2223cbb79389381a35e7067d8af289af04a48</sha1>
-        </installerFile>
-        <msDeploy>
-          <startPage>/install.php</startPage>
-        </msDeploy>
-        <helpLink>http://www.commerceguys.com</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>06-04-2012</addToFeedDate>
-    <pageName>drupalcommercesql</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
-  </entry>
+    </longSummary><version>1.8.1</version><link href="http://www.commerceguys.com" /><images><icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/drupalcommercesql-logo</icon></images><keywords><keywordId>eCommerce</keywordId><keywordId>ContentMgmt</keywordId><keywordId>PHP</keywordId><keywordId>SQL</keywordId><keywordId>MySQL</keywordId><keywordId>AzureReady</keywordId><keywordId>KatalReady</keywordId></keywords><author><name>Commerce Guys</name><uri>http://www.commerceguys.com</uri></author><dependency idref="PHP53_MySQL_SQL_App" /><installers><installer><id>1</id><languageId>en</languageId><osList idref="SupportedAppPlatformsExcludeXP" /><installerFile><fileSize>7066</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=drupalcommercesql&amp;version=1.8.1&amp;applang=en</trackingURL><installerURL>https://ms.commerceguys.com/kickstart/commerce-kickstart-azure-1.8.1.zip</installerURL><sha1>3da2223cbb79389381a35e7067d8af289af04a48</sha1></installerFile><msDeploy><startPage>/install.php</startPage></msDeploy><helpLink>http://www.commerceguys.com</helpLink></installer></installers><addToFeedDate>06-04-2012</addToFeedDate><pageName>drupalcommercesql</pageName><productFamily resourceName="Applications">Applications</productFamily></entry> -->
   <!-- OpenPNE_Japanese-->
   <entry type="application">
     <productId>OpenPNE_Japanese</productId>
@@ -5085,53 +4683,7 @@ Composr is designed as the software that'll handle all your needs; you’ll get 
     <productFamily resourceName="Applications">Applications</productFamily>
   </entry>
   <!-- WordPressES-->
-  <entry type="application">
-    <productId>WordPressES</productId>
-    <title resourceName="Entry_WordPressSpanish_Title">WordPress Spanish</title>
-    <id>http://www.microsoft.com/web/webpi/2.0/WordPressSpanish</id>
-    <summary resourceName="Entry_WordPressSpanish_Summary">WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on hundreds of thousands of sites and seen by tens of millions of people every day.</summary>
-    <updated>2015-11-19T22:58:02Z</updated>
-    <published>2015-11-19T22:58:02Z</published>
-    <longSummary resourceName="Entry_WordPressSpanish_LongSummary">WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on hundreds of thousands of sites and seen by tens of millions of people every day.</longSummary>
-    <version>4.3.1</version>
-    <link href="http://https://es.forums.wordpress.org/" />
-    <images>
-      <icon>https://www.microsoft.com/web/handlers/webpi.ashx?command=getimage&amp;guid=0523982d-ddf9-4945-9aa0-0d26f81ec44f</icon>
-    </images>
-    <keywords>
-      <keywordId>ContentMgmt</keywordId>
-      <keywordId>MySQL</keywordId>
-    </keywords>
-    <author>
-      <name>WordPress España</name>
-      <uri>http://https://es.wordpress.org</uri>
-    </author>
-    <dependency>
-      <and>
-        <dependency idref="PHP56App" />
-        <dependency idref="MySQLApp" />
-      </and>
-    </dependency>
-    <installers>
-      <installer>
-        <id>1</id>
-        <languageId>es</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <installerFile>
-          <fileSize>8122</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPressSpanish&amp;version=4.3.1&amp;applang=es</trackingURL>
-          <installerURL>http://www.bp-es.com/wp-content/uploads/2015/11/wordpress-4.3.1-IIS-es_ES.zip</installerURL>
-          <sha1>c25fa464d3d7197cf48a0cf09cbd2fbd5697be98</sha1>
-        </installerFile>
-        <msDeploy>
-          <startPage>/wp-admin/install.php</startPage>
-        </msDeploy>
-        <helpLink>http://https://es.forums.wordpress.org/</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>11-19-2015</addToFeedDate>
-    <productFamily resourceName="Applications">Applications</productFamily>
-  </entry>
+  <!-- <entry type="application"><productId>WordPressES</productId><title resourceName="Entry_WordPressSpanish_Title">WordPress Spanish</title><id>http://www.microsoft.com/web/webpi/2.0/WordPressSpanish</id><summary resourceName="Entry_WordPressSpanish_Summary">WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on hundreds of thousands of sites and seen by tens of millions of people every day.</summary><updated>2015-11-19T22:58:02Z</updated><published>2015-11-19T22:58:02Z</published><longSummary resourceName="Entry_WordPressSpanish_LongSummary">WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on hundreds of thousands of sites and seen by tens of millions of people every day.</longSummary><version>4.3.1</version><link href="http://https://es.forums.wordpress.org/" /><images><icon>https://www.microsoft.com/web/handlers/webpi.ashx?command=getimage&amp;guid=0523982d-ddf9-4945-9aa0-0d26f81ec44f</icon></images><keywords><keywordId>ContentMgmt</keywordId><keywordId>MySQL</keywordId></keywords><author><name>WordPress España</name><uri>http://https://es.wordpress.org</uri></author><dependency><and><dependency idref="PHP56App" /><dependency idref="MySQLApp" /></and></dependency><installers><installer><id>1</id><languageId>es</languageId><osList idref="SupportedAppPlatforms" /><installerFile><fileSize>8122</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPressSpanish&amp;version=4.3.1&amp;applang=es</trackingURL><installerURL>http://www.bp-es.com/wp-content/uploads/2015/11/wordpress-4.3.1-IIS-es_ES.zip</installerURL><sha1>c25fa464d3d7197cf48a0cf09cbd2fbd5697be98</sha1></installerFile><msDeploy><startPage>/wp-admin/install.php</startPage></msDeploy><helpLink>http://https://es.forums.wordpress.org/</helpLink></installer></installers><addToFeedDate>11-19-2015</addToFeedDate><productFamily resourceName="Applications">Applications</productFamily></entry>-->
   <!-- ECCUBEglobal-->
   <entry type="application">
     <productId>ECCUBEglobal</productId>
@@ -5638,7 +5190,7 @@ Piwik will always respect your and your users privacy, while giving you full con
     </keywords>
     <dependency>
       <and>
-        <dependency idref="PHP54App" />
+        <dependency idref="PHP56App" />
         <dependency idref="MySQLApp" />
       </and>
     </dependency>
@@ -5806,7 +5358,12 @@ Newer users will appreciate phpBB's extensive administration panel, which allows
       <keywordId>Forums</keywordId>
       <keywordId>SQL</keywordId>
     </keywords>
-    <dependency idref="PHP53_MySQL_SQL_App" />
+    <dependency>
+      <and>
+        <dependency idref="PHP56App" />
+        <dependency idref="MySQLApp" />
+      </and>
+    </dependency>
     <installers>
       <installer>
         <id>1</id>
@@ -6082,61 +5639,17 @@ The Kentico Platform is built on Microsoft ASP.NET, making it stable, reliable, 
     <productFamily resourceName="Applications">Applications</productFamily>
   </entry>
   <!-- AcquiaDrupal-->
-  <entry type="application">
-    <productId>AcquiaDrupal</productId>
-    <title resourceName="Entry_AcquiaDrupal_Title">Acquia Drupal 7</title>
-    <id>http://www.microsoft.com/web/webpi/2.0/AcquiaDrupal</id>
-    <summary resourceName="Entry_AcquiaDrupal_Summary">Acquia Drupal 7 provides the fastest on-ramp to build dynamic and social web sites featuring both editorial and user-generated content.  Includes Drupal core and popular modules.</summary>
-    <updated>2015-05-01T22:14:30Z</updated>
-    <published>2015-05-01T22:14:30Z</published>
-    <longSummary resourceName="Entry_AcquiaDrupal_LongSummary">Acquia Drupal 7 provides the fastest on-ramp to build dynamic and social web sites featuring both editorial and user-generated content. Whether building a public facing website or a private intranet, Acquia Drupal 7 enables you to use proven social publishing patterns to turn site visitors into active participants. Acquia Drupal combines Drupal core with a set of popular modules – plus access to Acquia Network services and support. And with thousands open source modules available, say goodbye to limitations.</longSummary>
-    <version>7.35.42</version>
-    <link href="http://docs.acquia.com/" />
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/acquiadrupal-logo</icon>
-    </images>
-    <keywords>
-      <keywordId>ContentMgmt</keywordId>
-      <keywordId>Blogs</keywordId>
-      <keywordId>SQL</keywordId>
-      <keywordId>MySQL</keywordId>
-    </keywords>
-    <author>
-      <name>Acquia.com</name>
-      <uri>http://www.acquia.com</uri>
-    </author>
-    <dependency idref="PHP54_MySQL_SQL_App" />
-    <installers>
-      <installer>
-        <id>1</id>
-        <languageId>en</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <installerFile>
-          <fileSize>5852</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=AcquiaDrupal&amp;version=7.35.42&amp;applang=en</trackingURL>
-          <installerURL>http://www.acquia.com/sites/default/files/downloads/acquia-drupal/acquia-drupal-web-deploy-7.35.42.6236.zip</installerURL>
-          <sha1>561f999db6f64215f6e5f2fb340fce0449b619d6</sha1>
-        </installerFile>
-        <msDeploy>
-          <startPage>/install.php</startPage>
-        </msDeploy>
-        <helpLink>http://docs.acquia.com/</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>5-29-2012</addToFeedDate>
-    <pageName>AcquiaDrupal</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
-  </entry>
+  <!-- <entry type="application"><productId>AcquiaDrupal</productId><title resourceName="Entry_AcquiaDrupal_Title">Acquia Drupal 7</title><id>http://www.microsoft.com/web/webpi/2.0/AcquiaDrupal</id><summary resourceName="Entry_AcquiaDrupal_Summary">Acquia Drupal 7 provides the fastest on-ramp to build dynamic and social web sites featuring both editorial and user-generated content.  Includes Drupal core and popular modules.</summary><updated>2015-05-01T22:14:30Z</updated><published>2015-05-01T22:14:30Z</published><longSummary resourceName="Entry_AcquiaDrupal_LongSummary">Acquia Drupal 7 provides the fastest on-ramp to build dynamic and social web sites featuring both editorial and user-generated content. Whether building a public facing website or a private intranet, Acquia Drupal 7 enables you to use proven social publishing patterns to turn site visitors into active participants. Acquia Drupal combines Drupal core with a set of popular modules – plus access to Acquia Network services and support. And with thousands open source modules available, say goodbye to limitations.</longSummary><version>7.35.42</version><link href="http://docs.acquia.com/" /><images><icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/acquiadrupal-logo</icon></images><keywords><keywordId>ContentMgmt</keywordId><keywordId>Blogs</keywordId><keywordId>SQL</keywordId><keywordId>MySQL</keywordId></keywords><author><name>Acquia.com</name><uri>http://www.acquia.com</uri></author><dependency idref="PHP54_MySQL_SQL_App" /><installers><installer><id>1</id><languageId>en</languageId><osList idref="SupportedAppPlatforms" /><installerFile><fileSize>5852</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=AcquiaDrupal&amp;version=7.35.42&amp;applang=en</trackingURL><installerURL>http://www.acquia.com/sites/default/files/downloads/acquia-drupal/acquia-drupal-web-deploy-7.35.42.6236.zip</installerURL><sha1>561f999db6f64215f6e5f2fb340fce0449b619d6</sha1></installerFile><msDeploy><startPage>/install.php</startPage></msDeploy><helpLink>http://docs.acquia.com/</helpLink></installer></installers><addToFeedDate>5-29-2012</addToFeedDate><pageName>AcquiaDrupal</pageName><productFamily resourceName="Applications">Applications</productFamily></entry> -->
   <!-- WordPress-->
   <entry type="application">
     <productId>WordPress</productId>
     <title resourceName="Entry_WordPress_Title">WordPress</title>
     <id>http://www.microsoft.com/web/webpi/2.0/WordPress</id>
     <summary resourceName="Entry_WordPress_Summary">WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.</summary>
-    <updated>2017-04-22T00:00:00Z</updated>
-    <published>2017-04-22T08:59:17Z</published>
+    <updated>2017-06-09T00:00:00Z</updated>
+    <published>2017-06-09T09:11:15Z</published>
     <longSummary resourceName="Entry_WordPress_LongSummary">WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on hundreds of thousands of sites and seen by tens of millions of people every day.</longSummary>
-    <version>4.7.4</version>
+    <version>4.8</version>
     <link href="http://wordpress.org/support/" />
     <author>
       <name>WordPress</name>
@@ -6162,10 +5675,9 @@ The Kentico Platform is built on Microsoft ASP.NET, making it stable, reliable, 
         <languageId>en</languageId>
         <osList idref="SupportedAppPlatforms" />
         <installerFile>
-          <fileSize>8489</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPress&amp;version=4.7.4&amp;applang=en</trackingURL>
-          <installerURL>C:\Git\WordPress_Windows_package\wordpress-4.8-IIS.zip</installerURL>
-		  <!--<installerURL>https://raw.githubusercontent.com/Song2017/WordPress_Windows_package/master/wordpress-4.7.5-IIS.zip</installerURL>-->
+          <fileSize>8687</fileSize>
+          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPress&amp;version=4.8&amp;applang=en</trackingURL>
+          <installerURL>https://raw.githubusercontent.com/Song2017/WordPress_Windows_package/master/wordpress-4.8-IIS.zip</installerURL>
           <sha1>42fc5c3a1d31e20d90cc4c4984cc9414053a5399</sha1>
         </installerFile>
         <msDeploy>
@@ -6179,105 +5691,9 @@ The Kentico Platform is built on Microsoft ASP.NET, making it stable, reliable, 
     <productFamily resourceName="Applications">Applications</productFamily>
   </entry>
   <!-- WordPressJa-->
-  <entry type="application">
-    <productId>WordPressJa</productId>
-    <title resourceName="Entry_WordPressJa_Title">WordPress Japanese Package</title>
-    <id>http://www.microsoft.com/web/webpi/2.0/WordPressJa</id>
-    <summary resourceName="Entry_WordPressJa_Summary">WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on hundreds of thousands of sites and seen by tens of millions of people every day.</summary>
-    <updated>2015-08-11T04:50:11Z</updated>
-    <published>2015-08-11T04:50:11Z</published>
-    <longSummary resourceName="Entry_WordPressJa_LongSummary">WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.`</longSummary>
-    <version>4.2.4</version>
-    <link href="http://ja.forums.wordpress.org/" />
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressja-logo</icon>
-    </images>
-    <keywords>
-      <keywordId>ContentMgmt</keywordId>
-      <keywordId>PHP</keywordId>
-      <keywordId>MySQL</keywordId>
-      <keywordId>AzureReady</keywordId>
-    </keywords>
-    <author>
-      <name>WordPress 日本語版チーム</name>
-      <uri>http://ja.wordpress.org/</uri>
-    </author>
-    <dependency>
-      <and>
-        <dependency idref="PHP56App" />
-        <dependency idref="MySQLApp" />
-      </and>
-    </dependency>
-    <installers>
-      <installer>
-        <id>1</id>
-        <languageId>ja</languageId>
-        <osList>
-          <os idref="VistaSP1PlusNoHomeBasic" />
-        </osList>
-        <installerFile>
-          <fileSize>7399</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPressJa&amp;version=4.2.4&amp;applang=ja</trackingURL>
-          <installerURL>https://ja.wordpress.org/builds/ja/branches/4.2/wordpress-4.2.4-IIS-ja.zip</installerURL>
-          <sha1>6611f9e488c598d6d8aff2942d649682fa04088d</sha1>
-        </installerFile>
-        <msDeploy />
-        <helpLink>http://ja.forums.wordpress.org/</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>02-03-2014</addToFeedDate>
-    <pageName>WordPressJa</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
-  </entry>
+  <!--<entry type="application"><productId>WordPressJa</productId><title resourceName="Entry_WordPressJa_Title">WordPress Japanese Package</title><id>http://www.microsoft.com/web/webpi/2.0/WordPressJa</id><summary resourceName="Entry_WordPressJa_Summary">WordPress started in 2003 with a single bit of code to enhance the typography of everyday writing and with fewer users than you can count on your fingers and toes. Since then it has grown to be the largest self-hosted blogging tool in the world, used on hundreds of thousands of sites and seen by tens of millions of people every day.</summary><updated>2015-08-11T04:50:11Z</updated><published>2015-08-11T04:50:11Z</published><longSummary resourceName="Entry_WordPressJa_LongSummary">WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.`</longSummary><version>4.2.4</version><link href="http://ja.forums.wordpress.org/" /><images><icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressja-logo</icon></images><keywords><keywordId>ContentMgmt</keywordId><keywordId>PHP</keywordId><keywordId>MySQL</keywordId><keywordId>AzureReady</keywordId></keywords><author><name>WordPress 日本語版チーム</name><uri>http://ja.wordpress.org/</uri></author><dependency><and><dependency idref="PHP56App" /><dependency idref="MySQLApp" /></and></dependency><installers><installer><id>1</id><languageId>ja</languageId><osList><os idref="VistaSP1PlusNoHomeBasic" /></osList><installerFile><fileSize>7399</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPressJa&amp;version=4.2.4&amp;applang=ja</trackingURL><installerURL>https://ja.wordpress.org/builds/ja/branches/4.2/wordpress-4.2.4-IIS-ja.zip</installerURL><sha1>6611f9e488c598d6d8aff2942d649682fa04088d</sha1></installerFile><msDeploy /><helpLink>http://ja.forums.wordpress.org/</helpLink></installer></installers><addToFeedDate>02-03-2014</addToFeedDate><pageName>WordPressJa</pageName><productFamily resourceName="Applications">Applications</productFamily></entry>-->
   <!-- WordPressZhTw-->
-  <entry type="application">
-    <productId>WordPressZhTw</productId>
-    <title resourceName="Entry_WordPressZhTw_Title">WordPress Taiwan</title>
-    <id>http://www.microsoft.com/web/webpi/2.0/WordPressZhTw</id>
-    <summary resourceName="Entry_WordPressZhTw_Summary">WordPress is a web log of open source/content management system, it is also a personal publishing platform which focuses on aesthetics, web page standard and usability. WordPress came into being in 2003. At that time, there were only a few simple codes and very little users (you can count them all using your fingers and toes).</summary>
-    <updated>2011-06-24T19:54:53Z</updated>
-    <published>2011-06-24T00:00:00Z</published>
-    <longSummary resourceName="Entry_WordPressZhTw_LongSummary">WordPress is a web log of open source/content management system, it is also a personal publishing platform which focuses on aesthetics, web page standard and usability. WordPress came into being in 2003. At that time, there were only a few simple codes and very little users (you can count them all using your fingers and toes). These users relied on those simple codes to provide convenience for daily writing and publishing job. WordPresst has since then become the most powerful and popular tool for constructing personal web logs in the world It is also utilized by tens of thousands web sites. As you can see, a group of people created everything, from related documentations to the codes. WordPress is an open source project, which means hundreds of people in the world are putting their efforts into it. The number of people working on this project is much more than most of the commercial platforms. This also means that you can use it completely free. You don't need to pay a dime for anyting, from cat's home page to a Fortune 500 web site, everything is free of charge. About WordPress Taiwan WordPress Taiwan traditional Chinese started up in November 2008. This project was brought up as early as May 2008. The web site focuses mainly on promoting WordPress and establishing related information, including the maintenance of the language of WordPress traditional Chinese, the localization of documents and forum service support.</longSummary>
-    <version>3.1.2</version>
-    <link href="http://tw.wordpress.org/" />
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpresszhtw-logo</icon>
-    </images>
-    <keywords>
-      <keywordId>Blogs</keywordId>
-      <keywordId>ContentMgmt</keywordId>
-      <keywordId>PHP</keywordId>
-      <keywordId>MySQL</keywordId>
-    </keywords>
-    <author>
-      <name>多奇數位創意有限公司</name>
-      <uri>http://www.miniasp.com/</uri>
-    </author>
-    <dependency>
-      <and>
-        <dependency idref="PHP56App" />
-        <dependency idref="MySQLApp" />
-      </and>
-    </dependency>
-    <installers>
-      <installer>
-        <id>1</id>
-        <languageId>zh-tw</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <installerFile>
-          <fileSize>3384</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPressZhTw&amp;version=3.1.2&amp;applang=zh-tw</trackingURL>
-          <installerURL>http://dl.dropbox.com/u/1011445/WebPI_and_WebMatrix/Packages/wordpress-3.1.2-zh_TW-IIS.zip</installerURL>
-          <sha1>949fdd04e1af748ed906ee44f05b589d4cdaf053</sha1>
-        </installerFile>
-        <msDeploy />
-        <helpLink>http://tw.wordpress.org/</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>6-24-2011</addToFeedDate>
-    <pageName>WordPressZhTw</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
-  </entry>
+  <!--  <entry type="application"><productId>WordPressZhTw</productId><title resourceName="Entry_WordPressZhTw_Title">WordPress Taiwan</title><id>http://www.microsoft.com/web/webpi/2.0/WordPressZhTw</id><summary resourceName="Entry_WordPressZhTw_Summary">WordPress is a web log of open source/content management system, it is also a personal publishing platform which focuses on aesthetics, web page standard and usability. WordPress came into being in 2003. At that time, there were only a few simple codes and very little users (you can count them all using your fingers and toes).</summary><updated>2011-06-24T19:54:53Z</updated><published>2011-06-24T00:00:00Z</published><longSummary resourceName="Entry_WordPressZhTw_LongSummary">WordPress is a web log of open source/content management system, it is also a personal publishing platform which focuses on aesthetics, web page standard and usability. WordPress came into being in 2003. At that time, there were only a few simple codes and very little users (you can count them all using your fingers and toes). These users relied on those simple codes to provide convenience for daily writing and publishing job. WordPresst has since then become the most powerful and popular tool for constructing personal web logs in the world It is also utilized by tens of thousands web sites. As you can see, a group of people created everything, from related documentations to the codes. WordPress is an open source project, which means hundreds of people in the world are putting their efforts into it. The number of people working on this project is much more than most of the commercial platforms. This also means that you can use it completely free. You don't need to pay a dime for anyting, from cat's home page to a Fortune 500 web site, everything is free of charge. About WordPress Taiwan WordPress Taiwan traditional Chinese started up in November 2008. This project was brought up as early as May 2008. The web site focuses mainly on promoting WordPress and establishing related information, including the maintenance of the language of WordPress traditional Chinese, the localization of documents and forum service support.</longSummary><version>3.1.2</version><link href="http://tw.wordpress.org/" /><images><icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpresszhtw-logo</icon></images><keywords><keywordId>Blogs</keywordId><keywordId>ContentMgmt</keywordId><keywordId>PHP</keywordId><keywordId>MySQL</keywordId></keywords><author><name>多奇數位創意有限公司</name><uri>http://www.miniasp.com/</uri></author><dependency><and><dependency idref="PHP56App" /><dependency idref="MySQLApp" /></and></dependency><installers><installer><id>1</id><languageId>zh-tw</languageId><osList idref="SupportedAppPlatforms" /><installerFile><fileSize>3384</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPressZhTw&amp;version=3.1.2&amp;applang=zh-tw</trackingURL><installerURL>http://dl.dropbox.com/u/1011445/WebPI_and_WebMatrix/Packages/wordpress-3.1.2-zh_TW-IIS.zip</installerURL><sha1>949fdd04e1af748ed906ee44f05b589d4cdaf053</sha1></installerFile><msDeploy /><helpLink>http://tw.wordpress.org/</helpLink></installer></installers><addToFeedDate>6-24-2011</addToFeedDate><pageName>WordPressZhTw</pageName><productFamily resourceName="Applications">Applications</productFamily></entry> -->
   <!-- SilverStripeCMS-->
   <entry type="application">
     <productId>SilverStripeCMS</productId>
@@ -6304,7 +5720,12 @@ The Kentico Platform is built on Microsoft ASP.NET, making it stable, reliable, 
       <name>SilverStripe</name>
       <uri>http://www.silverstripe.org/</uri>
     </author>
-    <dependency idref="PHP54_MySQL_SQL_App" />
+    <dependency>
+      <and>
+        <dependency idref="PHP56App" />
+        <dependency idref="MySQLApp" />
+      </and>
+    </dependency>
     <installers>
       <installer>
         <id>1</id>
@@ -6437,32 +5858,29 @@ The Kentico Platform is built on Microsoft ASP.NET, making it stable, reliable, 
     <title resourceName="Entry_nService_Title">nService</title>
     <id>http://www.microsoft.com/web/webpi/2.0/nService</id>
     <summary resourceName="Entry_nService_Summary">Help desk and service management software that empowers you to provide great services to your employees and customers. This free edition allows one concurrent technician and unlimited end users.</summary>
-    <updated>2015-05-01T22:14:20Z</updated>
-    <published>2015-05-01T22:14:20Z</published>
-    <longSummary resourceName="Entry_nService_LongSummary">
-      nService is an easy to use and powerful help desk and enterprise service management software product. It runs on Windows and Windows Azure as a website. End users come to the site to submit service requests and check their status. Service technicians use the site to list, assign, respond to, resolve and close service requests.
+    <updated>2017-06-01T00:00:00Z</updated>
+    <published>2017-06-23T01:06:23Z</published>
+    <longSummary resourceName="Entry_nService_LongSummary">nService is an easy to use and powerful help desk and service management software product. It runs on Windows and Windows Azure as a website. End users come to the site to submit service requests and check their status. Service technicians use the site to list, assign, respond to, resolve and close service requests.
+ 
+You can use nService to manage services you provide to your customers outside of your organization. All departments in your organization, including IT, customer support, facility management can also use nService to provide and manage their services and track their work assignments. 
 
-      nService provides a state machine workflow engine. You can define states and actions that move requests among the states. You can use the form designer to build clean and focused forms for different actions. These capabilities enable all departments in your organization, including IT, customer support, facility management, etc., to offer their services and track their work assignments on a nService website.
+nService provides service cost tracking and billing, email integration, report builder, asset management, service level agreement, Active Directory integration, and more.
 
-      In addition to the powerful workflow engine, nService provides email integration, report builder, knowledge base, asset management, service billing, service level agreement, Active Directory integration, and more.
-
-      This free edition allows one concurrent technician and unlimited end users. Technicians are users who can respond to service requests. There is no limit on the number of users or technicians that you can create and store in the database.
-    </longSummary>
-    <version>4.39.20</version>
+This free edition allows one concurrent technician and unlimited end users. Technicians are users who can respond to service requests. There is no limit on the number of users or technicians that you can create and store in the database. </longSummary>
+    <version>4.42e</version>
     <link href="http://forums.iis.net/1155.aspx" />
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/nservice-logo</icon>
-      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/nservice-screenshot1</screenshot>
-    </images>
-    <keywords>
-      <keywordId>Tools</keywordId>
-      <keywordId>AzureReady</keywordId>
-      <keywordId>SQL</keywordId>
-    </keywords>
     <author>
       <name>Avensoft</name>
       <uri>http://www.avensoft.com</uri>
     </author>
+    <images>
+      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/nService-logo</icon>
+      <screenshot>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/nService-screenshot1</screenshot>
+    </images>
+    <keywords>
+      <keywordId>Tools</keywordId>
+      <keywordId>SQL</keywordId>
+    </keywords>
     <dependency idref="SQL_ASPNET4App" />
     <installers>
       <installer>
@@ -6470,12 +5888,14 @@ The Kentico Platform is built on Microsoft ASP.NET, making it stable, reliable, 
         <languageId>en</languageId>
         <osList idref="SupportedAppPlatforms" />
         <installerFile>
-          <fileSize>7125</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=nService&amp;version=4.39.20&amp;applang=en</trackingURL>
-          <installerURL>http://avensoft.com/app/nService439.zip</installerURL>
-          <sha1>07182cc0b4c48af7ba833061d1920c2c21be859e</sha1>
+          <fileSize>7267</fileSize>
+          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=nService&amp;version=4.42e&amp;applang=en</trackingURL>
+          <installerURL>http://avensoft.com/app/nService442e.zip</installerURL>
+          <sha1>835a57ceb1587cc881895b1489376f0e2361085e</sha1>
         </installerFile>
-        <msDeploy />
+        <msDeploy>
+          <startPage>/Default.aspx</startPage>
+        </msDeploy>
         <helpLink>http://forums.iis.net/1155.aspx</helpLink>
       </installer>
     </installers>
@@ -6594,55 +6014,8 @@ The Kentico Platform is built on Microsoft ASP.NET, making it stable, reliable, 
     <pageName>XpressEngine</pageName>
     <productFamily resourceName="Applications">Applications</productFamily>
   </entry>
-  <!-- wordpressit-->
-  <entry type="application">
-    <productId>wordpressit</productId>
-    <title resourceName="Entry_WordPressIT_Title">WordPress 3.8</title>
-    <id>http://www.microsoft.com/web/webpi/2.0/WordPressIT</id>
-    <summary resourceName="Entry_WordPressIT_Summary">Official italian translation</summary>
-    <updated>2014-01-28T18:39:18Z</updated>
-    <published>2014-01-28T18:39:18Z</published>
-    <longSummary resourceName="Entry_WordPressIT_LongSummary">Official italian translation</longSummary>
-    <version>3.8.1</version>
-    <link href="http://www.wpitaly.it/forum" />
-    <images>
-      <icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressit-logo</icon>
-    </images>
-    <keywords>
-      <keywordId>Blogs</keywordId>
-      <keywordId>ContentMgmt</keywordId>
-      <keywordId>PHP</keywordId>
-      <keywordId>MySQL</keywordId>
-    </keywords>
-    <author>
-      <name>WordPress Italy</name>
-      <uri>http://www.wpitaly.it</uri>
-    </author>
-    <dependency>
-      <and>
-        <dependency idref="PHP56App" />
-        <dependency idref="MySQLApp" />
-      </and>
-    </dependency>
-    <installers>
-      <installer>
-        <id>1</id>
-        <languageId>it</languageId>
-        <osList idref="SupportedAppPlatforms" />
-        <installerFile>
-          <fileSize>6807</fileSize>
-          <trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPressIT&amp;version=3.8.1&amp;applang=it</trackingURL>
-          <installerURL>http://it.wordpress.org/builds/it_IT/tags/3.8.1/wordpress-3.8.1-IIS-it_IT.zip</installerURL>
-          <sha1>bc686a5223c61968d83db32cd9e1382db5e3fc96</sha1>
-        </installerFile>
-        <msDeploy />
-        <helpLink>http://www.wpitaly.it/forum</helpLink>
-      </installer>
-    </installers>
-    <addToFeedDate>08-13-2013</addToFeedDate>
-    <pageName>WordPressIT</pageName>
-    <productFamily resourceName="Applications">Applications</productFamily>
-  </entry>
+  <!-- wordpressit
+    <entry type="application"><productId>wordpressit</productId><title resourceName="Entry_WordPressIT_Title">WordPress 3.8</title><id>http://www.microsoft.com/web/webpi/2.0/WordPressIT</id><summary resourceName="Entry_WordPressIT_Summary">Official italian translation</summary><updated>2014-01-28T18:39:18Z</updated><published>2014-01-28T18:39:18Z</published><longSummary resourceName="Entry_WordPressIT_LongSummary">Official italian translation</longSummary><version>3.8.1</version><link href="http://www.wpitaly.it/forum" /><images><icon>https://webgalleryappimages.blob.core.windows.net/logos-screenshots/wordpressit-logo</icon></images><keywords><keywordId>Blogs</keywordId><keywordId>ContentMgmt</keywordId><keywordId>PHP</keywordId><keywordId>MySQL</keywordId></keywords><author><name>WordPress Italy</name><uri>http://www.wpitaly.it</uri></author><dependency><and><dependency idref="PHP56App" /><dependency idref="MySQLApp" /></and></dependency><installers><installer><id>1</id><languageId>it</languageId><osList idref="SupportedAppPlatforms" /><installerFile><fileSize>6807</fileSize><trackingURL>https://webpihandler.azurewebsites.net/webpi.ashx?command=incrementappdownloadcount&amp;appid=WordPressIT&amp;version=3.8.1&amp;applang=it</trackingURL><installerURL>http://it.wordpress.org/builds/it_IT/tags/3.8.1/wordpress-3.8.1-IIS-it_IT.zip</installerURL><sha1>bc686a5223c61968d83db32cd9e1382db5e3fc96</sha1></installerFile><msDeploy /><helpLink>http://www.wpitaly.it/forum</helpLink></installer></installers><addToFeedDate>08-13-2013</addToFeedDate><pageName>WordPressIT</pageName><productFamily resourceName="Applications">Applications</productFamily></entry> -->
   <!-- SoNETWebEngine41-->
   <entry type="application">
     <productId>SoNETWebEngine</productId>
@@ -8300,599 +7673,6 @@ If you have a SaaS and need a recurring billing software, try ZB! </longSummary>
                   </and>
                 </dependency>
               </and>
-            </dependency>
-          </or>
-        </dependency>
-      </and>
-    </dependency>
-    <dependency id="PHP54_SQL_App">
-      <and>
-        <dependency>
-          <or>
-            <dependency>
-              <productId>WDeployNOSMO</productId>
-            </dependency>
-            <dependency>
-              <productId>WDeploy</productId>
-            </dependency>
-          </or>
-        </dependency>
-        <dependency>
-          <or>
-            <!-- IIS Branch -->
-            <dependency>
-              <and>
-                <dependency idref="IISForPHP" />
-                <dependency>
-                  <productId>PHP54</productId>
-                </dependency>
-                <!-- include wincache as dependency so we pull right version along (iis vs iis express)
-                     even though it's not technically a dependency (was related product ) -->
-                <dependency>
-                  <productId>WinCache54</productId>
-                </dependency>
-                <!-- database  -->
-                <dependency>
-                  <and>
-                    <dependency>
-                      <productId>SMO</productId>
-                    </dependency>
-                    <dependency>
-                      <productId>SQLDriverPHP54IIS</productId>
-                    </dependency>
-                  </and>
-                </dependency>
-              </and>
-            </dependency>
-            <!-- PHP on IIS Express dependency -->
-            <dependency>
-              <and>
-                <dependency>
-                  <or>
-                    <dependency>
-                      <productId>WebMatrix</productId>
-                    </dependency>
-                    <dependency>
-                      <productId>WebMatrix_appdetect</productId>
-                    </dependency>
-                  </or>
-                </dependency>
-                <dependency>
-                  <productId>PHP54ForIISExpress</productId>
-                </dependency>
-                <dependency>
-                  <and>
-                    <dependency>
-                      <productId>SMO32</productId>
-                    </dependency>
-                    <dependency>
-                      <productId>SQLDriverPHP54IISExpress</productId>
-                    </dependency>
-                  </and>
-                </dependency>
-              </and>
-            </dependency>
-          </or>
-        </dependency>
-      </and>
-    </dependency>
-    <!-- PHP/SQL apps need to include SQLDriver which needs to be picked with IIS / IISExpress
-         hence the need for a seperate dependency id just for it -->
-    <!-- PHP/SQL apps need to include SQLDriver which needs to be picked with IIS / IISExpress
-         hence the need for a seperate dependency id just for it -->
-    <dependency id="PHP53_MySQL_SQL_App">
-      <and>
-        <dependency>
-          <or>
-            <!-- IIS Branch -->
-            <dependency>
-              <and>
-                <dependency idref="IISForPHP" />
-                <dependency>
-                  <productId>PHP53</productId>
-                </dependency>
-                <!-- include wincache as dependency so we pull right version along (iis vs iis express)
-                     even though it's not technically a dependency (was related product ) -->
-                <dependency>
-                  <productId>WinCache53</productId>
-                </dependency>
-                <!-- database choice -->
-                <dependency>
-                  <or>
-                    <dependency>
-                      <and>
-                        <dependency>
-                          <productId>SMO</productId>
-                        </dependency>
-                        <dependency>
-                          <productId>SQLDriverPHP53IIS</productId>
-                        </dependency>
-                      </and>
-                    </dependency>
-                    <dependency>
-                      <productId>MySQLConnector</productId>
-                    </dependency>
-                  </or>
-                </dependency>
-              </and>
-            </dependency>
-            <!-- PHP on IIS Express dependency -->
-            <dependency>
-              <and>
-                <dependency>
-                  <or>
-                    <dependency>
-                      <productId>WebMatrix</productId>
-                    </dependency>
-                    <dependency>
-                      <productId>WebMatrix_appdetect</productId>
-                    </dependency>
-                  </or>
-                </dependency>
-                <dependency>
-                  <productId>PHP53ForIISExpress</productId>
-                </dependency>
-                <dependency>
-                  <or>
-                    <dependency>
-                      <and>
-                        <dependency>
-                          <productId>SMO32</productId>
-                        </dependency>
-                        <dependency>
-                          <productId>SQLDriverPHP53IISExpress</productId>
-                        </dependency>
-                      </and>
-                    </dependency>
-                    <dependency>
-                      <productId>MySQLConnector</productId>
-                    </dependency>
-                  </or>
-                </dependency>
-              </and>
-            </dependency>
-          </or>
-        </dependency>
-        <dependency>
-          <or>
-            <dependency>
-              <productId>WDeployNOSMO</productId>
-            </dependency>
-            <dependency>
-              <productId>WDeploy</productId>
-            </dependency>
-          </or>
-        </dependency>
-      </and>
-    </dependency>
-    <dependency id="PHP54_MySQL_SQL_App">
-      <and>
-        <dependency>
-          <or>
-            <!-- IIS Branch -->
-            <dependency>
-              <and>
-                <dependency idref="IISForPHP" />
-                <dependency>
-                  <productId>PHP54</productId>
-                </dependency>
-                <!-- include wincache as dependency so we pull right version along (iis vs iis express)
-                     even though it's not technically a dependency (was related product ) -->
-                <dependency>
-                  <productId>WinCache54</productId>
-                </dependency>
-                <!-- database choice -->
-                <dependency>
-                  <or>
-                    <dependency>
-                      <and>
-                        <dependency>
-                          <productId>SMO</productId>
-                        </dependency>
-                        <dependency>
-                          <productId>SQLDriverPHP54IIS</productId>
-                        </dependency>
-                      </and>
-                    </dependency>
-                    <dependency>
-                      <productId>MySQLConnector</productId>
-                    </dependency>
-                  </or>
-                </dependency>
-              </and>
-            </dependency>
-            <!-- PHP on IIS Express dependency -->
-            <dependency>
-              <and>
-                <dependency>
-                  <or>
-                    <dependency>
-                      <productId>WebMatrix</productId>
-                    </dependency>
-                    <dependency>
-                      <productId>WebMatrix_appdetect</productId>
-                    </dependency>
-                  </or>
-                </dependency>
-                <dependency>
-                  <productId>PHP54ForIISExpress</productId>
-                </dependency>
-                <dependency>
-                  <or>
-                    <dependency>
-                      <and>
-                        <dependency>
-                          <productId>SMO32</productId>
-                        </dependency>
-                        <dependency>
-                          <productId>SQLDriverPHP54IISExpress</productId>
-                        </dependency>
-                      </and>
-                    </dependency>
-                    <dependency>
-                      <productId>MySQLConnector</productId>
-                    </dependency>
-                  </or>
-                </dependency>
-              </and>
-            </dependency>
-          </or>
-        </dependency>
-        <dependency>
-          <or>
-            <dependency>
-              <productId>WDeployNOSMO</productId>
-            </dependency>
-            <dependency>
-              <productId>WDeploy</productId>
-            </dependency>
-          </or>
-        </dependency>
-      </and>
-    </dependency>
-    <dependency id="PHP53App">
-      <and>
-        <dependency>
-          <or>
-            <dependency>
-              <and>
-                <dependency idref="IISForPHP" />
-                <dependency>
-                  <productId>PHP53</productId>
-                </dependency>
-                <!-- include wincache as dependency so we pull right version along (iis vs iis express)
-                     even though it's not technically a dependency (was related product ) -->
-                <dependency>
-                  <productId>WinCache53</productId>
-                </dependency>
-              </and>
-            </dependency>
-            <!-- PHP on IIS Express dependency -->
-            <dependency>
-              <and>
-                <dependency>
-                  <or>
-                    <dependency>
-                      <productId>WebMatrix</productId>
-                    </dependency>
-                    <dependency>
-                      <productId>WebMatrix_appdetect</productId>
-                    </dependency>
-                  </or>
-                </dependency>
-                <dependency>
-                  <productId>PHP53ForIISExpress</productId>
-                </dependency>
-              </and>
-            </dependency>
-          </or>
-        </dependency>
-        <dependency>
-          <or>
-            <dependency>
-              <productId>WDeployNOSMO</productId>
-            </dependency>
-            <dependency>
-              <productId>WDeploy</productId>
-            </dependency>
-          </or>
-        </dependency>
-      </and>
-    </dependency>
-    <dependency id="PHP55App">
-      <and>
-        <dependency>
-          <or>
-            <dependency>
-              <and>
-                <dependency idref="IISForPHP" />
-                <dependency>
-                  <productId>PHP55</productId>
-                </dependency>
-                <!-- include wincache as dependency so we pull right version along (iis vs iis express)
-                     even though it's not technically a dependency (was related product ) -->
-                <dependency>
-                  <productId>WinCache55</productId>
-                </dependency>
-              </and>
-            </dependency>
-            <!-- PHP on IIS Express dependency -->
-            <dependency>
-              <and>
-                <dependency>
-                  <or>
-                    <dependency>
-                      <productId>WebMatrix</productId>
-                    </dependency>
-                    <dependency>
-                      <productId>WebMatrix_appdetect</productId>
-                    </dependency>
-                  </or>
-                </dependency>
-                <dependency>
-                  <productId>PHP55ForIISExpress</productId>
-                </dependency>
-              </and>
-            </dependency>
-          </or>
-        </dependency>
-        <dependency>
-          <or>
-            <dependency>
-              <productId>WDeployNOSMO</productId>
-            </dependency>
-            <dependency>
-              <productId>WDeploy</productId>
-            </dependency>
-          </or>
-        </dependency>
-      </and>
-    </dependency>
-    <dependency id="PHP5354App">
-      <and>
-        <dependency>
-          <or>
-            <dependency>
-              <and>
-                <dependency idref="IISForPHP" />
-                <dependency>
-                  <or>
-                    <dependency>
-                      <productId>PHP53</productId>
-                    </dependency>
-                    <dependency>
-                      <productId>PHP54</productId>
-                    </dependency>
-                  </or>
-                </dependency>
-                <!-- include wincache as dependency so we pull right version along (iis vs iis express)
-                     even though it's not technically a dependency (was related product ) -->
-                <dependency>
-                  <productId>WinCache53</productId>
-                </dependency>
-              </and>
-            </dependency>
-            <!-- PHP on IIS Express dependency -->
-            <dependency>
-              <and>
-                <dependency>
-                  <or>
-                    <dependency>
-                      <productId>WebMatrix</productId>
-                    </dependency>
-                    <dependency>
-                      <productId>WebMatrix_appdetect</productId>
-                    </dependency>
-                  </or>
-                </dependency>
-                <dependency>
-                  <or>
-                    <dependency>
-                      <productId>PHP53ForIISExpress</productId>
-                    </dependency>
-                    <dependency>
-                      <productId>PHP54ForIISExpress</productId>
-                    </dependency>
-                  </or>
-                </dependency>
-              </and>
-            </dependency>
-          </or>
-        </dependency>
-        <dependency>
-          <or>
-            <dependency>
-              <productId>WDeployNOSMO</productId>
-            </dependency>
-            <dependency>
-              <productId>WDeploy</productId>
-            </dependency>
-          </or>
-        </dependency>
-      </and>
-    </dependency>
-    <dependency id="PHP53App_Wincache">
-      <and>
-        <dependency>
-          <or>
-            <dependency>
-              <and>
-                <dependency idref="IISForPHP" />
-                <dependency>
-                  <productId>PHP53</productId>
-                </dependency>
-                <!-- include wincache as dependency so we pull right version along (iis vs iis express)
-                     even though it's not technically a dependency (was related product ) -->
-                <dependency>
-                  <productId>WinCache53</productId>
-                </dependency>
-              </and>
-            </dependency>
-            <!-- PHP on IIS Express dependency -->
-            <dependency>
-              <and>
-                <dependency>
-                  <or>
-                    <dependency>
-                      <productId>WebMatrix</productId>
-                    </dependency>
-                    <dependency>
-                      <productId>WebMatrix_appdetect</productId>
-                    </dependency>
-                  </or>
-                </dependency>
-                <dependency>
-                  <productId>PHP53ForIISExpress</productId>
-                </dependency>
-                <dependency>
-                  <productId>WinCache53IISExpress</productId>
-                </dependency>
-              </and>
-            </dependency>
-          </or>
-        </dependency>
-        <dependency>
-          <or>
-            <dependency>
-              <productId>WDeployNOSMO</productId>
-            </dependency>
-            <dependency>
-              <productId>WDeploy</productId>
-            </dependency>
-          </or>
-        </dependency>
-      </and>
-    </dependency>
-    <dependency id="PHP54App">
-      <and>
-        <dependency>
-          <or>
-            <dependency>
-              <and>
-                <dependency idref="IISForPHP" />
-                <dependency>
-                  <productId>PHP54</productId>
-                </dependency>
-                <!-- include wincache as dependency so we pull right version along (iis vs iis express)
-                     even though it's not technically a dependency (was related product ) -->
-                <dependency>
-                  <productId>WinCache54</productId>
-                </dependency>
-              </and>
-            </dependency>
-            <!-- PHP on IIS Express dependency -->
-            <dependency>
-              <and>
-                <dependency>
-                  <or>
-                    <dependency>
-                      <productId>WebMatrix</productId>
-                    </dependency>
-                    <dependency>
-                      <productId>WebMatrix_appdetect</productId>
-                    </dependency>
-                  </or>
-                </dependency>
-                <dependency>
-                  <productId>PHP54ForIISExpress</productId>
-                </dependency>
-              </and>
-            </dependency>
-          </or>
-        </dependency>
-        <dependency>
-          <or>
-            <dependency>
-              <productId>WDeployNOSMO</productId>
-            </dependency>
-            <dependency>
-              <productId>WDeploy</productId>
-            </dependency>
-          </or>
-        </dependency>
-      </and>
-    </dependency>
-    <dependency id="PHP53App_IIS">
-      <and>
-        <dependency>
-          <productId>PHP53</productId>
-        </dependency>
-        <dependency>
-          <productId>WinCache53</productId>
-        </dependency>
-        <dependency>
-          <and>
-            <!--IIS-->
-            <dependency>
-              <productId>IIS60</productId>
-            </dependency>
-            <!--FastCGI-->
-            <dependency>
-              <productId>FastCGIIIS6</productId>
-            </dependency>
-          </and>
-        </dependency>
-        <dependency>
-          <and>
-            <dependency>
-              <productId>StaticContent</productId>
-            </dependency>
-            <dependency>
-              <productId>DefaultDocument</productId>
-            </dependency>
-            <dependency>
-              <productId>DirectoryBrowse</productId>
-            </dependency>
-            <dependency>
-              <productId>HTTPErrors</productId>
-            </dependency>
-            <dependency>
-              <productId>HTTPLogging</productId>
-            </dependency>
-            <dependency>
-              <productId>LoggingTools</productId>
-            </dependency>
-            <dependency>
-              <productId>RequestMonitor</productId>
-            </dependency>
-            <dependency>
-              <productId>RequestFiltering</productId>
-            </dependency>
-            <dependency>
-              <productId>StaticContentCompression</productId>
-            </dependency>
-            <dependency>
-              <productId>IISManagementConsole</productId>
-            </dependency>
-            <dependency>
-              <productId>CGI</productId>
-            </dependency>
-            <!--URL Rewriter-->
-            <dependency>
-              <or>
-                <dependency>
-                  <productId>UrlRewrite2</productId>
-                </dependency>
-                <dependency>
-                  <productId>UrlRewrite</productId>
-                </dependency>
-                <dependency>
-                  <productId>UrlRewrite10</productId>
-                </dependency>
-                <dependency>
-                  <productId>UrlRewrite2Beta</productId>
-                </dependency>
-              </or>
-            </dependency>
-          </and>
-        </dependency>
-        <dependency>
-          <or>
-            <dependency>
-              <productId>WDeployNOSMO</productId>
-            </dependency>
-            <dependency>
-              <productId>WDeploy</productId>
             </dependency>
           </or>
         </dependency>
