@@ -1,0 +1,162 @@
+\chapter{Errors, Mistakes, Bugs, and Other Unpleasantries}\label{error-chapter}
+
+\begin{quote}
+\unix\ was never designed to keep people from doing stupid things,
+because that policy would also keep them from doing clever things.\\
+\raggedleft Doug Gwyn
+\end{quote}
+
+\section{Avoiding Errors}
+
+Many users report frustration with the \unix\ operating system at one
+time or another, frequently because of their own doing.  A feature of
+the \unix\ operating system that many users' love when they're working
+well and hate after a late-night session is how very few commands ask
+for confirmation.  When a user is awake and functioning, they rarely
+think about this, and it is an assest since it let's them work
+smoother.
+
+However, there are some disadvantages.  {\tt rm} and {\tt mv} never
+ask for confirmation and this frequently leads to problems.  Thus,
+let's go through a small list that might help you avoid total
+disaster:
+
+\begin{itemize}
+\item Keep backups!  This applies especially to the one user
+  system---all system adminstrators should make regular backups of
+  their system!  Once a week is good enough to salvage many files.
+  See the \ldpsa\ for more information.
+\item Individual user's should keep there own backups, if possible.
+  If you use more than one system regularly, try to keep updated
+  copies of all your files on each of the systems.  If you have access
+  to a floppy drive, you might want to make backups onto floppies of
+  your critical material.  At worst, keep additional copies of your
+  most important material lying around your account {\em in a seperate
+    directory\/}!
+\item Think about commands, especially ``destructive'' ones like {\tt
+    mv}, {\tt rm}, and {\tt cp} before you act.  You also have to be
+  careful with redirection ({\tt >})---it'll overwrite your files when
+  you aren't paying attention. Even the most harmless of commands can
+  become sinister:
+\begin{screen}\begin{verbatim}
+/home/larry/report# cp report-1992 report-1993 backups
+\end{verbatim}\end{screen}
+can easily become disaster:
+\begin{screen}\begin{verbatim}
+/home/larry/report# cp report-1992 report-1993
+\end{verbatim}\end{screen}
+\item The author also recommends, from his personal experience, not to
+  do file maintanence late at night.  Does you directory structure
+  look a little messy at 1:32am?  Let it stay---a little mess never
+  hurt a computer.
+\item Keep track of your present directory.  Sometimes, the prompt
+  you're using doesn't display what directory you are working in, and
+  danger strikes.  It is a sad thing to read a post on {\tt
+    comp.unix.admin}\footnote{A international discussion group on
+    Usenet, which talks about administring \unix\ computers.} about a
+  {\tt root} user who was in {\tt /} instead of {\tt /tmp}!  For
+  example:
+  \begin{screen}\begin{verbatim}
+mousehouse> pwd
+/etc
+mousehouse> ls /tmp
+passwd
+mousehouse> rm passwd
+\end{verbatim}\end{screen}
+
+The above series of commands would make the user very unhappy, seeing
+how they have just removed the password file for their system. Without
+it, people can't login!
+\end{itemize}
+
+\section{What to do When Something Goes Wrong}
+
+
+
+\section{Not Your Fault}
+
+Unfortunately for the programmers of the world, not all problems are
+caused by user-error. \unix\ and \linux\ are complicated systems, and
+all known versions have bugs.  Sometimes these bugs are hard to find
+and only appear under certain circumstances.  
+
+First of all, what is a bug?  An example of a bug is if you ask the
+computer to compute ``5+3'' and it tells you ``7''. Although that's a
+trivial example of what can go wrong, most bugs in computer programs
+involve arithmetic in some extremely strange way. 
+
+\subsection{When Is There a Bug}
+
+If the computer gives a wrong answer (verify that the answer is
+wrong!) or crashes, it is a bug. If any one program crashes or gives
+an operating system error message, it is a bug.
+
+If a command never finishes running can be a bug, but you must make
+sure that you didn't tell it to take a long time doing whatever you
+wanted it to do.  Ask for assistance if you didn't know what the
+command did.
+
+Some messages will alert you of bugs.  Some messages are not bugs.
+Check Section~\ref{kernel-messages} and any other documentation to
+make sure they aren't normal informational messages.  For instance,
+messages like ``disk full'' or ``lp0 on fire'' aren't software
+problems, but something wrong with your hardware---not enough disk
+space, or a bad printer.
+
+If you can't find anything about a program, it is a bug in the
+documentation, and you should contact the author of that program and
+offer to write it yourself. If something is incorrect in existing
+documentation\footnote{Especially this one!}, it is a bug with that
+manual. If something appears incomplete or unclear in the manual, that
+is a bug.
+
+If you can't beat {\tt gnuchess}\ttindex{gnuchess} at chess, it is a
+flaw with your chess algorithm, but not necessarily a bug with your
+brain.
+
+\subsection{Reporting a Bug}\label{error-reporting}
+
+After you are sure you found a bug, it is important to make sure that
+your information gets to the right place.  Try to find what program is
+causing the bug---if you can't find it, perhaps you could ask for help
+in {\tt comp.os.linux.help} or {\tt comp.unix.misc}. Once you find the
+program, try to read the manual page to see who wrote it.
+
+The preferred method of sending bug reports in the \linux\ world is
+via electronic mail. If you don't have access to electronic mail, you
+might want to contact whoever you got \linux\ from---eventually,
+you're bound to encounter someone who either has electronic mail, or
+sells \linux\ commercially and therefore wants to remove as many bugs
+as possible.  Remember, though, that no one is under any obligation to
+fix any bugs unless you have a contract!
+
+When you send a bug report in, include all the information you can
+think of.  This includes:
+\begin{itemize}
+\item A description of what you think is incorrect.  For instance,
+  ``I get 5 when I compute 2+2'' or ``It says {\tt segmentation
+    violation -- core dumped}.'' It is important to say exactly what
+  is happening so the maintainer can fix {\em your\/} bug!
+\item Include any relevant environment variables.
+\item The version of your kernel (see the file {\tt /proc/version})
+  and your system libraries (see the directory {\tt /lib}---if you
+  can't decipher it, send a listing of {\tt /lib}).
+\item How you ran the program in question, or, if it was a kernel bug,
+  what you were doing at the time.
+\item {\bf All} peripheral information.  For instance, the command
+  {\tt w}\ttindex{w} may not be displaying the current process for
+  certain users. Don't just say, ``{\tt w} doesn't work when for a
+  certain user''.  The bug could occur because the user's name is
+  eight characters long, or when he is logging in over the network.
+  Instead say, ``{\tt w} doesn't display the current process for user
+  {\tt greenfie} when he logs in over the network.''
+\item And remember, be polite.  Most people work on free software for
+  the fun of it, and because they have big hearts.  Don't ruin it for
+  them---the \linux\ community has already disillusioned too many
+  developers, and it's still early in \linux's life!
+\end{itemize}
+
+% Local Variables: 
+% mode: latex
+% TeX-master: "guide"
+% End: 

@@ -1,0 +1,1461 @@
+\batchmode
+%\newif\ifps    \psfalse
+\newif\iftex   \textrue
+
+%\newif\ifveryoldtex	\newif\iflatexe		\newif\ifpsfonts	\newif\ifsqueeze	\newif\ifltxbeta	
+
+%\latexetrue
+
+\iflatexe
+\ltxbetatrue
+\fi
+
+\veryoldtexfalse
+
+\squeezefalse
+
+\ifps
+\psfontsfalse
+
+\fi
+
+
+\typeout{****************************************************************}
+\typeout{* Linux Network Administrators' Guide, Version 1.0 }
+\typeout{* Olaf Kirch, <okir@monad.swb.de> }
+\typeout{*************************************************************** }
+\typeout{* Configuration Options (as set in Config.tex): }
+\iftex
+ \ifps
+   \typeout{* Generating PostScript(tm) output }
+   \ifpsfonts
+     \typeout{* Using PostScript font metrics }
+   \fi
+ \else
+   \typeout{* Generating DVI output }
+ \fi
+ \iflatexe
+   \ifltxbeta
+     \typeout{* LaTeX2e(beta) compatibility }
+   \else
+     \typeout{* LaTeX2e compatibility }
+   \fi
+ \else
+   \ifveryoldtex
+     \typeout{* Oldtimer TeX installation compatibility }
+   \else
+     \typeout{* LaTeX 2.09 compatibility }
+   \fi
+ \fi
+ \ifsqueeze
+   \typeout{* Squeezing output to save a few pages }
+ \fi
+\fi
+\typeout{****************************************************************}
+
+\iftex
+ \iflatexe
+  \ifltxbeta
+    \documentclass[11pt,makeidx]{report}
+\makeatletter
+    \ifps
+       \ifpsfonts
+         \usepackage{nftimes}
+       \fi
+       \usepackage{epsf}
+    \else
+       \usepackage{epic}
+       \usepackage{eepic}
+    \fi
+  \else
+    \documentclass[11pt]{report}
+    \usepackage{makeidx}
+    \ifps
+       \ifpsfonts
+         \usepackage{times}
+       \fi
+       \usepackage{epsfig}
+    \else
+       \usepackage{epic}
+       \usepackage{eepic}
+    \fi
+  \fi
+  \usepackage{latexsym} \usepackage{ifthen}   \usepackage{lotex}
+  \usepackage{private}
+  \usepackage{linuxdoc2e}
+ \else
+  \ifps
+     \ifpsfonts
+       \documentstyle[11pt,times,epsf,makeidx,lotex,private,linuxdoc]{report}
+     \else
+       \documentstyle[11pt,epsf,makeidx,lotex,private,linuxdoc]{report}
+     \fi
+  \else
+     \documentstyle[11pt,epic,eepic,makeidx,lotex,private,linuxdoc]{report}
+  \fi
+  
+  
+  
+  
+  
+ \fi
+\else
+ \iflotex
+  \documentstyle[11pt,makeidx,lotex,private,linuxdoc]{report}
+  
+  
+  
+  
+  
+ \fi
+\fi
+\title{The \linux{} Network Administrators' Guide}
+\author{Olaf Kirch}
+\years{1992-1994}
+\iftex
+\newsavebox{\disclaimer}
+\savebox{\disclaimer}[\textwidth]{
+ \parbox{\textwidth}{
+ \sf
+ This is the last pre-release before the new Networking Guide
+ goes public. I consider the technical chapters mostly complete.
+ I have tried to catch up with the current development, but
+ in some section, there have been minor changes or additions
+ to the software since I wrote them. I don't think I will update
+ them unless you tell me I've missed something big.
+
+ \hspace{1em}
+ If you have any comments, suggestions, or complaints, please
+ mail me at \email{okir@monad.swb.de}.
+ \hfill -- Olaf
+ \hspace{5mm}
+ }
+}
+\fi
+
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+
+\sloppypar
+
+
+\makeindex
+
+
+\def\textbf#1{{\bf{#1}}}
+
+\def\texttt#1{{\tt{#1}}}
+
+\def\textit#1{{\it{#1}}}
+
+\def\textsl#1{{\sl{#1}}}
+
+\def\emph#1{{\em{#1}}}
+
+\def\topfraction{0.63}
+
+\def\title{``The \linux{} Network Administrators' Guide''}
+
+\def\y{\term{y}}
+
+\def\dipvar#1{\keyword{\${#1}}}
+
+\def\NISplus{{NIS$+$}}
+
+\def\uucplib{\file{/usr/lib/uucp}}
+
+\def\uucpspool{\file{/var/spool/uucp}}
+
+\def\publicspool{\file{/var/spool/uucppublic}}
+
+\def\pubdir{\file{uucppublic}}
+
+\def\elmlib{\file{/usr/lib/elm}}
+
+\def\smailboxdir{\file{/var/spool/mail}}
+
+\def\smaillib{\file{/usr/lib/smail}}
+
+\def\smailspool{\file{/var/spool/smail}}
+
+\def\newslib{\file{/usr/lib/news}}
+
+\def\newsbin{\file{/usr/lib/news/bin}}
+
+\def\newsspool{\file{/var/spool/news}}
+
+\def\ex#1{\hspace{#1ex}}
+
+\makeatother
+\newenvironment{tex2html_wrap}{}{}
+\newwrite\lthtmlwrite
+\def\lthtmltypeout#1{{\let\protect\string\immediate\write\lthtmlwrite{#1}}}%
+\newbox\sizebox
+\begin{document}
+\pagestyle{empty}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+{\newpage
+\clearpage
+\samepage % latex2html id marker 10344
+\fbox{
+ 
+ \small
+ \begin{minipage}{0.9\textwidth}
+  {\Large\bf Legal Notice}
+
+  \medskip\noindent
+  UNIX is a trademark of Univel.\\ 
+  \linux{} is not a trademark, and has no connection to
+  UNIX\tm\ or Univel.\\ 
+  \vspace*{\fill}
+  
+  \noindent
+  Copyright \copyright \ 1994 \ Olaf Kirch\\ 
+  Kattreinstr. 38, 64295 Darmstadt, Germany\\ 
+  {\tt okir@monad.swb.de}
+  
+  \vspace{.2in}\noindent
+  \title{} may be reproduced and distributed in whole or in part, subject
+  to the following conditions:
+
+  \begin{enumerate}
+  \setcounter{enumi}{-1}
+  \item
+        The copyright notice above and this permission notice must be
+        preserved complete on all complete or partial copies.
+  
+  \item Any translation or derivative work of \title{} must be approved
+        by the author in writing before distribution.
+  
+  \item If you distribute \title{} in part, instructions for obtaining
+        the complete version of \title{} must be included, and a means for
+        obtaining a complete version provided.
+  
+  \item Small portions may be reproduced as illustrations for reviews
+        or {\bf quotes} in other works without this permission notice if
+        proper citation is given.
+  
+  \item If you print and distribute \title{}, you may not refer to it
+  	as the ``Official Printed Version''.
+
+  \item The GNU General Public License referenced below may be
+        reproduced under the conditions given within it.
+  
+  \item Several sections of this document are held under separate
+        copyright.  When these sections are covered by a different copyright,
+        the seperate copyright is noted.  {\bf If you distribute \title{} in
+        part, and that part is, in whole, covered under a seperate, noted
+        copyright, the conditions of that copyright apply.}
+  \end{enumerate}
+  
+  Exceptions to these rules may be granted for academic purposes: Write to
+  Olaf Kirch at the above address, or email {\tt okir@monad.swb.de}, and
+  ask.  These restrictions are here to protect us as authors, not to
+  restrict you as educators and learners.
+
+  \vspace{.2in}\noindent All source code in \title{} is placed under the
+  GNU General Public License.  See appendix~\ref{appendix.gpl} for a copy
+  of the GNU ``GPL.''
+
+  The author is not liable for any damages, direct or indirect,
+  resulting from the use of information provided in this
+  document.
+ \end{minipage}
+}
+}
+
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+{\newpage
+\clearpage
+\samepage \begin{dispitems}% latex2html id marker 3012
+\ditem[G]
+        The route uses a gateway.
+
+\ditem[U]
+        The interface to be used is up.
+
+\ditem[H]
+        Only a single host can be reached through the route. For
+        example, this is the case for the loopback entry
+        \host{127.0.0.1}.
+
+\ditem[D]
+        This is set if the table entry has been generated
+        by an ICMP redirect message (see section~\ref{tcpip.icmp}).
+
+\ditem[M]
+        This is set if the table entry was modified by an ICMP
+        redirect message.
+\end{dispitems}
+}
+
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+{\newpage
+\clearpage
+\samepage \begin{dispitems}% latex2html id marker 3521
+\ditem[SOA]
+\index{authoritative name server}
+\index{SOA (DNS record)}
+\index{DNS!zone}
+
+This describes a zone of authority (SOA means ``Start of
+Authority''). It signals that the records following the SOA
+RR contain authoritative information for the domain. Every master file
+included by a \keyword{primary} statement must contain an SOA
+record for this zone. The resource data contains the following fields:
+
+
+\begin{dispitems}
+\ditem[\var{origin}]
+        This is the canonical hostname of the primary name server
+        for this domain. It is usually given as an absolute name.
+
+\ditem[\var{contact}]
+        This is the email address of the person responsible for
+        maintaining the domain, with the `\keyword{@}' character
+        replaced by a dot. For instance, if the responsible person at
+        the Virtual Brewery is \user{janet}, then this field would
+        contain \keyword{janet.vbrew.com}.
+
+\ditem[\var{serial}]
+        This is the version number of the zone file, expressed as a
+        single decimal number. Whenever data is changed in the zone
+        file, this number should be incremented.
+
+        The serial number is used by secondary name servers to recognize
+        when zone information has changed. To stay up to date, secondary
+        servers request the primary server's SOA record at certain
+        intervals, and compare the serial number to that of the cached
+        SOA record.  If the number has changed, the secondary servers
+        transfers the whole zone database from the primary server.
+
+\ditem[\var{refresh}]
+        This specifies the interval in seconds that the secondary
+        servers should wait between checking the SOA record of the
+        primary server. Again, this is a decimal number with at most
+        eight digits.
+
+        Generally, the network topology doesn't change too often, so
+        that this number should specify an interval of roughly a day for
+        larger networks, and even more for smaller ones.
+
+\ditem[\var{retry}]
+        This number determines the intervals at which a secondary
+        server should retry contacting the primary server if
+        a request or a zone refresh fails. It must not be too low,
+        or else a temporary failure of the server or a network problem
+        may cause the secondary server to waste network resources.
+        One hour, or perhaps one half hour, might be a good choice.
+
+\ditem[\var{expire}]
+        This specifies the time in seconds after which the server should
+        finally discard all zone data if it hasn't been able to contact
+        the primary server. It should normally be very large.  Craig
+        Hunt (\cite{hunt-tcpip}) recommends 42~days.
+
+\ditem[\var{minimum}]
+        This is the default ttl value for resource records that do not
+        explicitly specify one. This requires other name servers to
+        discard the RR after a certain amount of time.  It has however
+        nothing to do with the time after which a secondary server tries
+        to update the zone information.
+
+        \var{minimum} should be a large value, especially for LANs where
+        the network topology almost never changes.  A value of around a
+        week or a month is probably a good choice. In the case that
+        single RRs may change more frequently, you can still assign them
+        different ttl's.
+
+\end{dispitems}
+
+
+\ditem[A]
+\index{A (DNS record)}
+\index{address!DNS resource record}
+
+This associates an IP~address with a hostname. The resource data field
+contains the address in dotted quad notation.
+
+\index{hostname!canonical}
+\index{canonical hostname}
+\index{CNAME (DNS record)}
+\index{hostname!aliases}
+\index{alias!hostname}
+For each host, there must be only one A record. The hostname used in
+this A record is considered the official or \emph{canonical} hostname.
+All other hostnames are aliases and must be mapped onto the canonical
+hostname using a CNAME record.
+
+
+
+\ditem[NS]
+
+This points to a master name server of a subordinate zone. For an
+explanation why one has to have NS records, see section~\ref{tcpip.dns}.
+The resource data field contains the hostname of the name server. To
+resolve the hostname, an additional A record is needed, the so-called
+\emph{glue record} which gives the name server's IP~address.
+
+
+\ditem[CNAME]
+\index{CNAME (DNS record)}
+
+This associates an alias for a host with its \emph{canonical hostname}.
+The canonical hostname is the one the master file provides an A record
+for; aliases are simply linked to that name by a CNAME record, but don't
+have any other records of their own.
+
+
+\ditem[PTR]
+\index{PTR (DNS record)}
+
+This type of record is used to associate names in the \host{in-addr.arpa}
+domain with hostnames. This is used for reverse mapping of IP~addresses
+to hostnames. The hostname given must be the canonical hostname.
+
+
+\ditem[MX]
+\index{MX (DNS record)}
+
+This RR announces a \emph{mail exchanger} for a domain. The reasons to
+have mail exchangers are discussed in section~\ref{mail.routing.internet}
+in chapter~\ref{mail}.  The syntax of an MX record is
+
+
+\begin{screen}\st
+[\var{domain}] [\var{ttl}] [\var{class}] MX \var{preference} \var{host}
+\end{screen}
+
+
+\var{host} names the mail exchanger for \var{domain}. Every
+mail exchanger has an integer \var{preference} associated with it.
+A mail transport agent who desires to deliver mail to \var{domain}
+will try all hosts who have an MX record for this domain
+until it succeeds. The one with the lowest preference value is
+tried first, then the others in order of increasing preference
+value.
+
+
+
+
+\ditem[HINFO]
+This record provides information on the system's hardware
+and software. Its syntax is
+
+
+\begin{screen}\st
+[\var{domain}] [\var{ttl}] [\var{class}] HINFO \var{hardware software}
+\end{screen}
+
+
+The \var{hardware} field identifies the hardware used by this host.
+There are special conventions to specify this. A list of valid names is
+given in the ``Assigned Numbers'' (RFC~1340). If the field contains any
+blanks, it must be enclosed in double quotes.  The \var{software} field
+names the operating system software used by the system. Again, a valid
+name from the ``Assigned Numbers'' RFC should be chosen.
+\end{dispitems}
+}
+
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+{\newpage
+\clearpage
+\samepage \begin{dispitems}% latex2html id marker 4582
+\ditem[\var{service}]
+        \index{services@\file{services}}
+        gives the service name. The service name has to be translated to
+        a port number by looking it up in the \file{/etc/services} file.
+        This file will be described in section \ref{appl.services}
+        below.
+
+\ditem[\var{type}]
+        specifies a socket type, either \keyword{stream} (for
+        connection-oriented protocols) or \keyword{dgram} (for datagram
+        protocols).  TCP-based services should therefore always use
+        \keyword{stream}, while UDP-based services should always use
+        \keyword{dgram}.
+
+\ditem[\var{protocol}]
+        \index{protocols@\file{protocols}}
+        names the transport protocol used by the service. This must be a
+        valid protocol name found in the \file{protocols} file, also
+        explained below.
+
+\ditem[\var{wait}]
+        This option applies only to \keyword{dgram} sockets. It may
+        be either \keyword{wait} or \keyword{nowait}. If \keyword{wait} is
+        specified, \prog{inetd} will only execute one server for
+        the specified port at any time. Otherwise, it will immediately
+        continue to listen on the port after executing the server.
+
+        This is useful for ``single-threaded'' servers that read all
+        incoming datagrams until no more arrive, and then exit. Most RPC
+        servers are of this type and should therefore specify
+        \keyword{wait}.  The opposite type, ``multi-threaded'' servers,
+        allow an unlimited number of instances to run concurrently; this
+        is only rarely used. These servers should specify
+        \keyword{nowait}.
+
+        \keyword{stream} sockets should always use \keyword{nowait}.
+
+\ditem[\var{user}]
+        This is the login id of the user the process is executed under.
+        This will frequently be the \user{root} user, but some services
+        may use different accounts. It is a very good idea to apply the
+        principle of least privilege here, which states that you shouldn't
+        run a command under a privileged account if the program doesn't
+        require this for proper functioning.
+        For example, the NNTP news server will run as \user{news}, while
+        services that may pose a security risk (such as \prog{tftp} or
+        \prog{finger}) are often run as \user{nobody}.
+
+\ditem[\var{server}]
+        gives the full path name of the server program to be executed.
+        Internal services are marked by the keyword \keyword{internal}.
+
+\ditem[\var{cmdline}]
+        This is the command line to be passed to the server. This includes
+        argument~0, that is the command name. Usually, this will be
+        the program name of the server, unless the program behaves
+        differently when invoked by a different name.
+
+        This field is empty for internal services.
+
+\end{dispitems}
+}
+
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+{\newpage
+\clearpage
+\samepage \begin{dispitems}% latex2html id marker 8974
+\ditem[\var{site}]
+	This is the name of the site the entry applies to. One usually
+	chooses the site's UUCP name for this.  There has to be an entry
+	for your site in the \file{sys} file, too, else you will not
+	receive any articles yourself.
+
+
+	\index{C News!receiving news}
+	\index{receiving news}
+	\index{news!receiving}
+	The special site name \keyword{ME} denotes your site. The
+	\keyword{ME} entry defines all groups you are willing to store
+	locally. Articles that aren't matched by the \keyword{ME} line
+	will go to the \ngrp{junk} group.
+
+
+	\index{C News!excluding sites}
+	\index{C News!hostname aliases}
+	\index{alias!and C News}
+	Since C~News checks \var{site} against the site names in
+	the \mhdr{Path:} header field, you have to make sure they really
+	match. Some sites use their fully qualified domain name in this
+	field, or an alias like \ngrp{news.}\var{site.domain}. To prevent
+	any articles from being returned to these sites, you have to add
+	these to the exclusion list, separated by commas.
+
+
+	For the entry applying to site \host{moria}, for instance, the
+	site field would contain \host{moria/}\host{moria.orcnet.org}.
+
+\ditem[\var{grouplist}]
+	\index{C News!exchanging news}
+	\index{C News!limit a feed}
+	This is a comma-separated subscription list of groups and
+	hierarchies for that particular site. A hierarchy may be specified
+	by giving the hierarchy's prefix (such as \ngrp{comp.os}
+	for all groups whose name starts with this prefix), optionally
+	followed by the keyword \ngrp{all} (e.g. \ngrp{comp.os.all}).
+
+
+	A hierarchy or group is excluded from forwarding by preceding it
+	with an exclamation mark. If a newsgroup is checked against the
+	list, the longest match applies. For example, if \var{grouplist}
+	contains
+
+	\begin{tscreen}
+	!comp,comp.os.linux,comp.folklore.computers
+	\end{tscreen}
+
+	\noindent
+        no groups from the \ngrp{comp} hierarchy except
+	\ngrp{comp.folklore.computers} and all groups below
+	\ngrp{comp.os.linux} will be fed to that site.
+
+
+	If the site requests to be forwarded all news
+	you receive yourself, enter \keyword{all} as \var{grouplist}.
+
+
+\ditem[\var{distlist}]
+	\index{C News!limit a feed}
+	\index{C News!limit a feed}
+	\index{news!distributions}
+	is offset from the \var{grouplist} by a slash, and contains a
+	list of distributions to be forwarded.  Again, you may exclude
+	certain distributions by preceding them with an exclamation
+	mark. All distributions are denoted by \keyword{all}. Omitting
+	\var{distlist} implies a list of \keyword{all}.
+
+
+	For example, you may use a distribution list of
+	\keyword{all,!local} to prevent news for local use only from
+	being sent to remote sites.
+
+
+	There are usually at least two distributions: \keyword{world},
+	which is often the default distribution used when none is
+	specified by the user, and \keyword{local}. There may be other
+	distributions that apply to a certain region, state, country,
+	etc. Finally, there are two distributions used by C~News only;
+	these are \keyword{sendme} and \keyword{ihave}, and are used for
+	the sendme/ihave protocol.
+
+
+	The use of distributions is a subject of debate. For one, some
+	newsreaders create bogus distributions by simply using the top
+	level hierarchy, for example \ngrp{comp} when posting to
+	\ngrp{comp.os.linux}.  Distributions that apply to regions are
+	often questionable, too, because news may travel outside of your
+	region when sent across the Internet.\footnote{
+	  It is not uncommon for an article posted in, say Hamburg,
+	  to go to Frankfurt via \host{reston.ans.net} in the 
+	  Netherlands, or even via some site in the U.S.
+	} Distributions applying to an organization, however, are very
+	meaningful, for example to prevent confidential information from
+	leaving the company network. This purpose, however, is generally
+	served better by creating a separate newsgroup or hierarchy.
+
+
+\ditem[\var{flags}]
+
+	This describes certain parameters for the feed. It may be
+	empty, or a combination of the following:
+
+	\begin{dispitems}
+	\ditem[\keyword{F}]
+		\index{C News!batching}
+		This flag enables batching.
+
+	\ditem[\keyword{f}]
+		\index{C News!batching}
+		This is almost identical to the \keyword{F} flag, but allows 
+		C~News to calculate the size of outgoing batches more
+		precisely.
+
+	\ditem[\keyword{I}]
+		\index{C News!ihave/sendme}
+		This flag makes C~News produce an article list suitable
+		for use by ihave/sendme. Additional modifications to the
+		\file{sys} and the \file{batchparms} file are required
+		to enable ihave/sendme.
+
+	\ditem[\keyword{n}]
+		\index{C News!NNTP support}
+		This creates batch files for active NNTP transfer
+		clients like \prog{nntpxmit} (see chapter~\ref{nntp}).
+		The batch files contain the article's filename along
+		with its message id.
+
+	\ditem[\keyword{L}]
+		This tells C~News to transmit only articles posted at your
+		site. This flag may be followed by a decimal number
+		\var{n}, which makes C~News only transfer articles
+		posted within \var{n} hops from your site. C~News
+		determines the number of hops from the \mhdr{Path:} field.
+
+	\ditem[\keyword{u}]
+		This tells C~News to batch only articles from unmoderated
+		groups. 
+
+	\ditem[\keyword{m}]
+		This tells C~News to batch only articles from moderated
+		groups. 
+	\end{dispitems}
+
+	You may use at most one of \keyword{F}, \keyword{f},
+	\keyword{I}, or \keyword{n}.
+
+\ditem[\var{cmds}]
+	\index{C News!rnews@\prog{rnews}}
+	\index{C News!exchanging news}
+	\index{C News!sending news}
+	This field contains a command to be executed for each article,
+	unless batching is enabled. The article will be fed to the
+	command on standard input. This should only be used for very
+	small feeds; otherwise the load on both systems will be too high.
+
+
+	The default command is
+
+	\begin{tscreen}
+	 uux - -r -z \var{system}\/!rnews
+	\end{tscreen}
+
+	\noindent
+	which invokes \prog{rnews} on the remote system, feeding it
+	the article on standard input.
+
+
+	The default search path for commands given in this field is
+	\prog{/bin:/usr/bin:\file{/usr/lib/news/bin}/batch}. The latter directory
+	contains a number of shell scripts whose name starts with
+	\prog{via}; they are briefly described later in this chapter.
+
+
+	\index{C News!batching}
+	\index{C News!togo file@\file{togo} file}
+	If batching is enabled using either of the \keyword{F} or
+	\keyword{f}, \keyword{I} or \keyword{n} flags, C~News expects to
+	find a file name in this field rather than a command. If the
+	file name does not begin with a slash (\file{/}), it is assumed
+	to be relative to \file{/var/spool/news}\file{/out.going}. If the field is
+	empty, it defaults to \file{\var{system}\//togo}.
+
+
+\end{dispitems}
+}
+
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+{\newpage
+\clearpage
+\samepage \begin{dispitems}% latex2html id marker 9299
+\ditem[\file{newsgroups}]
+        \index{C News!list of current groups}
+        This is a companion file of \file{active} which contains a list
+        of newsgroup names, along with a one-line description of its
+        main topic.  This file is automatically updated when C~News
+        receives a \keyword{checknews} control message (see
+        section~\ref{cnews.control}).
+
+\ditem[\file{localgroups}]
+        If you have a number of local groups that you don't want C~News
+        to complain about every time you receive a \keyword{checknews}
+        message, put their names and descriptions in this file, just like
+        they would appear in \file{newsgroups}.
+
+\ditem[\file{mailpaths}]
+        \index{C News!moderated groups}
+        This file contains the moderator's address for each moderated
+        group. Each line contains the group name, followed by the
+        moderator's email address (offset by a tab).
+
+        Two special entries are provided as default. These are
+        \keyword{backbone} and \keyword{internet}. Both provide~--- in
+        bang-path notation~--- the path to the nearest backbone site,
+        and the site that understands RFC~822-style addresses
+        (\email{user@host}).  The default entries are
+
+        \begin{tscreen}
+	 internet\hspace{6ex}backbone\hspace{6ex}\end{tscreen}
+
+        You will not have to change the \keyword{internet} entry if you
+        have \prog{smail} or \prog{sendmail} installed, because they
+        understand RFC~822-addressing.
+
+        The \keyword{backbone} entry is used whenever a user posts to a
+        moderated group whose moderator is not listed explicitly.  If
+        the newsgroup's name is \ngrp{alt.sewer}, and the
+        \keyword{backbone} entry contains \email{\var{path}!\%s}, C~News
+        will mail the article to \email{\var{path}!alt-sewer}, hoping
+        that the backbone machine is able to forward the article. To
+        find out which path to use, ask the news admins at the site that
+        feeds you.  As a last resort, you can also use
+        \email{uunet.uu.net!\%s}.
+
+\ditem[\file{distributions}]
+        \index{C News!limit a feed}
+        This file is not really a C~News file, but it is used by some
+        newsreaders, and \prog{nntpd}. It contains the list of
+        distributions recognized by your site, and a description of its
+        (intended) effect. For example, Virtual Brewery has the
+        following file:
+
+        \begin{tscreen}
+         
+	 world\hspace{11ex}    everywhere in the world\\ 
+	 local\hspace{11ex}    Only local to this site\\ 
+	 nl\hspace{15ex}       Netherlands only\\ 
+	 mugnet\hspace{10ex}   MUGNET only\\ 
+	 fr\hspace{15ex}       France only\\ 
+	 de\hspace{15ex}       Germany only\\ 
+	 brewery\hspace{9ex}   Virtual Brewery only
+        \end{tscreen}
+
+
+\ditem[\file{log}]
+        \index{C News!log files}
+        This file contains a log of all C~News activities. It is culled
+        regularly by running \prog{newsdaily}; copies of the old logfiles
+        are kept in \file{log.o}, \file{log.oo}, etc.
+
+\ditem[\file{errlog}]
+        This is a log of all error messages created by C~News. These do
+        not include articles junked due to wrong group, etc. This file
+        is mailed to the newsmaster (\user{usenet} by default)
+        automatically by \prog{newsdaily} if it is found to be
+        non-empty.
+
+        \file{errlog} is cleared by \prog{newsdaily}. Old copies are kept
+        in \file{errlog.o} and companions.
+
+\ditem[\file{batchlog}]
+        This logs all runs of \prog{sendbatches}. It is usually of scant
+        interest only. It is also attended by \prog{newsdaily}.
+
+\ditem[\file{watchtime}]
+        This is an empty file created each time \prog{newswatch} is run.
+
+\end{dispitems}
+}
+
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{chapter}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+{\newpage
+\clearpage
+\samepage \begin{dispitems}% latex2html id marker 10064
+\ditem[ACU]
+        Automatic Call Unit. A modem.\footnote{
+         Alternatively: A teenager with a telephone.
+        }
+
+\ditem[ARP]
+        Address Resolution Protocol. Used to map IP~addresses
+        to Ethernet addresses.
+
+\ditem[ARPA]
+	Advanced Research Project Agency, later DARPA. Founder
+	of the Internet.
+
+\ditem[ARPANET]
+	The ancestor of today's Internet; an experimental network
+	funded by the U.S. Defense Advanced Research Project Agency
+	(DARPA).
+
+\ditem[Assigned Numbers]
+	The title of an \emph{RFC} published regularly that lists
+	the publicly allocated numbers used for various things in
+	TCP/IP networking. For example, it contains the list of all
+	port numbers of well-known services like \prog{rlogin}, 
+	\prog{telnet}, etc. The most recent release of this
+	document is RFC~1340.
+
+\ditem[bang path]
+	In UUCP networks, a special notation for the path from
+	one UUCP site to another. The name derives from the
+	use of exclamation marks (`bangs') to separate the
+	host names. Example: \email{foo!bar!ernie!bert} denotes
+	a path to host \user{bert}, travelling (in this order)
+	\host{foo}, \host{bar}, and \host{ernie}.
+
+\ditem[BBS]
+	Bulletin Board System. A dial-up mailbox system.
+
+\ditem[BGP]
+	Border Gateway Protocol. A protocol for exchanging
+	routing information between autonomous systems.
+
+\ditem[BIND]
+        The Berkeley Internet Name Domain server. An implementation
+        of a DNS server.
+
+\ditem[BNU]
+	Basic Networking Utilities. This is the most common UUCP
+	variety at the moment.  It is also known as HoneyDanBer UUCP.
+	This name is derived from the authors' names: P.~Honeyman,
+	D.A.~Novitz, and B.E.~Redman.
+
+\ditem[broadcast network]
+	A network that allows one station to address a datagram
+	to all other stations on the network simultaneously.
+
+\ditem[BSD]
+	Berkeley Software Distribution. A \unix{} flavor.
+
+\ditem[canonical hostname]
+	A host's primary name within the Domain Name System. This
+	is the host's only name that has an A record 
+	associated with it, and which is returned when performing
+	a reverse lookup.
+
+\ditem[CCITT]
+        Comite\'e Consultatif International de  T\'el\'egraphique
+        et T\'el\'ephonique. An International organization of
+        telephone services, etc.
+
+\ditem[CSLIP]
+	Compressed Serial Line IP. A protocol for exchanging IP
+	packets over a serial line, using header compression of
+	most TCP/IP datagrams.
+
+\ditem[DNS]
+        Domain name system. This is a distributed database used on the
+        Internet for mapping of host names to IP~addresses.
+
+\ditem[EGP]
+	External Gateway Protocol. A protocol for exchanging
+	routing information between autonomous systems.
+
+\ditem[Ethernet]
+	In colloquial terms, the name of a sort of network equipment.
+	Technically, Ethernet is part of a set of standards set forth by
+	the IEEE. The Ethernet hardware uses a single piece of cable,
+	frequently coax cable, to connect a number of hosts, and
+	allows transfer rates of up to 10Mbps. The Ethernet protocol
+	defines the manner in which hosts may communicate over
+	this cable.\footnote{
+	 As an aside, the Ethernet \emph{protocol} commonly used by TCP/IP
+	 is \emph{not} exactly the same as IEEE~802.3. Ethernet frames
+	 have a type field where IEEE~802.3 frames have a length field.
+	}
+
+\ditem[FQDN]
+	Fully Qualified Domain Name. A hostname with a domain name
+	tacked onto it, so that it is a valid index into the Domain Name
+	database.
+
+\ditem[FTP]
+        File Transfer Protocol. The protocol one of the best-known
+        file transfer service is based on and named after.
+
+\ditem[FYI]
+        ``For Your Information.'' Series of documents with informal
+        information on Internet topics.
+
+\ditem[GMU]
+	Groucho Marx University. Fictitious University used as an example
+	throughout this book.
+
+\ditem[GNU]
+	GNU's not Unix~-- this recursive acronym is the name of a project
+	by the Free Software Association to provide a coherent set of
+	\unix{}-tools that may be used and copied free of charge. All
+	GNU software is covered by a special Copyright notice, also
+	called the GNU General Public License (GPL), or Copyleft.
+	The GPL is reproduced in section~\ref{appendix.gpl}.
+
+\ditem[HoneyDanBer]
+	The name of a UUCP variety. See also BNU.
+
+\ditem[host]
+	Generally, a network node: something that is able to receive and
+	transmit network messages. This will usually be a computer, but
+	you can also think of X-Terminals, or smart printers.
+
+\ditem[ICMP]
+        Internet Control Message Protocol. A networking protocol used
+        by IP to return error information to the sending host, etc.
+
+\ditem[IEEE]
+	Institute of Electrical and Eletronics Engineers. Another standards
+	organization. From a UNIX user's point of view, their most
+	important achievement are probably the POSIX standards which
+	define aspects of a UNIX systems, ranging from system call
+	interfaces and semantics to administration tools.
+
+	Apart from this, the IEEE developed the specifications for
+	Ethernet, Token Ring, and Token Bus networks. A widely-used
+	standard for binary representation of real numbers is also due to
+	the IEEE.
+
+\ditem[IETF]
+        Internet Engineering Task Force.
+
+\ditem[internet]
+	A computer network formed of a collection of individual smaller
+	networks.
+
+\ditem[Internet]
+	A particular world-wide internet.
+
+\ditem[IP]
+        Internet Protocol. A networking protocol.
+
+\ditem[ISO]
+	International Standards Organization.
+
+\ditem[ISDN]
+	Integrated Services Digital Network. New telecommunications
+	technology using digital instead of analogue circuitry.
+
+\ditem[LAN]
+	Local Area Network. A small computer network.
+
+\ditem[MX]
+        Mail Exchanger. A DNS resource record type used for marking
+        a host as mail gateway for a domain.
+
+\ditem[network, packet-switched]
+	A variety of networks that provide instantaneous forwarding
+	of data by all data up in small packets, which are tramsported
+	to their destination individually. Packet-switched networks
+	rely on permanent or semi-permanent connections.
+
+\ditem[network, store-and-forward]
+	They are pretty much the opposite of packet-switched networks.
+	These networks transfer data as entire files, and don't
+	use permanent connections. Instead, hosts conect to each other
+	at certain intervals only, and transfer all data at once.
+	This requires that data be stored intermediately until a
+	connection is established.
+
+\ditem[NFS]
+        Network File System. A standard networking protocol and
+        software suite for accessing data on remote disks
+        transparently.
+
+\ditem[NIS]
+        Network Information System. An RPC-based application that
+        allows to share configuration files such as the password file
+        between several hosts. See also the entry under YP.
+
+\ditem[NNTP]
+        Network News Transfer Protocol. Used to transfer news over
+        TCP network connections.
+
+\ditem[octet]
+	On the Internet, the technical term referring to a quantity of
+	eight bits. It is used rather than \emph{byte}, because there
+	are machines on the Internet that have byte sizes other than eight
+	bits.
+
+\ditem[OSI]
+	Open Systems Interconnection. An ISO standard on network software.
+
+\ditem[path]
+	Often used in UUCP networks as a synonym for \emph{route}. Also
+	see \emph{bang path}.
+
+\ditem[PLIP]
+	Parallel Line IP. A protocol for exchanging IP packets over
+	a parallel line such as a printer port.
+
+\ditem[port, TCP or UDP]
+	Ports are TCP's and UDP's abstraction of a service endpoint.
+	Before a process can provide or access some networking service,
+	it must claim (bind) a port. Together with the hosts' IP
+	addresses, ports uniquely identify the two peers of a TCP connection.
+
+\ditem[portmapper]
+	The portmapper is the mediator between the program numbers used
+	by RPC as an identification of individual RPC servers, and the
+	TCP and UDP port numbers those services are listening to.
+
+\ditem[PPP]
+	The point-to-point protocol. PPP is a flexible and
+	fast link-layer protocol to send various network protocols
+	such as IP or IPX across a point-to-point connection.  Apart
+	from being used on serial (modem) links, PPP can also be
+	employed as the link-level protocol on top of ISDN.
+
+\ditem[RARP]
+        Reverse Address Resolution Protocol. It permits hosts to
+        find out their IP~address at boot time.
+
+\ditem[resolver]
+	This is a library responsible for mapping hostnames to
+	IP~addresses and vice versa.
+
+\ditem[resource record]
+	This is the basic unit of information in the DNS database, 
+	commonly abbreviated as RR.
+	Each record has a certain type and class associated with it,
+	for instance a record mapping a host name to an IP~address
+	has a type of A (for address), and a class of IN
+	(for the Internet Protocol).
+
+\ditem[reverse lookup]
+	The act of looking up a host's name based on a given IP~address.
+	Within DNS, this is done by looking up the host's IP~address
+	in the \host{in-addr.arpa} domain.
+
+\ditem[RFC]
+        Request For Comments. Series of documents describing
+        Internet standards.
+
+\ditem[RIP]
+        Routing Information Protocol. This is a routing protocol used
+        dynamically adjust routes inside a (small) network.
+
+\ditem[route]
+	The sequence of hosts a piece of information has to travel
+	from the originating host to the destination host. Finding
+	an appropriate route is also called \emph{routing}.
+
+\ditem[routing daemon]
+	In larger networks, network topology changes are hard to adapt
+	to manually, so facilities are used to distribute current
+	routing information to the network's member hosts. This is
+	called dynamic routing; the routing information is exchanged
+	by \emph{routing daemons} running on central hosts in the network.
+	The protocols they employ are called \emph{routing protocols}.
+
+\ditem[RPC]
+        Remote Procedure Call. Protocol for executing procdures inside
+        a process on a remote host.
+
+\ditem[RR]
+	Short for \emph{resource record}.
+
+\ditem[RS-232]
+	This is a very common standard for serial interfaces.
+
+\ditem[RTS/CTS]
+	A colloquial name for the hardware handshake performed by
+	two devices communicating over RS-232. The name derives from
+	the two cicuits involved, RTS (``Ready To Send''), and
+	CTS (``Clear To Send'').
+
+\ditem[RTM Internet Worm]
+	A Virus-like program that used several flaws in VMS and
+	BSD~4.3 Unix to spread through the Internet. Several ``mistakes''
+	in the program caused it to multiply without bound, and so
+	effectively bringing down large parts of the Internet.
+	RTM are the author's initials (Robert T.~Morris), which he left
+	in the program.
+
+\ditem[site]
+	An agglomeration of hosts which, to the outside, behave almost
+	like a single network node. For example, when speaking from an
+	Internet point of view, one would call a Groucho Marx University
+	a site, regardless of the complexity of its interior network.
+
+\ditem[SLIP]
+	Serial Line IP. This is a protocol for exchanging IP packets over
+	a serial line, see also CSLIP.
+
+\ditem[SMTP]
+        Simple Mail Transfer Protocol. Used for mail transport
+        over TCP connections, but also for mail batches transported
+        over UUCP links (batched SMTP).
+
+\ditem[SOA]
+        Start of Authority. A DNS resource record type.
+
+\ditem[System V]
+	A \unix{} flavor.
+
+\ditem[TCP]
+        Transmission Control Protocol. A networking protocol.
+
+\ditem[TCP/IP]
+        Sloppy description of the Internet protocol suite
+        as a whole.
+
+\ditem[UDP]
+        User Datagram Protocol. A networking protocol.
+
+\ditem[UUCP]
+        Unix to Unix Copy.
+        A suite of network transport commands for dial-up
+        networks.
+
+\ditem[Version 2 UUCP]
+	An aging UUCP variety.
+
+\ditem[virtual beer]
+	Every Linuxer's favorite drink. The first mention of virtual
+	beer I remember was in the release note of the \linux{} 0.98.X kernel,
+	where Linus listed the ``Oxford Beer Trolls'' in his credits section
+	for sending along some virtual beer.
+
+\ditem[well-known services]
+	This term is frequently used to refer to common networking
+	services such as \prog{telnet} and \prog{rlogin}.  In a more
+	technical sense, it describes all services that have been
+	assigned an official port number in the ``Assigned Numbers''
+	RFC.
+
+\ditem[YP]
+	Yellow Pages. An older name for NIS which is no longer used,
+	because Yellow Pages is a trademark of British Telecom.
+	Nevertheless, most NIS utilities have retained names with
+	a prefix of \prog{yp}.
+
+\end{dispitems}
+}
+
+\stepcounter{chapter}
+
+\end{document}

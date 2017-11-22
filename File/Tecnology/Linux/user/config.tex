@@ -1,0 +1,1129 @@
+% kff: What else ought I cover?  Can you think of anything?
+
+\chapter{I Gotta Be Me!}\label{configuration-chapter}
+
+\begin{quote}
+  If God had known we'd need foresight, she would have given it to us.
+\end{quote}
+
+\section{{\tt bash} Customization}
+
+One of the distinguishing things about the Unix philosophy is that the
+system's designers did not attempt to predict every need that users
+might have; instead, they tried to make it easy for each individual
+user to tailor the environment to their own particular needs.  This is
+mainly done through {\bf configuration files}\index{configuration
+  files}. These are also known as ``init files''\index{init files},
+``rc files''\index{rc files} (for ``run control''), or even ``dot
+files'', because the filenames often begin with ``{\tt .}''. If you'll
+recall, filenames that start with ``{\tt .}'' aren't normally
+displayed by {\tt ls}.
+
+The most important configuration files are the ones used by the shell.
+Linux's default shell is {\tt bash}\ttindex{bash}, and that's the
+shell this chapter covers. Before we go into how to customize {\tt
+  bash}, we should know what files {\tt bash} looks at.
+
+\subsection{Shell Startup}
+
+There are several different ways {\tt bash} can run. It can run as a
+{\bf login shell}\index{login shell}, which is how it runs when you
+first login. The login shell should be the first shell you see.
+
+Another way {\tt bash} can run is as an {\bf interactive
+  shell}\index{interactive shell}. This is any shell which presents a
+prompt to a human and waits for input. A login shell is also an
+interactive shell. A way you can get a non-login interactive shell is,
+say, a shell inside {\tt xterm}\ttindex{xterm}. Any shell that
+was created by some other way besides logging in is a non-login shell.
+
+Finally, there are {\bf non-interactive shells}\index{non-interactive
+  shell}. These shells are used for executing a file of commands, much
+like MS-DOS\index{MS-DOS}'s batch files---the files that end in {\tt
+  .BAT}. These {\bf shell scripts}\index{shell scripts} function like
+mini-programs. While they are usually much slower than a regular
+compiled program, it is often true that they're easier to write.
+
+Depending on the type of shell, different files will be used at shell
+startup:
+
+\begin{center}
+\begin{tabular}{|l|l|}\hline
+  \multicolumn{1}{|c|}{Type of Shell} &
+     \multicolumn{1}{c|}{Action}\\ \hline
+  Interactive login & The file {\tt .bash\_profile} is read and
+                      executed\\ \hline
+  Interactive       & The file {\tt .bashrc} is read and \ttindex{.bashrc}
+                      executed\\ \hline
+  Non-interactive   & The shell script is read and executed \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Startup Files}
+
+Since most users want to have largely the same environment no matter
+what type of interactive shell they wind up with, whether or not it's
+a login shell, we'll start our configuration by putting a very simple
+command into our {\tt .bash\_profile}: ``{\tt source
+  \verb+~+/.bashrc}''. The {\tt source}\ttindex{source} command tells
+the shell to interprete the argument as a shell script. What it means
+for us is that everytime {\tt .bash\_profile} is run, {\tt .bashrc} is
+{\em also\/} run.
+
+Now, we'll just add commands to our {\tt .bashrc}. If you ever want a
+command to only be run when you login, add it to your {\tt
+  .bash\_profile}.
+
+\subsection{Aliasing}\label{aliasing-section}
+
+        What are some of the things you might want to customize?
+Here's something that I think about 90\% of Bash users have put in
+their {\tt .bashrc}:
+
+\begin{screen}\begin{verbatim}
+alias ll="ls -l"
+\end{verbatim}\end{screen}
+
+That command defined a shell {\bf alias}\impindex{shell!alias} called
+{\tt ll} that ``expands'' to the normal shell command ``{\tt ls~-l}''
+when invoked by the user.  So, assuming that Bash has read that
+command in from your {\tt .bashrc\/}, you can just type {\tt ll} to
+get the effect of ``{\tt ls~-l}'' in only half the keystrokes.  What
+happens is that when you type {\tt ll} and hit \key{Return}, Bash
+intercepts it, because it's watching for aliases, replaces it with
+``{ls~-l}'', and runs that instead.  There is no actual program called
+{\tt ll} on the system, but the shell automatically translated the
+alias into a valid program.
+
+Some sample aliases are in Figure~\ref{sample-aliases}.  You could put
+them in your own {\tt .bashrc}. One especially interesting alias is
+the first one. With that alias, whenever someone types {\tt ls}, they
+automatically have a {\tt -F} flag tacked on. (The alias
+doesn't try to expand itself again.) This is a common way of adding
+options that you use every time you call a program.
+
+Notice the comments with the {\tt \#} character in
+Figure~\ref{sample-aliases}. Whenever a {\tt \#} appears, the shell
+ignores the rest of the line.\index{shell!comments}
+
+\begin{figure}\label{sample-aliases}
+\begin{screen}\begin{verbatim}
+alias ls="ls -F"          # give characters at the end of listing
+alias ll="ls -l"          # special ls
+alias la="ls -a"
+alias ro="rm *~; rm .*~"  # this removes backup files created by Emacs
+alias rd="rmdir"          # saves typing!
+alias md="mkdir"
+alias pu=pushd            # pushd, popd, and dirs weren't covered in this
+alias po=popd             # manual---you might want to look them up
+alias ds=dirs             # in the bash manpage
+# these all are just keyboard shortcuts
+alias to="telnet cs.oberlin.edu"
+alias ta="telnet altair.mcs.anl.gov"
+alias tg="telnet wombat.gnu.ai.mit.edu"
+alias tko="tpalk kold@cs.oberlin.edu"
+alias tjo="talk jimb@cs.oberlin.edu"
+alias mroe="more"         # spelling correction!
+alias moer="more"
+alias email="emacs -f rmail" # my mail reader
+alias ed2="emacs -d floss:0 -fg \"grey95\" -bg \"grey50\""
+                          # one way of invoking emacs
+\end{verbatim}\end{screen}
+\caption{Some sample aliases for {\tt bash}.}
+\end{figure}        
+
+You might have noticed a few odd things about them.  First of all, I
+leave off the quotes in a few of the aliases---like {\tt pu}.
+Strictly speaking, quotes aren't necessary when you only have one word
+on the right of the equal sign. 
+
+It never hurts to have quotes either, so don't let me get you
+into any bad habits.  You should certainly use them if you're going to
+be aliasing a command with options and/or arguments:
+
+\begin{screen}\begin{verbatim}
+alias rf="refrobnicate -verbose -prolix -wordy -o foo.out"
+\end{verbatim}\end{screen}
+
+Also, the final alias has some funky quoting going on:
+
+\begin{screen}\begin{verbatim}
+alias ed2="emacs -d floss:0 -fg \"grey95\" -bg \"grey50\""
+\end{verbatim}\end{screen}
+
+As you might have guessed, I wanted to pass double-quotes in the
+options themselves, so I had to quote those with a backslash to
+prevent {\tt bash} from thinking that they signaled the end of the
+alias.
+
+Finally, I have actually aliased two common typing mistakes, ``mroe''
+and ``moer'', to the command I meant to type, {\tt more}.  Aliases do
+not interfere with your passing arguments to a program. The following
+works just fine:
+
+\begin{screen}\begin{verbatim}
+/home/larry# mroe hurd.txt
+\end{verbatim}\end{screen}
+
+In fact, knowing how to make your own aliases is probably at least
+half of all the shell customization you'll ever do.  Experiment a
+little, find out what long commands you find yourself typing
+frequently, and make aliases for them.  You'll find that it makes
+working at a shell prompt a much more pleasant experience.
+
+\subsection{Environment Variables}\label{section-env-variables}
+
+Another major thing one does in a {\tt .bashrc} is set {\bf
+  environment variables}\index{environment variables}.  And what are
+environment variables?  Let's go at it from the other direction:
+suppose you are reading the documentation for the program {\tt
+  fruggle}, and you run across these sentences:
+
+\begin{quote}
+  Fruggle normally looks for its configuration file, {\tt .frugglerc},
+  in the user's home directory.  However, if the environment variable
+  {\tt FRUGGLEPATH} is set to a different filename, it will look there
+  instead.
+\end{quote}
+
+Every program executes in an {\bf environment}\index{environment}, and
+that environment is defined by the shell that called the
+program\footnote{Now you see why shells are so important.  Imagine if
+  you had to pass a whole environment by hand every time you called a
+  program!}.  The environment could be said to exist ``within'' the
+shell.  Programmers have a special routine for querying the
+environment, and the {\tt fruggle} program makes use of this routine.
+It checks the value of the environment variable {\tt FRUGGLEPATH}.  If
+that variable turns out to be undefined, then it will just use the
+file {\tt .frugglerc} in your home directory.  If it is defined,
+however, {\tt fruggle} will use the variable's value (which should
+be the name of a file that {\tt fruggle} can use) instead of the
+default {\tt .frugglerc}.
+
+Here's how you can change your environment in {\tt bash}\ttindex{bash}:
+
+\begin{screen}\begin{verbatim}
+/home/larry# export PGPPATH=/home/larry/secrets/pgp
+\end{verbatim}\end{screen}
+
+        You may think of the {\tt export} command as meaning ``Please
+export this variable out to the environment where I will be calling
+programs, so that its value is visible to them.''  There are actually
+reasons to call it {\tt export}, as you'll see later.
+
+This particular variable is used by Phil Zimmerman\index{Zimmerman,
+  Paul}'s infamous public-key encryption program, {\tt
+  pgp}\ttindex{pgp}.  By default, {\tt pgp} uses your home directory
+as a place to find certain files that it needs (containing encryption
+keys), and also as a place to store temporary files that it creates
+when it's running.  By setting variable {\tt PGPPATH} to this value, I
+have told it to use the directory {\tt /home/larry/secrets/pgp}
+instead. I had to read the {\tt pgp} manual to find out the exact name
+of the variable and what it does, but it is farily standard to use the
+name of the program in capital letters, prepended to the suffix
+``PATH''.
+
+It is also useful to be able to query the environment:
+
+\begin{screen}\begin{verbatim}
+/home/larry# echo $PGPPATH
+/home/larry/.pgp
+/home/larry#
+\end{verbatim}\end{screen}
+
+        Notice the ``\$''; you prefix an environment variable with a
+dollar sign in order to extract the variable's value.  Had you typed
+it without the dollar sign, {\tt echo} would have simply echoed its
+argument(s):
+
+\begin{screen}
+   \begin{verbatim}
+/home/larry# echo PGPPATH
+PGPPATH
+/home/larry#
+   \end{verbatim}
+\end{screen}
+
+The ``\$'' is used to {\em evaluate} environment variables, but it
+only does so in the context of the shell---that is, when the shell is
+interpreting.  When is the shell interpreting?  Well, when you are
+typing commands at the prompt, or when {\tt bash} is reading commands
+from a file like {\tt .bashrc}, it can be said to be ``interpreting''
+the commands.
+
+There's another command that's very useful for querying the
+environment: {\tt env}\impttindex{env}. {\tt env} will merely list all
+the environment variables. It's possible, especially if you're using
+X, that the list will scroll off the screen. If that happens, just
+pipe {\tt env} through {\tt more}: {\tt env | more}.
+
+A few of these variables can be fairly useful, so I'll cover
+them. Look at Figure~\ref{env-variables}.  Those four variables are
+defined automatically when you login: you don't set them in your {\tt
+  .bashrc} or {\tt .bash\_login}.
+
+\begin{figure}\label{env-variables}
+\begin{center}
+\begin{tabular}{|l|l|l|}\hline
+  \multicolumn{1}{|c|}{Variable name} &
+    \multicolumn{1}{c|}{Contains} &
+    \multicolumn{1}{c|}{Example}\\ \hline
+  {\tt HOME} & Your home directory & {\tt /home/larry} \\ \hline
+  {\tt TERM} & Your terminal type & {\tt xterm}, {\tt vt100}, or {\tt
+    console} \\ \hline
+  {\tt SHELL} & The path to your shell & {\tt /bin/bash} \\ \hline
+  {\tt USER} & Your login name & {\tt larry} \\ \hline
+  {\tt PATH} & A list to search for programs &
+    {\tt /bin:/usr/bin:/usr/local/bin:/usr/bin/X11}\\ \hline
+\end{tabular}
+\end{center}
+\caption{Some important environment variables.}
+\end{figure}
+
+Let's take a closer look at the {\tt TERM} variable.\index{terminals}
+To understand that one, let's look back into the history of \unix: The
+operating system needs to know certain facts about your console, in
+order to perform basic functions like writing a character to the
+screen, moving the cursor to the next line, etc.  In the early days of
+computing, manufacturers were constantly adding new features to their
+terminals: first reverse-video, then maybe European character sets,
+eventually even primitive drawing functions (remember, these were the
+days before windowing systems and mice).  However, all of these new
+functions represented a problem to programmers: how could they know
+what a terminal supported and didn't support? And how could they
+support new features without making old terminals worthless?
+
+In \unix, the answer to these questions was {\tt
+  /etc/termcap}\ttindex{/etc/termcap}. {\tt /etc/termcap} is a list of
+all of the terminals that your system knows about, and how they
+control the cursor. If a system administrator got a new terminal, all
+they'd have to do is add an entry for that terminal into {\tt
+  /etc/termcap} instead of rebuilding all of \unix. Sometimes, it's
+even simplier. Along the way, Digital Equipment
+Corporation\index{Digital Equipment Corporation}'s vt100\index{vt100}
+terminal became a pseudo-standard, and many new terminals were built
+so that they could emulate it, or behave as if they were a vt100.
+
+Under \linux, {\tt TERM}'s value is sometimes {\tt console}, which is
+a vt100-like terminal with some extra features.
+
+\bindex{shell!search path}
+Another variable, {\tt PATH}, is also crucial to the proper functioning of
+the shell.  Here's mine:
+
+\begin{screen}\begin{verbatim}
+/home/larry# env | grep ^PATH
+PATH=/home/larry/bin:/bin:/usr/bin:/usr/local/bin:/usr/bin/X11:/usr/TeX/bin
+/home/larry#
+\end{verbatim}\end{screen}
+
+Your {\tt PATH} is a colon-separated list of the directories the shell
+should search for programs, when you type the name of a program to
+run.  When I type {\tt ls} and hit \key{Return}, for example, the Bash
+first looks in {\tt /home/larry/bin}, a directory I made for storing
+programs that I wrote.  However, I didn't write {\tt ls} (in fact, I
+think it might have been written before I was born!).  Failing to find
+it in {\tt /home/larry/bin}, Bash looks next in {\tt /bin}---and there
+it has a hit!  {\tt /bin/ls} does exist and is executable, so Bash
+stops searching for a program named {\tt ls} and runs it.  There might
+well have been another {\tt ls} sitting in the directory {\tt
+  /usr/bin}, but {\tt bash} would never run it unless I asked for it by
+specifying an explicit pathname:
+
+\begin{screen}\begin{verbatim}
+/home/larry# /usr/bin/ls
+\end{verbatim}\end{screen}
+
+        The {\tt PATH} variable exists so that we don't have to type
+in complete pathnames for every command.  When you type a command,
+Bash looks for it in the directories named in {\tt PATH}, in order,
+and runs it if it finds it.  If it doesn't find it, you get a rude
+error:
+
+\begin{screen}\begin{verbatim}
+/home/larry# clubly
+clubly: command not found
+\end{verbatim}\end{screen}
+
+        Notice that my {\tt PATH} does not have the current directory,
+``{\tt .}'', in it.  If it did, it might look like this:
+
+\begin{screen}\begin{verbatim}
+/home/larry# echo $PATH
+.:/home/larry/bin:/bin:/usr/bin:/usr/local/bin:/usr/bin/X11:/usr/TeX/bin
+/home/larry#
+\end{verbatim}\end{screen}
+
+        This is a matter of some debate in Unix-circles (which you are
+now a member of, whether you like it or not).  The problem is that
+having the current directory in your path can be a security hole.
+Suppose that you {\tt cd} into a directory where somebody has left a
+``Trojan Horse'' program called {\tt ls}, and you do an {\tt ls}, as
+would be natural on entering a new directory.  Since the current
+directory, ``{\tt .}'', came first in your {\tt PATH}, the shell would
+have found this version of {\tt ls} and executed it.  Whatever
+mischief they might have put into that program, you have just gone
+ahead and executed (and that could be quite a lot of mischief indeed).
+The person did not need root privileges to do this; they only needed
+write permission on the directory where the ``false'' {\tt ls} was
+located.  It might even have been their home directory, if they knew
+that you would be poking around in there at some point.
+
+        On your own system, it's highly unlikely that people are
+leaving traps for each other.  All the users are probably friends or
+colleagues of yours.  However, on a large multi-user system (like many
+university computers), there could be plenty of unfriendly programmers
+whom you've never met.  Whether or not you want to take your chances
+by having ``{\tt .}'' in your path depends on your situation; I'm not
+going to be dogmatic about it either way, I just want you to be aware
+of the risks involved\footnote{Remember that you can always execute
+programs in the current directory by being explicit about it, i.e.:
+``{\tt ./foo}''\,.}.  Multi-user systems really are communities, where
+people can do things to one another in all sorts of unforseen ways.
+
+        The actual way that I set my {\tt PATH} involves most of what
+you've learned so far about environment variables.  Here is what is
+actually in my {\tt .bashrc}:
+
+\begin{screen}\begin{verbatim}
+export PATH=${PATH}:.:${HOME}/bin:/bin:/usr/bin:/usr/local/bin:/usr/bin/X11:/usr/TeX/bin
+\end{verbatim}\end{screen}
+
+\eindex{shell!search path}
+        Here, I am taking advantage of the fact that the {\tt HOME}
+variable is set before Bash reads my {\tt .bashrc}, by using its value
+in setting my {\tt PATH}.  The curly braces (``{\tt \{\ldots\}}'') are
+a further level of quoting; they delimit the extent of what the ``\$''
+is to evaluate, so that the shell doesn't get confused by the text
+immediately following it (``{\tt /bin}'' in this case).  Here is
+another example of the effect they have:
+
+\begin{screen}\begin{verbatim}
+/home/larry# echo ${HOME}foo
+/home/larryfoo
+/home/larry#
+\end{verbatim}\end{screen}
+
+Without the curly braces, I would get nothing, since there is no
+environment variables named {\tt HOMEfoo}.
+
+\begin{screen}\begin{verbatim}
+/home/larry# echo $HOMEfoo
+
+/home/larry#
+\end{verbatim}\end{screen}
+
+Let me clear one other thing up in that path: the meaning of ``{\tt
+  \${PATH}}''.  What that does is includes the value of any {\tt PATH}
+variable {\em previously\/} set in my new {\tt PATH}. Where would the
+old variable be set? The file {\tt /etc/profile} serves as a kind of
+global {\tt .bash\_profile} that is common to all users.  Having one
+centralized file like that makes it easier for the system
+administrator to add a new directory to everyone's {\tt PATH} or
+something, without them all having to do it individually. If you
+include the old path in your new path, you won't lose any directories
+that the system already setup for you.
+
+You can also control what your prompt looks like.  This is done by
+setting the value of the environment variable {\bf PS1}.  Personally,
+I want a prompt that shows me the path to the current working
+directory---here's how I do it in my {\tt .bashrc}:
+
+\begin{screen}\begin{verbatim}
+export PS1='$PWD# '
+\end{verbatim}\end{screen}
+
+\bindex{shell!quoting}
+As you can see, there are actually {\em two} variables being
+used here.  The one being set is {\tt PS1}, and it is being set to the
+value of {\tt PWD}, which can be thought of as either ``Print Working
+Directory'' or ``Path to Working Directory''.  But the evaluation of
+{\tt PWD} takes place inside single quotes.  The single quotes serve
+to evaluate the expression inside them, which itself evaluates the
+variable {\tt PWD}.  If you just did {\tt export~PS1=\$PWD}, your
+prompt would constantly display the path to the current directory {\em
+  at the time that\/} {\tt PS1} {\em was set\/}, instead of constantly
+updating it as you change directories.  Well, that's sort of
+confusing, and not really all that important.  Just keep in mind that
+you need the quotes if you want the current directory displayed in
+your prompt.
+
+You might prefer {\tt export PS1='\$PWD>'}, or even the name of your
+system: {\tt export PS1=`hostname`'>'}. Let me dissect that last
+example a little further.
+
+That last example used a {\em new\/} type of quoting, the back
+quotes. These don't protect something---in fact, you'll notice that
+``hostname'' doesn't appear anywhere in the prompt when you run
+that. What actually happens is that the command inside the backquotes
+gets evaluated, and the output is put in place of the backquotes and
+the command name. 
+
+Try {\tt echo `ls`} or {\tt wc `ls`}. As you get more experienced
+using the shell, this technique gets more and more powerful.
+
+\eindex{shell!quoting}
+
+There's a lot more to configuring your {\tt .bashrc}, and not enough
+room to explain it here.  You can read the {\tt bash} man page for
+more, or ask questions of experienced Bash users.  Here is a complete
+{\tt .bashrc} for you to study; it's fairly standard, although the
+search path is a little long.
+
+\begin{screen}\begin{verbatim}
+# some random stuff:
+ulimit -c unlimited
+export history_control=ignoredups
+export PS1='$PWD>'
+umask 022
+
+# application-specific paths:
+export MANPATH=/usr/local/man:/usr/man
+export INFOPATH=/usr/local/info
+export PGPPATH=${HOME}/.pgp
+
+# make the main PATH:
+homepath=${HOME}:~/bin
+stdpath=/bin:/usr/bin:/usr/local/bin:/usr/ucb/:/etc:/usr/etc:/usr/games
+pubpath=/usr/public/bin:/usr/gnusoft/bin:/usr/local/contribs/bin
+softpath=/usr/bin/X11:/usr/local/bin/X11:/usr/TeX/bin
+export PATH=.:${homepath}:${stdpath}:${pubpath}:${softpath}
+# Technically, the curly braces were not necessary, because the colons
+# were valid delimiters; nevertheless, the curly braces are a good
+# habit to get into, and they can't hurt.
+
+# aliases
+alias ls="ls -CF"
+alias fg1="fg %1"
+alias fg2="fg %2"
+alias tba="talk sussman@tern.mcs.anl.gov"
+alias tko="talk kold@cs.oberlin.edu"
+alias tji="talk jimb@totoro.bio.indiana.edu"
+alias mroe="more"
+alias moer="more"
+alias email="emacs -f vm"
+alias pu=pushd
+alias po=popd
+alias b="~/.b"
+alias ds=dirs
+alias ro="rm *~; rm .*~"
+alias rd="rmdir"
+alias ll="ls -l"
+alias la="ls -a"
+alias rr="rm -r"
+alias md="mkdir"
+alias ed2="emacs -d floss:0 -fg \"grey95\" -bg \"grey50\""
+
+function gco
+{
+  gcc -o $1 $1.c -g
+}
+\end{verbatim}\end{screen}
+
+% $ <- to confuse emacs's highlighting
+
+% **** here I am
+
+\section{The X Window System Init Files}
+
+\xwarn Most people prefer to do their work inside a graphical
+environment, and for \unix\ machines, that usually means using X.  If
+you're accustomed to the Macintosh\index{Macintosh} or to Microsoft
+Windows\index{Microsoft Windows}, the X Window System may take a
+little getting used to, especially in how it is customized.
+
+With the Macintosh or Microsoft Windows, you customize the environment
+from {\em within} the environment: if you want to change your
+background, for example, you do by clicking on the new color in some
+special graphical setup program.  In X, system defaults are controlled
+by text files, which you edit directly---in other words, you'd type
+the actual color name into a file in order to set your background to
+that color.
+
+        There is no denying that this method just isn't as slick as
+some commercial windowing systems.  I think this tendency to remain
+text-based, even in a graphical environment, has to do with the fact
+that X was created by a bunch of programmers who simply
+weren't trying to write software that their grandparents could use.
+This tendency may change in future versions of X (at least I
+hope it will), but for now, you just have to learn to deal with more
+text files.  It does at least give you very flexible and precise
+control over your configuration.
+
+        Here are the most important files for configuring X:
+
+\begin{samepage}
+\begin{tabular}{ll}
+{\bf {\tt .xinitrc}}    & A script run by X when it starts up. \\
+{\bf {\tt .twmrc}}      & Read by an X window manager, {\tt twm}\ttindex{twm}. \\
+{\bf {\tt .fvwmrc}}     & Read by an X window manager, {\tt fvwm}\ttindex{fvwm}. \\
+\end{tabular}
+\end{samepage}
+        
+        All of these files should be located in your home directory,
+if they exist at all.
+
+        The {\tt .xinitrc} is a simple shell script that gets run when
+X is invoked.  It can do anything any other shell script can
+do, but of course it makes the most sense to use it for starting up
+various X programs and setting window system parameters.  The
+last command in the {\tt .xinitrc} is usually the name of a window
+manager to run, for example {\tt /usr/bin/X11/twm}.
+
+        What sort of thing might you want to put in a {\tt .xinitrc}
+file?  Perhaps some calls to the {\tt xsetroot} program, to make your
+root (background) window and mouse cursor look the way you want them
+to look.  Calls to {\tt xmodmap}, which tells the server\footnote{The
+``server'' just means the main X process on your machine, the
+one with which all other X programs must communicate in order to use
+the display.  These other programs are known as ``clients'', and the
+whole deal is called a ``client-server'' system.} how to interpret the
+signals from your keyboard.  Any other programs you want started every
+time you run X (for example, {\tt xclock}).
+
+        Here is some of my {\tt .xinitrc}; yours will almost certainly
+look different, so this is meant only as an example:
+
+\begin{screen}\begin{verbatim}
+#!/bin/sh
+# The first line tells the operating system which shell to use in
+# interpreting this script.  The script itself ought to be marked as
+# executable; you can make it so with "chmod +x ~/.xinitrc". 
+
+# xmodmap is a program for telling the X server how to interpret your
+# keyboard's signals.  It is *definitely* worth learning about. You
+# can do "man xmodmap", "xmodmap -help", "xmodmap -grammar", and more.
+# I don't guarantee that the expressions below will mean anything on
+# your system (I don't even guarantee that they mean anything on
+# mine):
+xmodmap -e 'clear Lock'
+xmodmap -e 'keycode 176 = Control_R'
+xmodmap -e 'add control = Control_R'
+xmodmap -e 'clear Mod2'
+xmodmap -e 'add Mod1 = Alt_L Alt_R'
+
+# xset is a program for setting some other parameters of the X server:
+xset m 3 2 &       # mouse parameters
+xset s 600 5 &     # screen saver prefs  
+xset s noblank &   # ditto
+xset fp+ /home/larry/x/fonts # for cxterm
+# To find out more, do "xset -help".
+
+# Tell the X server to superimpose fish.cursor over fish.mask, and use
+# the resulting pattern as my mouse cursor:
+xsetroot -cursor /home/lab/larry/x/fish.cursor /home/lab/larry/x/fish.mask &
+
+# a pleasing background pattern and color:
+xsetroot -bitmap /home/lab/larry/x/pyramid.xbm -bg tan
+
+# todo: xrdb here?  What about .Xdefaults file?
+
+# You should do "man xsetroot", or "xsetroot -help" for more
+# information on the program used above. 
+
+# A client program, the imposing circular color-clock by Jim Blandy:
+/usr/local/bin/circles &
+
+# Maybe you'd like to have a clock on your screen at all times?
+/usr/bin/X11/xclock -digital &
+
+# Allow client X programs running at occs.cs.oberlin.edu to display
+# themselves here, do the same thing for juju.mcs.anl.gov:
+xhost occs.cs.oberlin.edu
+xhost juju.mcs.anl.gov
+
+# You could simply tell the X server to allow clients running on any
+# other host (a host being a remote machine) to display here, but this
+# is a security hole -- those clients might be run by someone else,
+# and watch your keystrokes as you type your password or something!
+# However, if you wanted to do it anyway, you could use a "+" to stand
+# for all possible hostnames, instead of a specific hostname, like
+# this:
+# xhost +
+
+# And finally, run the window manager:
+/usr/bin/X11/twm
+# Some people prefer other window managers.  I use twm, but fvwm is
+# often distributed with Linux too:
+# /usr/bin/X11/fvwm
+\end{verbatim}\end{screen}
+
+%        [Larry, or someone, does it matter if the window manager is
+%started in the background or not?  It seems to work fine either way;
+%I'm wondering if there's any point recommending an ``\&'' or not.
+%-Karl] I believe we want it without an ``&'' so the server exits
+% at the same time as the window manager
+
+        Notice that some commands are run in the background (i.e.:
+they are followed with a ``\&''), while others aren't.  The
+distinction is that some programs will start when you start X
+and keep going until you exit---these get put in the background.
+Others execute once and then exit immediately. {\tt xsetroot} is one
+such; it just sets the root window or cursor or whatever, and then
+exits.
+
+        Once the window manager has started, it will read its own init
+file, which controls things like how your menus are set up, which
+positions windows are brought up at, icon control, and other
+earth-shakingly important issues.  If you use {\tt twm}, then this
+file is {\tt .twmrc} in your home directory.  If you use {\tt fvwm},
+then it's {\tt .fvwmrc}, etc.  I'll deal with only those two, since
+they're the window managers you'll be most likely to encounter with
+Linux.
+
+\subsection{Twm Configuration}\label{twm-config-section}
+
+\bttindex{twm}
+The {\tt .twmrc} is not a shell script---it's actually written in a
+language specially made for {\tt twm}, believe it or
+not!\footnote{This is one of the harsh facts about init files: they
+  generally each have their own idiosyncratic command language.  This
+  means that users get very good at learning command languages
+  quickly.  I suppose that it would have been nice if early Unix
+  programmers had agreed on some standard init file format, so that we
+  wouldn't have to learn new syntaxes all the time, but to be fair
+  it's hard to predict what kinds of information programs will need.}
+The main thing people like to play with in their {\tt .twmrc} is
+window style (colors and such), and making cool menus, so here's an
+example {\tt .twmrc} that does that:
+
+\begin{screen}
+    \begin{verbatim}
+# Set colors for the various parts of windows.  This has a great
+# impact on the "feel" of your environment.
+Color
+{
+    BorderColor "OrangeRed"
+    BorderTileForeground "Black"
+    BorderTileBackground "Black"
+    TitleForeground "black"
+    TitleBackground "gold"
+    MenuForeground "black"
+    MenuBackground "LightGrey"
+    MenuTitleForeground "LightGrey"
+    MenuTitleBackground "LightSlateGrey"
+    MenuShadowColor "black"
+    IconForeground "DimGray"
+    IconBackground "Gold"
+    IconBorderColor "OrangeRed"
+    IconManagerForeground "black"
+    IconManagerBackground "honeydew"
+}
+
+# I hope you don't have a monochrome system, but if you do...
+Monochrome
+{
+    BorderColor "black"
+    BorderTileForeground "black"
+    BorderTileBackground "white"
+    TitleForeground "black"
+    TitleBackground "white"
+}
+
+# I created beifang.bmp with the program "bitmap".  Here I tell twm to
+# use it as the default highlight pattern on windows' title bars:
+Pixmaps
+{
+    TitleHighlight "/home/larry/x/beifang.bmp"
+}
+
+# Don't worry about this stuff, it's only for power users :-)
+BorderWidth     2
+TitleFont       "-adobe-new century schoolbook-bold-r-normal--14-140-75-75-p-87-iso8859-1"
+MenuFont        "6x13"
+IconFont        "lucidasans-italic-14"
+ResizeFont      "fixed"
+Zoom 50
+RandomPlacement
+
+# These programs will not get a window titlebar by default:
+NoTitle
+{
+  "stamp"
+  "xload"
+  "xclock"
+  "xlogo"
+  "xbiff"
+  "xeyes"
+  "oclock"
+  "xoid"
+}
+
+# "AutoRaise" means that a window is brought to the front whenever the
+# mouse pointer enters it.  I find this annoying, so I have it turned
+# off.  As you can see, I inherited my .twmrc from people who also did
+# not like autoraise.
+AutoRaise 
+{
+  "nothing"     # I don't like auto-raise  # Me either  # nor I
+}
+
+# Here is where the mouse button functions are defined.  Notice the
+# pattern: a mouse button pressed on the root window, with no modifier
+# key being pressed, always brings up a menu.  Other locations usually
+# result in window manipulation of some kind, and modifier keys are
+# used in conjunction with the mouse buttons to get at the more
+# sophisticated window manipulations.
+#
+# You don't have to follow this pattern in your own .twmrc -- it's
+# entirely up to you how you arrange your environment.
+
+# Button = KEYS : CONTEXT : FUNCTION
+# ----------------------------------
+Button1 =      : root    : f.menu "main"
+Button1 =      : title   : f.raise
+Button1 =      : frame   : f.raise
+Button1 =      : icon    : f.iconify
+Button1 = m    : window  : f.iconify
+
+Button2 =      : root    : f.menu "stuff"
+Button2 =      : icon    : f.move
+Button2 = m    : window  : f.move
+Button2 =      : title   : f.move
+Button2 =      : frame   : f.move
+Button2 = s    : frame   : f.zoom
+Button2 = s    : window  : f.zoom
+
+Button3 =      : root    : f.menu "x"
+Button3 =      : title   : f.lower
+Button3 =      : frame   : f.lower
+Button3 =      : icon    : f.raiselower
+
+# You can write your own functions; this one gets used in the menu
+# "windowops" near the end of this file:
+Function "raise-n-focus"
+{
+    f.raise
+    f.focus
+}
+
+# Okay, below are the actual menus referred to in the mouse button
+# section).  Note that many of these menu entries themselves call
+# sub-menus.  You can have as many levels of menus as you want, but be
+# aware that recursive menus don't work.  I've tried it. 
+
+menu "main"
+{
+"Vanilla"       f.title
+"Emacs"         f.menu "emacs"
+"Logins"        f.menu "logins"
+"Xlock"         f.menu "xlock"
+"Misc"          f.menu "misc"
+}
+
+# This allows me to invoke emacs on several different machines.  See
+# the section on .rhosts files for more information about how this
+# works: 
+menu "emacs"
+{
+"Emacs"      f.title
+"here"       !"/usr/bin/emacs &"
+""           f.nop
+"phylo"      !"rsh phylo \"emacs -d floss:0\" &"
+"geta"       !"rsh geta \"emacs -d floss:0\" &"
+"darwin"     !"rsh darwin \"emacs -d floss:0\" &"
+"ninja"      !"rsh ninja \"emacs -d floss:0\" &"
+"indy"       !"rsh indy \"emacs -d floss:0\" &"
+"oberlin"    !"rsh cs.oberlin.edu \"emacs -d floss.life.uiuc.edu:0\" &"
+"gnu"        !"rsh gate-1.gnu.ai.mit.edu \"emacs -d floss.life.uiuc.edu:0\" &"
+}
+
+# This allows me to invoke xterms on several different machines.  See
+# the section on .rhosts files for more information about how this
+# works: 
+menu "logins"
+{
+"Logins"     f.title
+"here"       !"/usr/bin/X11/xterm -ls -T `hostname` -n `hostname` &"
+"phylo"      !"rsh phylo \"xterm -ls -display floss:0 -T phylo\" &"
+"geta"       !"rsh geta \"xterm -ls -display floss:0 -T geta\" &"
+"darwin"     !"rsh darwin \"xterm -ls -display floss:0 -T darwin\" &"
+"ninja"      !"rsh ninja \"xterm -ls -display floss:0 -T ninja\" &"
+"indy"       !"rsh indy \"xterm -ls -display floss:0 -T indy\" &"
+}
+
+# The xlock screensaver, called with various options (each of which
+# gives a different pretty picture):
+menu "xlock"
+{
+"Hop"   !"xlock -mode hop &"
+"Qix"   !"xlock -mode qix &"
+"Flame" !"xlock -mode flame &"
+"Worm" !"xlock -mode worm &"
+"Swarm" !"xlock -mode swarm &"
+"Hop NL"   !"xlock -mode hop -nolock &"
+"Qix NL"   !"xlock -mode qix -nolock &"
+"Flame NL" !"xlock -mode flame -nolock &"
+"Worm NL" !"xlock -mode worm -nolock &"
+"Swarm NL" !"xlock -mode swarm -nolock &"
+}
+
+# Miscellaneous programs I run occasionally:
+menu "misc"
+{
+"Xload"         !"/usr/bin/X11/xload &"
+"XV"            !"/usr/bin/X11/xv &"
+"Bitmap"        !"/usr/bin/X11/bitmap &"
+"Tetris"        !"/usr/bin/X11/xtetris &"
+"Hextris"       !"/usr/bin/X11/xhextris &"
+"XRoach"        !"/usr/bin/X11/xroach &"
+"Analog Clock"  !"/usr/bin/X11/xclock -analog &"
+"Digital Clock" !"/usr/bin/X11/xclock -digital &"
+}
+
+# This is the one I bound to the middle mouse button:
+menu "stuff"
+{
+"Chores"       f.title
+"Sync"         !"/bin/sync"
+"Who"          !"who | xmessage -file - -columns 80 -lines 24 &"
+"Xhost +"      !"/usr/bin/X11/xhost + &"
+"Rootclear"    !"/home/larry/bin/rootclear &"
+}
+
+# X functions that are sometimes convenient:
+menu "x"
+{
+"X Stuff"               f.title
+"Xhost +"               !"xhost + &"
+"Refresh"               f.refresh
+"Source .twmrc"         f.twmrc
+"(De)Iconify"           f.iconify
+"Move Window"           f.move
+"Resize Window"         f.resize
+"Destroy Window"        f.destroy
+"Window Ops"            f.menu "windowops"
+""                      f.nop
+"Kill twm"              f.quit
+}
+
+# This is a submenu from above:
+menu "windowops"
+{
+"Window Ops"            f.title
+"Show Icon Mgr"         f.showiconmgr
+"Hide Icon Mgr"         f.hideiconmgr
+"Refresh"               f.refresh
+"Refresh Window"        f.winrefresh
+"twm version"           f.version
+"Focus on Root"         f.unfocus
+"Source .twmrc"         f.twmrc
+"Cut File"              f.cutfile
+"(De)Iconify"           f.iconify
+"DeIconify"             f.deiconify
+"Move Window"           f.move
+"ForceMove Window"      f.forcemove
+"Resize Window"         f.resize
+"Raise Window"          f.raise
+"Lower Window"          f.lower
+"Raise or Lower"        f.raiselower
+"Focus on Window"       f.focus
+"Raise-n-Focus"         f.function "raise-n-focus"
+"Destroy Window"        f.destroy
+"Kill twm"              f.quit
+}
+    \end{verbatim}
+\end{screen}
+
+        Whew!  Believe me, that's not even the most involved .twmrc
+I've ever seen.  It's quite probable that some decent example {\tt
+.twmrc} files came with your X.  Take a look in the directory
+{\tt /usr/lib/X11/twm/} or {\tt /usr/X11/lib/X11/twm} and see what's
+there.
+
+        One bug to watch out for with {\tt .twmrc} files is forgetting
+to put the \& after a command on a menu.  If you notice that X
+just freezes when you run certain commands, chances are that this is
+the cause.  Break out of X with
+\key{Control}-\key{Alt}-\key{Backspace}, edit your {\tt .twmrc}, and
+try again.
+\ettindex{twm}
+
+\subsection{Fvwm Configuration}\label{fvwm-config-section}
+\bttindex{fvwm}
+
+        If you are using {\tt fvwm}, the directory {\tt
+/usr/lib/X11/fvwm/} (or {\tt /usr/X11/lib/X11/fvwm/}) has some good
+example config files in it, as well.
+
+        [Folks: I don't know anything about fvwm, although I might be
+able to grok something from the example config files.  Then again, so
+could the reader :-).  Also, given the decent but small system.twmrc
+in the above-mentioned directory, I wonder if it's worth it for me to
+provide that lengthy example with my own .twmrc.  It's in for now, but
+I don't know whether we want to leave it there or not.  -Karl]
+\ettindex{fvwm}
+
+\section{Other Init Files}
+
+        Some other initialization files of note are:
+
+\begin{samepage}
+\begin{tabular}{ll}
+{\bf {\tt .emacs}}    & Read by the Emacs text editor when it starts up. \\
+{\bf {\tt .netrc}}    & Gives default login names and passwords for ftp. \\
+{\bf {\tt .rhosts}}   & Makes your account remotely accessible. \\
+{\bf {\tt .forward}}  & For automatic mail forwarding. \\
+\end{tabular}
+\end{samepage}
+
+\subsection{The Emacs Init File}
+        If you use {\tt emacs} as your primary editor, then the {\tt
+.emacs} file is quite important.  It is dealt with at length in
+Chapter~\ref{emacs-chapter}.
+
+\subsection{FTP Defaults}
+        Your .netrc file allows you to have certain {\tt ftp} defaults
+set before you run {\tt ftp}.  Here is a small sample {\tt .netrc}:
+
+  \begin{screen}
+    \begin{verbatim}
+machine floss.life.uiuc.edu login larry password fishSticks
+machine darwin.life.uiuc.edu login larry password fishSticks
+machine geta.life.uiuc.edu login larry password fishSticks
+machine phylo.life.uiuc.edu login larry password fishSticks
+machine ninja.life.uiuc.edu login larry password fishSticks
+machine indy.life.uiuc.edu login larry password fishSticks
+
+machine clone.mcs.anl.gov login fogel password doorm@
+machine osprey.mcs.anl.gov login fogel password doorm@
+machine tern.mcs.anl.gov login fogel password doorm@
+machine altair.mcs.anl.gov login fogel password doorm@
+machine dalek.mcs.anl.gov login fogel password doorm@
+machine juju.mcs.anl.gov login fogel password doorm@
+
+machine sunsite.unc.edu login anonymous password larry@cs.oberlin.edu
+    \end{verbatim}
+  \end{screen}
+
+        Each line of your {\tt .netrc} specifies a machine name, a
+login name to use by default for that machine, and a password.  This
+is a great convenience if you do a lot of {\tt ftp}-ing and are tired
+of constantly typing in your username and password at various sites.
+The {\tt ftp} program will try to log you in automatically using the
+information found in your {\tt .netrc} file, if you {\tt ftp} to one
+of the machines listed in the file.
+
+        You can tell {\tt ftp} to ignore your .netrc and not attempt
+auto-login by invoking it with the {\tt -n} option: ``{\tt ftp~-n}''.
+
+        You must make sure that your {\tt .netrc} file is readable
+{\em only} by you.  Use the {\tt chmod} program to set the file's read
+permissions.  If other people can read it, that means they can find
+out your password at various other sites.  This is about as big a
+security hole as one can have; to encourage you to be careful, {\tt
+ftp} and other programs that look for the {\tt .netrc} file will
+actually refuse to work if the read permissions on the file are bad.
+
+        There's more to the {\tt .netrc} file than what I've said;
+when you get a chance, do ``{\tt man~.netrc}'' or ``{\tt man~ftp}''.
+
+\subsection{Allowing Easy Remote Access to Your Account}
+
+        If you have an {\tt .rhosts} file in your home directory, it
+will allow you to run programs on this machine remotely.  That is, you
+might be logged in on the machine {\tt cs.oberlin.edu}, but with a
+correctly configured {\tt .rhosts} file on {floss.life.uiuc.edu}, you
+could run a program on {\tt floss.life.uiuc.edu} and have the output
+go to {\tt cs.oberlin.edu}, without ever having to log in or type a
+password.
+
+        A {\tt .rhosts} file looks like this:
+
+  \begin{screen}
+    \begin{verbatim}
+frobnozz.cs.knowledge.edu jsmith
+aphrodite.classics.hahvaahd.edu wphilps
+frobbo.hoola.com trixie
+    \end{verbatim}
+  \end{screen}
+
+        The format is fairly straightforward: a machine name, followed
+by username.  Suppose that that example is in fact my {\tt .rhosts}
+file on {\tt floss.life.uiuc.edu}.  That would mean that I could run
+programs on floss, with output going to any of the machines listed, as
+long as I were also logged in as the corresponding user given for that
+machine when I tried to do it.
+
+        The exact mechanism by which one runs a remote program is
+usually the {\tt rsh} program.  It stands for ``remote shell'', and
+what it does is start up a shell on a remote machine and execute a
+specified command.  For example:
+
+\begin{screen}\begin{verbatim}
+frobbo$ whoami
+trixie
+frobbo$ rsh floss.life.uiuc.edu "ls ~"
+foo.txt    mbox   url.ps    snax.txt
+frobbo$ rsh floss.life.uiuc.edu "more ~/snax.txt"
+[snax.txt comes paging by here]
+\end{verbatim}\end{screen}
+
+        User trixie at floss.life.uiuc.edu, who had the example {\tt
+.rhosts} shown previously, explicitly allows trixie at
+frobbo.hoola.com to run programs as trixie from floss.
+
+        You don't have to have the same username on all machines to
+make a {\tt .rhosts} work right.  Use the ``{\tt -l}'' option to {\tt
+rsh}, to tell the remote machine what username you'd like to use for
+logging in.  If that username exists on the remote machine, and has a
+{\tt .rhosts} file with your current (i.e.:~local) machine and
+username in it, then your {\tt rsh} will succeed.
+
+\begin{screen}\begin{verbatim}
+frobbo$ whoami
+trixie
+frobbo$ rsh -l larry floss.life.uiuc.edu "ls ~"
+[Insert a listing of my directory on floss here]
+\end{verbatim}\end{screen}
+
+        This will work if user {\tt larry} on {\tt
+floss.life.uiuc.edu} has a {\tt .rhosts} file which allows {\tt
+trixie} from {\tt frobbo.hoopla.com} to run programs in his account.
+Whether or not they are the same person is irrelevant: the only
+important things are the usernames, the machine names, and the entry
+in larry's {\tt .rhosts} file on floss.  Note that trixie's {\tt
+.rhosts} file on frobbo doesn't enter into it, only the one on the
+remote machine matters.
+
+        There are other combinations that can go in a {\tt .rhosts}
+file---for example, you can leave off the username following a remote
+machine name, to allow any user from that machine to run programs as
+you on the local machine!  This is, of course, a security risk:
+someone could remotely run a program that removes your files, just by
+virtue of having an account on a certain machine.  If you're going to
+do things like leave off the username, then you ought to make sure
+that your {\tt .rhosts} file is readable by you and no one else.
+
+\subsection{Mail Forwarding}
+        You can also have a {\tt .forward} file, which is not strictly
+speaking an ``init file''.  If it contains an email address, then all
+mail to you will be forwarded to that address instead.  This is useful
+when you have accounts on many different systems, but only want to
+read mail at one location.
+
+        There is a host of other possible initialization files.  The
+exact number will vary from system to system, and is dependent on the
+software installed on that system.  One way to learn more is to look
+at files in your home directory whose names begin with ``{\tt .}''.
+These files are not all guaranteed to be init files, but it's a good
+bet that most of them are.
+
+\section{Seeing Some Examples}
+
+% Heh heh, do you think this is a big mistake?  I'll risk it for
+% now...
+
+The ultimate example I can give you is a running Linux system.  So, if
+you have Internet access, feel free to telnet to {\tt
+  floss.life.uiuc.edu}.  Log in as ``guest'', password ``explorer'',
+and poke around.  Most of the example files given here can be found in
+{\tt /home/kfogel}, but there are other user directories as well.  You
+are free to copy anything that you can read.  Please be careful: floss
+is not a terribly secure box, and you can almost certainly gain root
+access if you try hard enough.  I prefer to rely on trust, rather than
+constant vigilance, to maintain security.
+% Local Variables: 
+% mode: latex
+% TeX-master: "guide"
+% End: 

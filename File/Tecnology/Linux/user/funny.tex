@@ -1,0 +1,587 @@
+%From mau@beatles.cselt.stet.it Mon Jan 10 08:48:23 1994
+%Date: Mon, 10 Jan 1994 10:14:49 +0100
+%From: Maurizio Codogno <mau@beatles.cselt.stet.it>
+%Subject: Much behind
+%To: greenfie@gauss.rutgers.edu
+%X-Envelope-To: greenfie@gauss.rutgers.edu
+%Content-Transfer-Encoding: 8BIT
+%
+%At the moment I only completed sections about find(1) and dd(1). I'm
+%attaching them below, because I'd like to know whether my approach to
+%the presentation is satisfactory...
+%
+%ciao, .mau.
+%
+%=======================
+%
+%testi
+\chapter{Funny Commands}\label{funny-chapter}
+
+Well, most people who had to do with the UNIX commands exposed in this
+chapter will not agree with this title. ``What the heck! You have just
+shown me that the Linux interface is very standard, and now we have a
+bunch of commands, each one working in a completely different way. I will
+never remember all those options, and you are saying that they are {\em
+funny}\/?'' Yes, you have just seen an example of hackers' humor. Besides,
+look at it from the bright side: there is no MS-DOS equivalent of these
+commands. If you need them, you have to purchase them, and you never know
+how their interface will be. Here they are a useful -- and inexpensive --
+add-on, so enjoy!
+
+The set of commands dwelled on in this chapter covers {\tt find}, which lets
+the user search in the directory tree for specified groups of files; {\tt
+tar}, useful to create some archive to be shipped or just saved; {\tt dd},
+the low-level copier; and {\tt sort}, which \ldots yes, sorts files. A
+last proviso: these commands are by no means standardized, and while a
+core of common options could be found on all $*$IX systems, the (GNU)
+version which is explained below, and which you can find in your Linux 
+system, has usually many more capabilities. So if you plan to use other
+UNIX-like operating systems, please don't forget to check their man page
+in the target system to learn the maybe not-so-little differences.
+
+\section{{\tt find}, the file searcher}
+
+\subsection{Generalities}
+
+Among the various commands seen so far, there were some which let the user
+recursively go down the directory tree in order to perform some action: the
+canonical examples are {\tt ls -R} and {\tt rm -R}. Good.  {\tt find} is
+{\em the} recursive command. Whenever you are thinking ``Well, I have to do
+so-and-so on all those kind of files in my own partition'', you have better
+think about using {\tt find}. In a certain sense the fact that {\tt find}
+finds files is just a side effect: its real occupation is to evaluate.
+
+
+The basic structure of the command is as follows:
+
+\begin{command}
+{\tt find}\impttindex{find} {\em path} [\ldots] {\em expression} [\ldots]
+\end{command}
+
+This at least on the GNU version; other version do not allow to specify
+more than one path, and besides it is very uncommon the need to do such a
+thing. The rough explanation of the command syntax is rather simple: you
+say from where you want to start the search (the {\em path} part;
+with GNU find you can omit this and it will be taken as default the
+current directory {\tt .}), and which kind of search you want to
+perform (the {\em expression} part). 
+
+The standard behavior of the command is a little tricky, so it's worth to
+note it. Let's suppose that in your home directory there is a directory
+called garbage, containing a file foobar. You happily type {\tt find .\
+-name foobar} (which as you can guess searches for files named foobar), and
+you obtain \ldots nothing else than the prompt again. The trouble lies in
+the fact that {\tt find} is by default a silent command; it just returns 0
+if the search was completed (with or without finding anything) or a
+non-zero value if there had been some problem. This does not happen with
+the version you can find on Linux, but it is useful to remember it anyway.
+
+\subsection{Expressions}
+
+The {\em expression} part can be divided itself in four different groups
+of keywords: {\em options}, {\em tests}, {\em actions}, and {\em
+operators}. Each of them can return a true/false value, together with a
+side effect. The difference among the groups is shown below.
+
+\begin{description}
+
+\item [options] affect the overall operation of find, rather than the
+processing of a single file. An example is {\sf -follow}, which instructs
+{\tt find} to follow symbolic links instead of just stating the inode.
+They always return true.
+
+\item [tests] are real tests (for example, {\sf -empty} checks whether the
+file is empty), and can return true or false.
+
+\item [actions] have also a side effect
+the name of the considered file. They can return true or false too.
+
+\item [operators] do not really return a value (they can conventionally be
+considered as true), and are used to build compress expression. An example
+is {\sf -or}, which takes the logical OR of the two subexpressions on its
+side. Notice that when juxtaposing expression, a -and is implied.
+
+\end{description}
+
+Note that {\tt find} relies upon the shell to have the command line parsed;
+it means that all keyword must be embedded in white space and especially
+that a lot of nice characters have to be escaped, otherwise they would be
+mangled by the shell itself. Each escaping way (backslash, single and
+double quotes) is OK; in the examples the single character keywords will be
+usually quoted with backslash, because it is the simplest way (at least in 
+my opinion. But it's me who is writing these notes!)
+
+\subsection{Options}
+
+Here there is the list of all options known by GNU version of {\tt find}.
+Remember that they always return true. 
+
+\begin{itemize}
+
+\item {\sf -daystart} measures elapsed time not from 24 hours ago but from
+last midnight. A true hacker probably won't understand the utility of
+such an option, but a worker who programs from eight to five does
+appreciate it.
+
+\item {\sf -depth} processes each directory's contents before the
+directory itself. To say the truth, I don't know many uses of this, apart
+for an emulation of {\tt rm -F} command (of course you cannot delete a
+directory before all files in it are deleted too \ldots
+
+\item {\sf -follow} deferences (that is, follows) symbolic links. It
+implies option -noleaf; see below.
+
+\item {\sf -noleaf} turns off an optimization which says ``A directory
+  contains two fewer subdirectories than their hard link count''. If
+  the world were perfect, all directories would be referenced by each
+  of their subdirectories (because of the {\tt ..} option), as {\tt .}
+  inside itself, and by it's ``real'' name from its parent directory.
+
+  That means that every directory must be referenced at least twice
+  (once by itself, once by its parent) and any additional references
+  are by subdirectories. In practice however, symbolic links and
+  distributed filesystems\footnote{Distributed filesystems allow files
+    to appear like their local to a machine when they are actually located
+    somewhere else.} can disrupt this. This option makes {\tt find}
+  run slightly slower, but may give expected results.
+
+\item {\sf -maxdepth {\it levels\/}}, {\sf -mindepth {\it levels\/}}, where
+{\it levels} is a non-negative integer, respectively say that at most or
+at least {\it levels} levels of directories should be searched. A couple
+of examples is mandatory: {\tt -maxdepth 0} indicates that it the command
+should be performed just on the arguments in the command line, i.e.,
+without recursively going down the directory tree; {\tt -mindepth 1}
+inhibits the processing of the command for the arguments in the command
+line, while all other files down are considered.
+
+\item {\sf -version} just prints the current version of the program.
+
+\item {\sf -xdev}, which is a misleading name, instructs {\tt find} {\bf
+not} to cross device, i.e.\ changing filesystem. It is very useful when
+you have to search for something in the root filesystem; in many machines
+it is a rather small partition, but a {\tt find /} would otherwise search
+the whole structure!
+
+\end{itemize}
+
+\subsection{Tests}
+
+The first two tests are very simple to understand: {\sf -false} always
+return false, while {\sf -true} always return true. Other tests which
+do not need the specification of a value are {\sf -empty}, which returns
+true whether the file is empty, and the couple {\sf -nouser} / {\sf
+-nogroup}, which return true in the case that no entry in {\tt /etc/passwd}
+or {\tt /etc/group} match the user/group id of the file owner. This is a
+common thing which happens in a multiuser system; a user is deleted, but
+files owned by her remain in the strangest part of the filesystems, and due
+to Murphy's laws take a lot of space.
+
+Of course, it is possible to search for a specific user or group. The
+tests are {\sf -uid {\sl nn}} and {\sf -gid {\sl nn}}. Unfortunately it is
+not possibile to give directly the user name, but it is necessary to use
+the numeric id, {\em nn}.
+
+
+allowed to use the forms $+nn$, which means ``a value strictly greater
+than {\em nn\/}'', and $-nn$, which means ``a value strictly less than
+{\em nn\/}''. This is rather silly in the case of UIDs, but it will turn
+handy with other tests.
+
+Another useful option is {\sf -type {\em c\/}}, which returns true if the
+file is of type {\em c\/}. The mnemonics for the possible choices are the
+same found in {\tt ls}; so we have {\bf b} when the file is
+a block special; {\bf c} when the file is character special; {\bf d} for
+directories; {\bf p} for named pipes; {\bf l} for symbolic links, and {\bf
+s} for sockets. Regular files are indicated with {\bf f}. A related test is
+{\sf -xtype}, which is similar to -type except in the case of symbolic
+links. If -follow has not been given, the file pointed at is checked,
+instead of the link itself. Completely unrelated is the test {\sf
+-fstype} {\em type\/}. In this case, the filesystem type is checked. I
+think that the information is got from file {\tt /etc/mtab}, the one
+stating the mounting filesystems; I am certain that types nfs, tmp, msdos
+and ext2 are recognized.
+
+Tests {\sf -inum {\em nn\/}} and {\sf -links {\em nn\/}} check whether the
+file has inode number {\em nn\/}, or {\em nn\/} links, while {\sf -size
+{\em nn\/}} is true if the file has {\em nn\/} 512-bytes blocks allocated.
+(well, not precisely: for sparse files unallocated blocks are counted
+too). As nowadays the result of {\tt ls -s} is not always measured in
+512-bytes chunks (Linux for example uses 1k as the unit), it is possible
+to append to {\em nn} the character $b$, which means to count in butes, or
+$k$, to count in kilobytes.
+
+Permission bits are checked through the test {\sf -perm {\em mode\/}}. If
+{\em mode\/} has no leading sign, then the permission bits of the file must 
+exactly match them. A leading $-$ means that all permission bits must be
+set, but makes no assumption for the other; a leading $+$ is satisfied
+just if any of the bits are set. Oops! I forgot saying that the mode is
+written in octal or symbolically, like you use them in {\tt chmod}.
+
+Next group of tests is related to the time in which a file has been last
+used. This comes handy when a user has filled his space, as usually there
+are many files he did not use since ages, and whose meaning he has forgot.
+The trouble is to locate them, and {\tt find} is the only hope in sight.
+{\sf -atime {\em nn\/}} is true if the file was last accessed {\em nn}
+days ago, {\sf -ctime {\em nn\/}} if the file status was last changed {\em
+nn\/} days ago -- for example, with a {\tt chmod} -- and {\sf -mtime {\em
+nn\/}} if the file was last modified {\em nn\/} days ago. Sometimes you
+need a more precise timestamp; the test {\sf -newer {\em file\/}} is
+satisfied if the file considered has been modified later than {\em
+file\/}. So, you just have to use {\tt touch} with the desidered date, and
+you're done. GNU find add the tests {\sf -anewer} and {\sf -cnewer} which
+behave similarly; and the tests {\sf -amin}, {\sf -cmin} and {\sf -mmin}
+which count time in minutes instead than 24-hours periods.
+
+Last but not the least, the test I use more often. {\sf -name {\em
+pattern\/}} is true if the file name exactly matches {\em pattern\/},
+which is more or less the one you would use in a standard {\tt ls}. Why
+`more or less'? Because of course you have to remember that all the 
+parameters are processed by the shell, and those lovely metacharacters
+are expanded. So, a test like {\tt -name foo*} won't return what you want,
+and you should either write {\tt -name foo\*} or {\tt -name "foo*"}. This
+is probably one of the most common mistakes made by careless users, so
+write it in BIG letters on your screen. Another problem is that, like with
+{\tt ls}, leading dots are not recognized. To cope with this, you can use
+test {\sf -path {\em pattern\/}} which does not worry about dot and
+slashes when comparing the path of the considered file with {\em
+pattern\/}.
+
+\subsection{Actions}
+
+I have said that actions are those which actually do something. Well, {\sf
+-prune} rather does not do something, i.e.\ descending the directory tree
+(unless -depth is given). It is usally find together with -fstype, to
+choose among the various filesystems which should be checked.
+
+The other actions can be divided into two broad categories;
+
+\begin{itemize}
+
+\item Actions which {\em print\/} something. The most obvious of these --
+and indeed, the default action of {\tt find} -- is {\sf -print} which just
+print the name of the file(s) matching the other conditions in the command
+line, and returns true. A simple variants of -print is {\sf -fprint {\em
+file\/}}, which uses {\em file\/} instead of standard output, {\sf -ls}
+lists the current file in the same format as {\tt ls -dils}; {\sf -printf
+{\em format\/}} behaves more or less like C function printf(), so that you
+can specify how the output should be formatted, and {\sf -fprintf {\em
+file format\/}} does the same, but writing on {\em file}. These action too
+return true.
+
+\item Actions which {\em execute\/} something. Their syntax is a little
+odd and they are used widely, so please look at them.
+
+{\sf -exec {\em command\/} \verb-\;-} the command is executed, and the
+action returns true if its final status is 0, that is regular execution
+of it.  The reason for the {\tt \verb-\;-} is rather logical: {\tt find}
+does not know where the command ends, and the trick to put the exec
+action at the end of the command is not applicable. Well, the best way
+to signal the end of the command is to use the character used to do this
+by the shell itself, that is `{\tt ;}', but of course a semicolon all
+alone on the command line would be eaten by the shell and never sent to
+{\tt find}, so it has to be escaped. The second thing to remember is how
+to specify the name of the current file within {\em command}, as
+probably you did all the trouble to build the expression to do
+something, and not just to print {\tt date}. This is done by means of the
+string \verb-{}-. Some old versions of {\tt find} require that it must
+be embedded in white space -- not very handy if you needed for example
+the whole path and not just the file name -- but with GNU find could be
+anywhere in the string composing {\em command}. And shouldn't it be
+escaped or quoted, you surely are asking? Amazingly, I never had to do
+this neither under tcsh nor under bash (sh does not consider \verb-{- and
+\verb-}- as special characters, so it is not much of a problem). My idea
+is that the shells ``know'' that \verb-{}- is not an option making sense,
+so they do not try to expand them, luckily for {\tt find} which can obtain
+it untouched.
+
+{\sf -ok {\em command\/} \verb-\;-} behaves like -exec, with the
+difference that for each selected file the user is asked to confirm the
+command; if the answer starts with {\tt y} or {\tt Y}, it is executed,
+otherwise not, and the action returns false.
+
+\end{itemize}
+
+\subsection{Operators}
+
+There are a number of operators; here there is a list, in order of
+decreasing precedence.
+
+\begin{description}
+
+\item[{\sf $\backslash$( {\em expr\/} $\backslash$)}]
+~\vspace{-\itemsep}\vspace{-\itemsep}
+\item[~]
+forces the precedence order. The parentheses must of course be quoted, as
+they are meaningful for the shell too.
+
+\item[{\sf ! {\em expr\/}}]
+~\vspace{-\itemsep}\vspace{-\itemsep}
+\item[{\sf -not {\em expr\/}}] 
+~\vspace{-\itemsep}\vspace{-\itemsep}
+\item[~]
+change the truth value
+of expression, that is if {\em expr\/} is true, it becomes false. The
+exclamation mark needn't be escaped, because it is followed by a white
+space.
+
+\item[{\sf {\em expr1 expr2} }]
+~\vspace{-\itemsep}\vspace{-\itemsep}
+\item[{\sf {\em expr1\/} -a {\em expr2\/} }]
+~\vspace{-\itemsep}\vspace{-\itemsep}
+\item[{\sf {\em expr1\/} -and {\em expr2\/} }] 
+~\vspace{-\itemsep}\vspace{-\itemsep}
+\item[~] all correspond to the
+logical AND operation, which in the first and most common case is implied.
+{\em expr2\/} is not evaluated, if {\em expr1\/} is false.
+
+\item[{\sf {\em expr1\/} -o {\em expr2\/} }]
+~\vspace{-\itemsep}\vspace{-\itemsep}
+\item[{\sf {\em expr1\/} -or {\em expr2\/} }] 
+~\vspace{-\itemsep}\vspace{-\itemsep}
+\item[~] correspond to the
+logical OR operation.  {\em expr2\/} is not evaluated, if {\em expr1\/} is 
+true.
+
+\item[{\sf {\em expr1\/} , {\em expr2\/} }] 
+~\vspace{-\itemsep}\vspace{-\itemsep}
+\item[~] is the list statement; both
+{\em expr1\/} and {\em expr2\/} are evaluated (together with all side
+effects, of course!), and the final value of the expression is that of
+{\em expr2\/}.
+
+\end{description}
+
+\subsection{Examples}
+
+Yes, {\tt find} has just too many options, I know. But there are a lot of
+cooked instances which are worth to remember, because they are usen very
+often. Let's see some of them.
+
+\begin{verbatim}
+% find . -name foo\* -print
+\end{verbatim}
+finds all file names starting with {\tt foo}. If the string is embedded in
+the name, probably it is more sensitive to write something like {\tt
+"*foo*"}, rather than {\tt \*foo\*}.
+
+\begin{verbatim}
+% find /usr/include -xtype f -exec grep foobar \
+           /dev/null {} \;
+\end{verbatim}
+is a grep executed recursively starting from directory /usr/include. In
+this case, we are interested both in regular file and in symbolic links
+which point to regular files, hence the -xtype test. Many times it is
+simpler to avoid specyfing it, especially if we are rather sure no binary
+file contains the wanted string. And why the /dev/null in the command?
+It's a trick to force grep to write the file name where a match has been
+found. The command grep is applied to each file in a different invocation, 
+and so it doesn't think it is necessary to output the file name. But now 
+there are {\em two\/} files, i.e.\ the current one and {\tt /dev/null}! 
+Another possibility should be to pipe the command to {\tt xargs} and let it
+perform the grep. I just tried it, and completely smashed my filesystem
+(together with these notes which I am tring to recover by hand {\tt :-(} ).
+
+\begin{verbatim}
+% find /  -atime +1 -fstype ext2 -name core \
+              -exec rm {} \;
+\end{verbatim}
+is a classical job for crontab. It deletes all file named {\tt core} in
+filesystems of type ext2 which have not been accessed in the last 24
+hours. It is possible that someone wants to use the core file to perform a
+post mortem dump, but nobody could remember what he was doing after 24
+hours\ldots
+
+\begin{verbatim}
+% find /home -xdev -size +500k -ls > piggies
+\end{verbatim}
+is useful to see who has those files who clog the filesystem. Note the use
+of -xdev; as we are interested in just one filesystem, it is not necessary
+to descend other filesystems mounted under {\tt /home}.
+
+\subsection{A last word}
+
+Keep in mind that {\tt find} is a very time consuming command, as it has
+to access each and every inode of the system in order to perform its
+operation. It is therefore wise to combine how many operations you need in
+a unique invocation of {\tt find}, especially in the `housekeeping' jobs
+usually ran via a crontab job. A enlightening example is the following:
+let's suppose that we want to delete files ending in {\tt .BAK} and change
+the protection of all directories to 771 and that of all files ending in
+{\tt .sh} to 755. And maybe we are mounting NFS filesystems on a dial-up link,
+and we'd like not to check for files there. Why writing three different
+commands? The most effective way to accomplish the task is this:
+
+\begin{verbatim}
+% find . \( -fstype nfs -prune \) -o \
+         \( -type d       -a -exec chmod 771 {} \; \) -o \
+         \( -name "*.BAK" -a -exec /bin/rm {}   \; \) -o \
+         \( -name "*.sh"  -a -exec chmod 755 {} \; \) 
+\end{verbatim}
+
+It seems ugly (and with much abuse of backslashes!), but looking closely at
+it reveals that the underlying logic is rather straightforward. Remember that
+what is really performed is a true/false evaluation; the embedded command
+is just a side effect. But this means that it is performed only if {\tt
+find} must evaluate the exec part of the expression, that is only if the
+left side of the subexpression evaluates to true. So, if for example the
+file considered at the moment is a directory then the first exec is
+evaluated and the permission of the inode is changed to 771; otherwise it
+forgets all and steps to the next subexpression. Probably it's easier to
+see it in practice than to writing it down; but after a while, it will
+become a natural thing.
+
+\section{{\tt tar}, the tape archiver}
+
+\subsection{Introduction}
+
+\subsection{Main options}
+
+\subsection{Modifiers}
+
+\subsection{Examples}
+
+\section{{\tt dd}, the data duplicator}
+
+Legend says that back in the mists of time, when the first UNIX was
+created, its developers needed a low level command to copy data between
+devices. As they were in a hurry, they decided to borrow the syntax used
+by IBM-360 machines, and to develop later an interface consistent with
+that of the other commands. Time passed, and all were so used with the odd
+way of using {\tt dd} that it stuck. I don't know whether it is true, but
+it is a nice story to tell.
+
+\subsection{Options}
+
+To say the truth, {\tt dd} it's not completely unlike the other Unix
+command: it is indeed a {\bf filter}, that is it reads by default from the
+standard input and writes to the standard output. So if you just type dd
+at the terminal it remains quiet, waiting for input, and a ctrl-C is the
+only sensitive thing to type.
+
+The syntax of the command is as follows:
+
+\vspace{1ex}
+\begin{command}
+  {\tt dd}\impttindex{dd} [if={\sl file}] [of={\sl file}] [ibs={\sl
+    bytes}] [obs={\sl bytes}] [bs={\sl bytes}] [cbs={\sl bytes}]
+  [skip={\sl blocks}]\\
+  \hspace{.5in} [seek={\sl blocks}] [count={\sl blocks}]
+  [conv=\{ascii, ebcdic, ibm, block, unblock,\\
+  \hspace{.5in} lcase, ucase, swab, noerror, notrunc, sync\}]
+\end{command}
+
+All options are of the form {\em option$=$value}. No
+space is allowed either before or after the equal sign; this used to
+be annoying, because the shell did not expand a filename in this
+situation, but the version of {\tt bash} present in Linux is rather
+smart, so you don't have to worry about that.  It is important also to
+remember that all numbered values ({\tt bytes} and {\tt blocks} above)
+can be followed by a multiplier. The possible choices are {\bf b} for
+block, which multiplies by 512, {\bf k} for kilobytes (1024), {\bf w}
+for word (2), and {\tt x}{\bf m} multiplies by {\bf m}.
+
+The meaning of options if explained below.
+
+\begin{itemize}
+
+\item {\sf if={\em filein\/}} and {\sf of={\em fileout\/}} instruct {\tt
+dd} to respectively read from {\em filein\/} and write to {\em fileout\/}.
+In the latter case, the output file is truncated to the value given to {\tt
+seek}, or if the keyword is not present, to 0 (that is deleted), before
+performing the operation. But look below at option {\tt notrunc}.
+
+\item {\sf ibs={\em nn\/}} and {\sf obs={\em nn\/}} specify how much
+bytes should be read or write at a time. I think that the default is 1
+block, i.e.\ 512 bytes, but I am not very sure about it: certainly it works
+that way with plain files. These parameters are very
+important when using special devices as input or output; for example,
+reading from the net should set {\tt ibs} at 10k, while a high density
+3.5'' floppy has as its natural block size 18k. Failing to set these
+values could result not only in longer time to perform the command, but
+even in timeout errors, so be careful.
+
+\item {\sf bs={\em nn\/}} both reads and writes {\em nn\/} bytes at a time.
+It overrides {\tt ibs} and {\tt obs} keywords.
+
+\item {\sf cbs={\em nn\/}} sets the conversion buffers to {\em nn\/}
+bytes. This buffer is used when translating from ASCII to EBCDIC, or from 
+an unblocked device to a blocked one. For example, files created under VMS
+have often a block size of 512, so you have to set {\tt cbs} to 1b when 
+reading a foreign VMS tape. Hope that you don't have to mess
+with these things!
+
+\item {\sf skip={\em nbl\/}} and {\sf seek={\em nbl\/}} tell the program to
+skip {\em nbl\/} blocks respectively at the beginning of input and at the
+beginning of output. Of course the latter case makes sense if conversion
+{\tt notrunc} is given, see below. Each block's size is the value of {\tt
+ibs} ({\tt obs}). Beware: if you did not set {\tt ibs} and write {\tt
+skip=1b} you are actually skipping 512$\times$512 bytes, that is 256KB\@. It
+was not precisely what you wanted, wasn't it?
+
+\item {\sf count={\em nbl\/}} means to copy only {\em nbl\/} blocks from
+input, each of the size given by {\tt ibs}. This option, together with the
+previous, turns useful if for example you have a corrupted file and you
+want to recover how much it is possible from it. You just skip the
+unreadable part and get what remains.
+
+\item {\sf conv={\em conversion\/},[{\em conversion\/}\ldots]} convert the
+file as specified by its argument. Possible conversions are {\sf ascii},
+which converts from EBCDIC to ASCII; {\sf ebcdic} and {\tt ibm}, which both
+perform an inverse conversion (yes, there is not a unique conversion from
+EBCDIC to ASCII\@! The first is the standard one, but the second works
+better when printing files on a IBM printer); {\sf block}, which pads
+newline-terminated records to the size of {\tt cbs}, replacing newline with 
+trailing spaces; {\sf unblock}, which performs the opposite (eliminates
+trailing spaces, and replaces them with newline); {\sf lcase} and {\sf
+ucase}, to convert test to lowercase and uppercase; {\sf swab}, which
+swaps every pair of input bytes (for example, to use a file containing
+short integers written on a 680x0 machine in an Intel-based machine you
+need such a conversion); {\sf noerror}, to continue processing after read
+errors; {\sf sync}, which pads input block to the size of {\tt ibs} with
+trailing NULs.
+
+\end{itemize}
+
+\subsection{Examples}
+
+The canonical example is the one you have probably bumped at when you
+tried to create the first Linux diskette: how to write to a floppy without a
+MS-DOS filesystem. The solution is simple:
+\begin{verbatim}
+% dd if=disk.img of=/dev/fd0 obs=18k count=80
+\end{verbatim}
+I decided not to use {\tt ibs} because I don't know which is the better
+block size for a hard disk, but in this case no harm would have been if
+instead of {\tt obs} I use {\tt bs} -- it could even be a trifle
+quicker. Notice the explicitation of the number of sectors to write (18KB
+is the occupation of a sector, so {\tt count} is set to 80) and the use of
+the low-level name of the floppy device.
+
+Another useful application of {\tt dd} is related to the network backup. Let's
+suppose that we are on machine {\sl alpha} and that on machine {\sl beta}
+there is the tape unit {\tt /dev/rst0} with a tar file we are interested
+in getting. We have the same rights on both machines, but there is no
+space on {\sl beta} to dump the tar file. In this case, we could write
+\begin{verbatim}
+% rsh beta 'dd if=/dev/rst0 ibs=8k obs=20k' | tar xvBf - 
+\end{verbatim}
+to do in a single pass the whole operation. In this case, we have used the
+facilities of {\tt rsh} to perform the reading from the tape. Input and
+output sizes are set to the default for these operations, that is 8KB for
+reading from a tape and 20KB for writing to ethernet; from the point of
+view of the other side of the tar, there is the same flow of bytes which
+could be got from the tape, except the fact that it arrives in a rather
+erratic way, and the option B is necessary.
+
+I forgot: I don't think at all that {\tt dd} is an acronym for ``data
+duplicator'', but at least this is a nice way to remember its meaning
+\ldots
+
+\section{{\tt sort}, the data sorter}
+
+\subsection{Introduction}
+
+\subsection{Options}
+
+\subsection{Examples}
+

@@ -1,0 +1,333 @@
+\chapter{Talking to Others}\label{network-chapter}
+
+% should we cover Mosaic?
+
+\begin{quote}
+``One basic notion underlying Usenet is that it is a cooperative.''
+
+Having been on Usenet for going on ten years, I disagree with
+this. The basic notion underlying Usenet is the flame.\\
+\raggedleft Chuq Von Rospach
+\end{quote}
+
+Modern \unix\ operating systems are very good at talking to other
+computers, or networking. Two different \unix\ computers can
+exchange information in many, many different ways.  This chapter is
+going to try to talk about how you can take advantage of that strong
+network ability.
+
+We'll try to cover electronic mail, Usenet news, and several basic
+\unix\ utilities used for communication.
+
+\section{Electronic Mail}
+
+One of the most popular standard features of \unix\ is electronic
+mail. With it, you are spared the usual hassle of finding an envelope,
+a piece of paper, a pen, a stamp, and the postal service, and,
+instead, given the hassle of negotiating with the computer.
+
+\subsection{Sending Mail}
+
+All you need to do is type {\tt mail {\sl username}}\impttindex{mail}
+and type your message.
+
+For instance, suppose I wanted to send mail to a user named {\tt sam}:
+
+\begin{screen}\begin{verbatim}
+/home/larry# mail sam
+Subject: The user documentation
+Just testing out the mail system.
+EOT
+/home/larry#
+\end{verbatim}\end{screen}
+
+The {\tt mail}\ttindex{mail} program is very simple. Like {\tt cat},
+it accepts input from standard input, one line at a time, until it
+gets the end-of-text character on a line by itself: \eof. So, to send
+my message off I had to hit return and then \eof.
+
+{\tt mail} is the quickest way to send mail, and is quite useful when
+used with pipes and redirection. For instance, if I wanted to mail
+the file {\tt report1} to ``Sam'', I could {\tt mail sam < report1},
+or I could have even run ``{\tt sort report1 | mail sam}''.
+
+However, the downside of using {\tt mail} to send mail means a very
+crude editor. You can't change a line once you've hit return! So, I
+recommend you send mail (when not using a pipe or redirection) is with
+Emacs's\index{Emacs} mail mode.  It's covered in
+Section~\ref{emacs-mail-mode}.
+
+\subsection{Reading Mail}
+
+\begin{command}
+  {\tt mail}\impttindex{mail} [{\sl user}]
+\end{command}
+
+The {\tt mail} program offers a clumsy way of reading mail. If you
+type {\tt mail} without any parameters, you'll see the following:
+
+\begin{screen}\begin{verbatim}
+/home/larry# mail
+No mail for larry
+/home/larry#
+\end{verbatim}\end{screen}
+
+I'm going to send myself some mail so I can play around with the
+mailreader:
+
+\begin{screen}\begin{verbatim}
+/home/larry# mail larry
+Subject: Frogs!
+and toads!
+EOT
+/home/larry# echo "snakes" | mail larry
+/home/larry# mail
+Mail version 5.5 6/1/90.  Type ? for help.
+"/usr/spool/mail/larry": 2 messages 2 new
+>N  1 larry                 Tue Aug 30 18:11  10/211   "Frogs!"
+ N  2 larry                 Tue Aug 30 18:12   9/191  
+& 
+\end{verbatim}\end{screen}
+
+The prompt inside the mail program is an ampersand (``{\tt \&}''). It
+allows a couple of simple commands, and will give a short help screen
+if you type {\tt ?} and then \ret.
+
+The basic commands for {\tt mail} are:
+
+\begin{dispitems}
+\item [{\tt t} {\sl message-list}] Show (or {\bf t}ype) the messages
+  on the screen.
+\item [{\tt d} {\sl message-list}] Delete the messages.
+\item [{\tt s} {\sl message-list} {\sl file}] Save the messages into
+  {\sl file}.
+\item [{\tt r} {\sl message-list}] Reply to the messages---that is,
+  start composing a new message to whoever sent you the listed
+  messages.
+\item [{\tt q}] Quit and save any messages you didn't delete into a
+  file called {\tt mbox} in your home directory.
+\end{dispitems}
+
+What's a {\sl message-list}? It consists of a list of integers
+seperated by spaces, or even a range, such as {\tt 2-4} (which is
+identical to ``{\tt 2 3 4}''). You can also enter the username of the
+sender, so the command {\tt t sam} would {\bf t}ype all the mail from
+Sam. If a message list is omitted, it is assumed to be the last
+message displayed (or typed).
+
+There are several problems with the {\tt mail} program's reading
+facilities. First of all, if a message is longer than your screen, the
+mail program doesn't stop! You'll have to save it and use {\tt more}
+on it later. Second of all, it doesn't have a very good interface for
+old mail---if you wanted to save mail and read it later.
+
+Emacs also has a facility for reading mail, called {\tt rmail}, but it
+is not covered in this book. Additionally, most Linux systems have
+several other mailreaders available, such as {\tt elm}\ttindex{elm} or
+{\tt pine}\ttindex{pine}.
+
+% what about the .forward file!!! ****
+
+\section{More than Enough News}
+
+% nn?
+
+\section{Searching for People}
+
+\subsection{The {\tt finger} command}
+
+The {\tt finger} command allows you to get information on other users
+on your system and across the world.  Undoubtably the {\tt finger}
+command was named based on the AT\&T\index{AT\&T} advertisements
+exhorting people to ``reach out and touch someone''.  Since \unix\ has
+its roots in AT\&T, this was probably amusing to the author.
+
+\begin{command}
+  {\tt finger}\impttindex{finger} [-slpm] [{\sl user}][{\sl @machine}]
+\end{command}
+
+The optional parameters to {\tt finger} may be a little
+confusing. Actually, it isn't that bad. You can ask for information on
+a local user (``sam''), information on another machine
+(``@lionsden''), information on a remote user (``sam@lionsden''), and
+just information on the local machine (nothing).
+
+Another nice feature is, if you ask for information about a user and
+there isn't an account name that is exactly what you asked for, it
+will try and match the real name with what you specified. That would
+mean that if I ran {\tt finger Greenfield}, I would be told that the
+account {\tt sam} exists for Sam Greenfield.
+
+\begin{screen}\begin{verbatim}
+/home/larry# finger sam
+Login: sam                              Name: Sam Greenfield
+Directory: /home/sam                    Shell: /bin/tcsh
+Last login Sun Dec 25 14:47 (EST) on tty2
+No Plan.
+/home/larry# finger greenfie@gauss.rutgers.edu
+[gauss.rutgers.edu]
+Login name: greenfie                    In real life: Greenfie
+Directory: /gauss/u1/greenfie           Shell: /bin/tcsh
+On since Dec 25 15:19:41 on ttyp0 from tiptop-slip-6439
+13 minutes Idle Time
+No unread mail
+Project: You must be joking!
+No Plan.
+/home/larry# finger
+Login    Name                 Tty  Idle  Login Time   Office     Office Phone
+larry    Larry Greenfield      1   3:51  Dec 25 12:50
+larry    Larry Greenfield      p0        Dec 25 12:51
+/home/larry# 
+\end{verbatim}\end{screen}
+
+The {\tt -s} option tells {\tt finger} to always display the short
+form (what you normally get when you finger a machine), and the {\tt
+  -l} option tells it to always use the long form, even when you
+finger a machine. The {\tt -p} option tells {\tt finger} that you
+don't want to see {\tt .forward}, {\tt .plan}, or {\tt .project}
+files, and {\tt -m} tells {\tt finger} that, if you asked for
+information about a user, only give information about an account
+name---don't try to match the name with a real name.
+
+\subsection{Plans and Projects}
+
+Now, what's a {\tt .plan}\ttindex{.plan} and a {\tt
+  .project}\ttindex{.project}, anyway? They're files stored in a
+user's home directory that are displayed whenever they're fingered.
+You can create your own {\tt .plan} and {\tt .project} files---the
+only restriction is that only the first line of a {\tt .project} file
+is displayed.
+
+Also, everybody must have execute privileges in your home directory
+({\tt chmod a+x \verb+~+/}) and everybody has to be able to read the
+{\tt .plan} and {\tt .project} files ({\tt chmod a+r \verb+~+/.plan
+  \verb+~+/.project}).
+
+\section{Using Systems by Remote}
+
+% telnet, rlogin
+
+\begin{command}
+  {\tt telnet}\impttindex{telnet} {\sl remote-system}
+\end{command}
+
+The principal way of using a remote \unix\ system is through {\tt
+  telnet}.  {\tt telnet} is usually a fairly simple program to use:
+
+\begin{screen}\begin{verbatim}
+/home/larry# telnet lionsden
+Trying 128.2.36.41...
+Connected to lionsden
+Escape character is '^]'.
+
+lionsden login: 
+\end{verbatim}\end{screen}
+  
+As you can see, after I issue a {\tt telnet} command, I'm presented
+with a login prompt for the remote system.  I can enter any username
+(as long as I know the password!) and then use that remote system
+almost the same as if I was sitting there.
+
+The normal way of exiting {\tt telnet} is to {\tt logout} on the
+remote system, but another way is to type the escape character, which
+(as in the example above) is usually \key{Ctrl-]}.  This presents me
+with a new prompt titled {\tt telnet>}.  I can now type {\tt quit} and
+\ret and the connection to the other system will be closed and {\tt
+  telnet} will exit.  (If you change your mind, simply hit return and
+you'll be returned to the remote system.)
+
+\xwarn If you're using X, let's create a new {\tt xterm} for the other
+system we're travelling to. Use the command ``{\tt xterm -title
+  "lionsden" -e telnet lionsden \&}''\ttindex{xterm}. This will create
+a new {\tt xterm} window that's automatically running {\tt telnet}.
+(If you do something like that often, you might want to create an
+alias or shell script for it.)
+
+\section{Exchanging Files}
+
+% ftp
+
+\begin{command}
+  {\tt ftp}\impttindex{ftp} {\sl remote-system}
+\end{command}
+
+The normal way of sending files between \unix\ systems is {\tt ftp},
+for the {\bf file transfer protocol}.  After running the {\tt ftp}
+command, you'll be asked to login to the remote system, much like {\tt
+  telnet}.  After doing so, you'll get a special prompt: an {\tt ftp}
+prompt.
+
+The {\tt cd} command works as normal, but on the remote system: it
+changes your directory on the \emph{other} system.  Likewise, the {\tt
+  ls} command will list your files on the remote system.
+
+The two most important commands are {\tt get} and {\tt put}.  {\tt
+  get} will transfer a file from the remote system locally, and {\tt
+  put} will take a file on the local system and put in on the remote
+one.  Both commands work on the directory in which you started {\tt
+  ftp} locally and your current directory (which you could have
+  changed through {\tt cd}) remotely.
+
+One common problem with {\tt ftp} is the distinction between text and
+binary files.  {\tt ftp} is a very old protocol, and there use to be
+advantages to assuming that files being transferred are text files.
+Some versions of {\tt ftp} default to this behavior, which means any
+programs that get sent or received will get corrupted.  For safety,
+use the {\tt binary} command before using {\tt get} or {\tt put}.
+
+To exit {\tt ftp} use the {\tt bye} command.
+
+\section{Travelling the Web}
+
+World Wide Web, or WWW, is a popular use of the Internet.  It consists
+of {\bf pages}, each associated with its own URL---{\bf uniform
+  resource locator}.  URLs are the funny sequence of in the form {\tt
+  http://www.rutgers.edu/}.  Pages are generally written in HTML ({\bf
+  hypertext markup language}).
+\index{URL}\glossary{URL}\glossary{uniform resource locator}
+\glossary{HTML}\glossary{hypertext markup language}
+
+HTML allows the writer of a document to link certain words or phrases
+(or pictures) to other documents anywhere else in the Web.  When a
+user is reading one document, she can quickly move to another by
+clicking on a key word or a button and been presented with another
+document---possibly from thousands of miles away.
+
+\begin{command}
+  {\tt netscape} [{\sl url}]
+\end{command}
+
+\xwarn The most popular web browser on \linux\ is {\tt
+  netscape}\ttindex{netscape}, which is a commercial browser sold (and
+given away) by Netscape Communications Corporation.  {\tt netscape}
+only runs under X.
+
+{\tt netscape} tries to be as easy to use as possible and uses the
+Motif widget set to display a very Microsoft Windows-like appearance.
+The basic strategy for using {\tt netscape} is that underlined blue
+words are links, as are many pictures.  (You can tell which pictures
+are links by clicking on them.)  By clicking on these words with your
+left mouse button, you'll be presented with a new page.
+
+\linux\ supports many other browsers, including the original web
+browser {\tt lynx}\ttindex{lynx}.  {\tt lynx} is a text browser---it
+won't display any of the pictures that the Web is currently associated
+with---but it will work without X.
+
+\begin{command}
+  {\tt lynx}\impttindex{lynx} [{\sl url}]
+\end{command}
+
+It's somewhat harder to learn how to use {\tt lynx}, but generally
+playing with the arrow keys will let you get the hand of it.  The up
+and down arrow keys move between links on a given page, which the
+right arrow key follows the current (highlighted) link.  The left
+arrow key will reload the previous page.  To quit {\tt lynx}, type
+\key{q}.  {\tt lynx} has many other key commands---consult the manpage
+for more.
+
+
+% Local Variables: 
+% mode: latex
+% TeX-master: "guide"
+% End: 

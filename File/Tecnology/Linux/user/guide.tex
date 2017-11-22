@@ -1,0 +1,189 @@
+\documentclass{book}
+\usepackage{latexsym}                % gives us symbols like the diamond
+\usepackage{linuxdoc}                % linux documentation style
+\usepackage{makeidx}                 % used to make the index
+\usepackage{epsfig}                  % I want to include postscript figures
+%\usepackage[dvips]{epsfig}           % I want to include postscript figures
+\usepackage{float}                   % allows for nicer looking floats
+\usepackage[american]{varioref}                % nicer referencing
+
+% these two are for development stuff
+%\includeonly{shell2}
+\newcommand{\devel}{n} % set to ``y'' or ``n''
+
+% comments that you will see in this document include:
+% ``kff:'', starting Karl Fogel's comments
+% ``-M'', ending magnuc@ii.uib.no's comments
+% ``LG:'', ``-LG'', or nothing usually indicates a comment by me, Larry
+%       Greenfield.
+
+% if you're writing, please remember to attribute the comments...
+
+% some macros
+\newcommand{\uguide}{{\em The\/ \linux\ Users' Guide\/}}
+\newcommand{\ldpgs}{{\em Installation and Getting Started\/}}
+\newcommand{\ldpsa}{{\em The\/ \linux\ System Adminstrator's Guide\/}}
+\newcommand{\ldpng}{{\em The\/ \linux\ Networking Guide\/}}
+% these two are so I can easily add \tm's or change the capitilization
+\newcommand{\unix}{Unix}
+
+% index commands
+\newcommand{\ttindex}[1]{\index{#1@{\tt #1}}} % gives me a monospaced index
+                                              % entry in the correct
+                                              % alpha-order...
+
+\newcommand{\bindex}[1]{\index{#1|(}} % this will give a dashed index
+                                      % specifier
+\newcommand{\eindex}[1]{\index{#1|)}}
+\newcommand{\bttindex}[1]{\index{#1@{\tt #1}|(}}
+\newcommand{\ettindex}[1]{\index{#1@{\tt #1}|)}}
+\newcommand{\impindex}[1]{\index{#1|bold}} % these will print the
+                                           % number in boldface
+\newcommand{\impttindex}[1]{\index{#1@{\tt #1}|bold}}
+\newcommand{\bold}[1]{{\bf #1}} % this is needed for the \imp*index
+                                % commands
+
+% this is for the first occurence of a ``concept''
+\newcommand{\concept}[1]{{\bf #1}\impindex{#1}\glossary{#1}}
+
+% some new (simple) environments
+\newenvironment{command}{\noindent
+    \rule{\linewidth}{2pt}\raggedright\large}
+  {\\ \rule{\linewidth}{0.5pt}}
+
+\newenvironment{fortune}{\begin{quote}\normalfont\sffamily}{\end{quote}}
+
+% I'm going to redefine \key, because I want a small space after it:
+\renewcommand{\key}[1]{\fbox{\sf #1}\,}
+\renewcommand{\ret}{\fbox{\sf return}\,}
+\newcommand{\eof}{\key{Ctrl-d}} % shortcut like \ret
+
+% change the floatstyle for figure
+\floatstyle{ruled}
+\restylefloat{figure}
+
+\author{Larry Greenfield} 
+\title{The \linux\ Users' Guide}
+\years{1993, 1994, 1996}
+\abstract{All you need to know to start using \linux, a free \unix\ 
+  clone. This manual covers the basic \unix\ commands, as well as the
+  more specific \linux\ ones. This manual is intended for the beginning
+  \unix\ user, although it may be useful for more experienced users
+  for reference purposes.}
+% insert the next two when the document is ready:
+\if n\devel
+   \makeindex
+   %\makeglossary
+\fi
+
+\begin{document}
+% this will give a large ``X'' like the \blackdiamond command.
+\newsavebox{\xlogo}
+\savebox{\xlogo}{\epsfig{file=ps-files/xlogo.ps, width=0.5in}}
+\def\strutdepth{\dp\strutbox}
+\def\specialx{\vtop to \strutdepth{
+    \baselineskip\strutdepth
+    \vss\llap{\vspace{-0.25in}{\usebox{\xlogo}}\hspace{.2 in}}\null}}
+\newcommand{\xwarn}{\strut\vadjust{\kern-\strutdepth\specialx}}
+
+\newsavebox{\caution}
+\savebox{\caution}{\epsfig{file=ps-files/caution.ps, width=0.75in}}
+\def\strutdepth{\dp\strutbox}
+\def\specialc{\vtop to \strutdepth{
+    \baselineskip\strutdepth
+    \vss\llap{\vspace{-0.5in}{\usebox{\caution}}\hspace{.2 in}}\null}}
+\newcommand{\cautionpar}{\strut\vadjust{\kern-\strutdepth\specialc}}
+
+\pagenumbering{roman}
+
+% title page
+\if n\devel
+   \maketitle
+\fi
+
+% copyright
+\include{copyright}
+
+% book conventions
+\include{convntns}
+
+% acks
+\include{thanks}
+
+% table of contents
+\if n\devel
+   \tableofcontents
+\fi
+
+% start the book
+\pagenumbering{arabic}
+
+% introduction (who should read this book, etc.)
+\include{intro}
+
+% what's unix?
+% history of unix and other non-needed things
+\include{unixinfo}
+
+% introduction to Linux---starting, stopping, messages
+% this is how PCs boot up, what they load, what the kernel does, and
+% some of the messages the kernel prints out while running---the
+% messages perhaps should be moved to ``errors.tex''
+\include{starting}
+
+% introduction to the shell: commands, storing information
+\include{shell}
+
+% this teaches about the X Window System, for those people who
+% encountered it when they logged on
+\include{x11}
+
+% more advance shell stuff: piping, redirection, filters, more
+% commands
+\include{shell2}
+
+% talks about some of the simplier commands, with discussions of
+% common command-line options and uses
+\include{commands}
+
+% editing files with Emacs
+\include{emacs}
+
+% variables of sorts---configuration: .profile, .bashrc, .bash_logout
+% (or whatever bash calls a script to be run at logout). Shell
+% variables, environment variables, aliases
+\include{config}
+
+% network programs
+\include{network}
+
+% programs to play with
+% this can be a variety of things. Currently, it contains some
+% oversized commands that have non-standard interfaces. I'd like to
+% cover any of the bigger commands that have their own documentation
+% briefly. We might want to move these things somewhere else
+\include{funny}
+
+% bugs, and what to do about them!
+% common error messages, how to solve them
+\include{errors}
+
+% from here on, we're dealing with appendices
+\appendix
+
+% vi appendix
+\include{vi}
+
+% the GPL
+\include{gpl}
+
+% the LGPL
+\include{lgpl}
+
+% bibliography
+\include{bib}
+
+% index
+\if n\devel \printindex \fi
+
+\end{document}

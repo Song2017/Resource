@@ -1,0 +1,510 @@
+\chapter{Powerful Little Programs}\label{commands-chapter}
+
+\begin{screen}\begin{verbatim}
+better !pout !cry
+better watchout
+lpr why
+santa claus <north pole >town
+
+cat /etc/passwd >list
+ncheck list 
+ncheck list
+cat list | grep naughty >nogiftlist
+cat list | grep nice >giftlist
+santa claus <north pole > town
+
+who | grep sleeping
+who | grep awake
+who | egrep 'bad|good'
+for (goodness sake) {
+        be good
+}
+\end{verbatim}\end{screen}
+
+% I need a neato quote-type thing here.
+% by the way, if anyone can figure out a better way to format this so
+% that the command titles stand out better (and maybe have a short
+% description next to them) I'd appreciate it
+
+\section{The Power of \unix}
+
+The power of \unix\ is hidden in small commands that don't seem too
+useful when used alone, but when combined with other commands (either
+directly or indirectly) produce a system that's much more powerful and
+flexible than most other operating systems.  The commands I'm
+going to talk about in this chapter include {\tt sort}, {\tt grep},
+{\tt more}, {\tt cat}, {\tt wc}, {\tt spell}, {\tt diff}, {\tt head},
+and {\tt tail}. Unfortunately, it isn't totally intuitive what these
+names mean right now.  
+
+Let's cover what each of these utilities do seperately and then I'll
+give some examples of how to use them together.\footnote{Please note
+  that the short summaries on commands in this chapter are not
+  comprehensive. Please consult the command's manpage if you want to
+  know every option.}
+
+\section{Operating on Files}
+
+In addition to the commands like {\tt cd}, {\tt mv}, and {\tt rm} you
+learned in Chapter~\ref{shell-chapter}, there are other commands that
+just operate on files but not the data in them. These include {\tt
+  touch}, {\tt chmod}, {\tt du}, and {\tt df}. All of these files
+don't care what is {\em in\/} the file---the merely change some of the
+things \unix\ remembers about the file.
+
+Some of the things these commands manipulate:
+\begin{itemize}
+\item The time stamp\glossary{time stamp}. Each file has three dates
+  associated with it.\footnote{Older filesystems in \linux\ only
+    stored one date, since they were derived from Minix. If you have
+    one of these filesystems, some of the information will merely be
+    unavailable---operation will be mostly unchanged.} The three dates
+  are the creation time (when the file was created), the last
+  modification time (when the file was last changed), and the last
+  access time (when the file was last read).
+\item The owner. Every file in \unix\ is owned by one user or the
+  other.
+\item The group.  Every file also has a group of users it is
+  associated with. The most common group for user files is called {\tt
+    users}, which is usually shared by all the user account on the
+  system.
+\item The permissions\index{permissions}. Every file has permissions
+  (sometimes called ``privileges'') associated with it
+  which tell \unix\ who can access what file, or change it, or, in the
+  case of programs, execute it. Each of these permissions can be
+  toggled seperately for the owner, the group, and all other users.
+\end{itemize}
+
+\begin{command}
+  {\tt touch}\impttindex{touch} {\sl file1 file2 \ldots fileN}
+\end{command}
+
+{\tt touch} will update the time stamps of the files listed on the
+command line to the current time. If a file doesn't exist, {\tt touch}
+will create it.  It is also possible to specify the time that {\tt
+  touch} will set files to---consult the the manpage for {\tt touch}.
+
+\begin{command}
+{\tt chmod}\impttindex{chmod} [-Rfv] {\sl mode} {\sl file1 file2 \ldots fileN}
+\end{command}
+
+\bindex{file!permissions} The command used to change the permissions
+on a file is called {\tt chmod}, short for {\bf ch}ange {\bf mod}e.
+Before I go into how to use the command, let's discuss what
+permissions are in \unix. Each file has a group of permissions
+associated with it.  These permissions tell \unix\ whether or not the
+file can be read from, written to, or executed as a program. (In the
+next few paragraphs, I'll talk about users doing these things.  Any
+programs a user runs are allowed to do the same things a user is. This
+can be a security problem if you don't know what a particular program
+does.)
+
+\unix\ recognizes three different types of people: first, the owner of
+the file (and the person allowed to use {\tt chmod} on that file).
+Second, the ``group''.  The group of most of your files might be
+``users'', meaning the normal users of the system. (To find out the
+group of a particular file, use {\tt ls -l {\sl file}}.) Then, there's
+everybody else who isn't the owner and isn't a member of the group,
+appropriately called ``other''.
+
+So, a file could have read and write permissions for the owner, read
+permissions for the group, and no permissions for all others.  Or, for
+some reason, a file could have read/write permissions for the group
+and others, but {\em no\/} permissions for the owner!
+
+Let's try using {\tt chmod} to change a few permissions. First, create
+a new file using {\tt cat}, {\tt emacs}, or any other program. By
+default, you'll be able to read and write this file. (The permissions
+given other people will vary depending on how the system and your
+account is setup.) Make sure you can read the file using {\tt
+  cat}. Now, let's take away your read privilege by using {\tt chmod
+  u-r {\sl filename}}. (The parameter {\tt u-r} decodes to ``user
+minus read''.) Now if you try to read the file, you get a {\tt
+  Permission denied} error! Add read privileges back by using {\tt
+  chmod u+r {\sl filename}}.
+\eindex{file!permissions} 
+\index{file!privileges|see{file, permissions}}
+\index{security|see{file, permissions}}
+
+Directory permissions\index{directory!permissions} use the same three
+ideas: read, write, and execute, but act slightly differently. The
+read privilege allows the user (or group or others) to read the
+directory---list the names of the files.  The write permission allows
+the user (or group or others) to add or remove files. The execute
+permission allows the user to access files in the directory or any
+subdirectories. (If a user doesn't have execute permissions for a
+directory, they can't even {\tt cd} to it!)
+
+To use {\tt chmod}, replace the {\sl mode} with what to operate on,
+either {\bf u}ser, {\bf g}roup, {\bf o}ther, or {\bf a}ll, and what to
+do with them. (That is, use a plus sign to indicate adding a privilege
+or a minus sign to indicate taking one away. Or, an equals sign will
+specify the exact permissions.) The possible permissions to add are
+{\bf r}ead, {\bf w}rite, and e{\bf x}ecute.
+
+{\tt chmod}'s {\tt R} flag will change a directory's permissions, and
+all files in that directory, and all subdirecties, all the way down
+the line. (The `R' stands for recursive.)  The {\tt f} flag forces
+{\tt chmod} to attempt to change permissions, even if the user isn't
+the owner of the file. (If {\tt chmod} is given the {\tt f} flag, it
+won't print an error message when it fails to change a file's
+permissions.)  The {\tt v} flag makes {\tt chmod} verbose---it will
+report on what it's done.
+
+\section{System Statistics}
+
+Commands in this section will display statistics about the operating
+system, or a part of the operating system.
+
+\begin{command}
+  {\tt du}\impttindex{du} [-abs] [{\sl path1 path2 \ldots pathN}]
+\end{command}
+
+{\tt du} stands for {\bf d}isk {\bf u}sage. It will count the amount
+of disk space a given directory {\em and all its subdirectories} take
+up on the disk. {\tt du} by itself will return a list of how much
+space every subdirectory of the current directory consumes, and, at
+the very bottom, how much space the current directory (plus all the
+previously counted subdirectories) use. If you give it a parameter or
+two, it will count the amount of space used by those files or
+directories instead of the current one.
+
+The {\tt a} flag will display a count for files, as well as
+directories. An option of {\tt b} will display, instead of kilobytes
+(1024 characters), the total in bytes. One byte is the equivalent of
+one letter in a text document. And the {\tt s} flag will just display
+the directories mentioned on the command-line and {\em not\/} their
+subdirectories.
+
+\begin{command}
+  {\tt df}\impttindex{df}
+\end{command}
+
+{\tt df} is short for ``disk filling'': it summarizes the amount of
+disk space in use. For each filesystem (remember, different
+filesystems are either on different drives or partitions) it shows the
+total amount of disk space, the amount used, the amount available, and
+the total capacity of the filesystem that's used.
+
+One odd thing you might encounter is that it's possible for the
+capacity to go over 100\%, or the used plus the available not to equal
+the total. This is because \unix\ reserves some space on each
+filesystem for {\tt root}. That way if a user accidentally fills the
+disk, the system will still have a little room to keep on operating.
+
+For most people, {\tt df} doesn't have any useful options.
+
+\begin{command}
+  {\tt uptime}\impttindex{uptime}
+\end{command}
+
+The {\tt uptime} program does exactly what one would suspect. It
+prints the amount of time the system has been ``up''---the amount of
+time from the last \unix\ boot. 
+
+{\tt uptime} also gives the current time and the load
+average.\index{load average} The load average is the average number of
+jobs waiting to run in a certain time period. {\tt uptime} displays
+the load average for the last minute, five minutes, and ten minutes.
+A load average near zero indicates the system has been relatively
+idle. A load average near one indicates that the system has been
+almost fully utilized but nowhere near overtaxed. High load averages
+are the result of several programs being run simultaneously.
+
+Amazingly, {\tt uptime} is one of the few \unix\ programs that have
+{\em no\/} options!
+
+\begin{command}
+  {\tt who}\impttindex{who}
+\end{command}
+
+{\tt who} displays the current users of the system and when they
+logged in. If given the parameters {\tt am i} (as in: {\tt who am i}),
+it displays the current user.
+
+\begin{command}
+  {\tt w}\impttindex{w} [-f] [{\sl username}]
+\end{command}
+
+The {\tt w} program displays the current users of the system and what
+they're doing. (It basically combines the functionality of {\tt
+  uptime}\ttindex{uptime} and {\tt who}. The header of
+{\tt w} is exactly the same as {\tt uptime}, and each line shows a
+user, when the logged on (and how long they've been idle). {\tt JCPU}
+is the total amount of CPU time used by that user, while {\tt PCPU}
+the the total amount of CPU time used by their present task.
+
+If {\tt w} is given the option {\tt f}, it shows the remote system
+they logged in from, if any. The optional parameter restricts {\tt w}
+to showing only the named user.
+
+\section{What's in the File?}
+
+There are two major commands used in \unix\ for listing files, {\tt
+  cat} and {\tt more}. I've talked about both of them in
+Chapter~\ref{shell2-chapter}.
+
+\begin{command}
+{\tt cat}\impttindex{cat} [-nA] [{\sl file1 file2 \ldots fileN}]
+\end{command}
+
+{\tt cat} is not a user friendly command---it doesn't wait for you to
+read the file, and is mostly used in conjuction with pipes. However,
+{\tt cat} does have some useful command-line options. For instance,
+{\tt n} will number all the lines in the file, and {\tt A} will show
+control characters as normal characters instead of (possibly) doing
+strange things to your screen. (Remember, to see some of the stranger
+and perhaps ``less useful'' options, use the {\tt man} command: {\tt
+  man cat}.) {\tt cat} will accept input from stdin if no files
+are specified on the command-line.
+
+\begin{command}
+{\tt more}\impttindex{more} [-l] [+{\sl linenumber}] [{\sl file1 file2 \ldots fileN}]
+\end{command}
+
+{\tt more} is much more useful, and is the command that you'll want to
+use when browsing ASCII text files.  The only interesting option is
+{\tt l}, which will tell {\tt more} that you aren't interested in
+treating the character \key{Ctrl-L} as a ``new page'' character. {\tt
+  more} will start on a specified linenumber.
+
+Since {\tt more} is an interactive command, I've summarized the major
+interactive commands below:
+\begin{description}
+\item [\key{Spacebar}] Moves to the next screen of text.
+\item [\key{d}] This will scroll the screen by 11 lines, or about half
+  a normal, 25-line, screen.
+\item [\key{/}] Searches for a regular expression. While a regular
+  expression can be quite complicated, you can just type in a text
+  string to search for. For example, {\tt /toad}\ret\ would search for
+  the next occurence of ``toad'' in your current file. A slash
+  followed by a return will search for the next occurence of what you
+  last searched for.
+\item [\key{n}] This will also search for the next occurence of your
+  regular expression.
+\item [\key{:}\key{n}] If you specified more than one file on the
+  command line, this will move to the next file.
+\item [\key{:}\key{p}] This will move the the previous file.
+\item [\key{q}] Exits from {\tt more}.
+\end{description}
+
+\pagebreak
+\begin{command}
+  {\tt head}\impttindex{head} [-{\sl lines}] [{\sl file1 file2 \ldots fileN}]
+\end{command}
+
+{\tt head} will display the first ten lines in the listed files, or
+the first ten lines of stdin if no files are specified on the
+command line. Any numeric option will be taken as the number of lines
+to print, so {\tt head -15 frog} will print the first fifteen lines of
+the file {\tt frog}.
+
+\begin{command}
+  {\tt tail}\impttindex{tail} [-{\sl lines}] [{\sl file1 file2 \ldots fileN}]
+\end{command}
+
+Like {\tt head}, {\tt tail} will display only a fraction of the file.
+Naturally, {\tt tail} will display the end of the file, or the last
+ten lines that come through stdin. {\tt tail} also accepts a
+option specifying the number of lines.
+
+\begin{command}
+  {\tt file} [{\sl file1 file2 \ldots fileN}]
+\end{command}
+
+The {\tt file} command attempts to identify what format a particular
+file is written in. Since not all files have extentions or other easy
+to identify marks, the {\tt file} command performs some rudimentary
+checks to try and figure out exactly what it contains.
+
+Be careful, though, because it is quite possible for {\tt file} to
+make a wrong identification.
+
+\section{Information Commands}
+
+This section discusses the commands that will alter a file, perform a
+certain operation on the file, or display statistics on the file.
+
+%\begin{quote}
+%  {\tt sort}\impttindex{sort} [
+%\end{quote}
+% should sort be discussed here, or is it complicated enough to merit
+% its own section in another chapter?
+
+\begin{command}
+  {\tt grep}\impttindex{grep} [-nvwx] [-{\sl number\/}] {\sl
+    expression} [{\sl file1 file2 \ldots fileN\/}]
+\end{command}
+
+One of the most useful commands in \unix\ is {\tt grep}, the
+{\bf g}eneralized {\bf r}egular {\bf e}xpression {\bf p}arser. This is
+a fancy name for a utility which can only search a text file.  The
+easiest way to use {\tt grep} is like this:
+
+\begin{screen}\begin{verbatim}
+/home/larry# cat animals
+Animals are very interesting creatures. One of my favorite animals is
+the tiger, a fearsome beast with large teeth.
+I also like the lion---it's really neat!
+/home/larry# grep iger animals
+the tiger, a fearsome beast with large teeth.
+/home/larry#
+\end{verbatim}\end{screen}
+
+One disadvantage of this is, although it shows you all the lines
+containing your word, it doesn't tell you where to look in the
+file---no line number. Depending on what you're doing, this might be
+fine. For instance, if you're looking for errors from a programs
+output, you might try {\tt a.out | grep error}, where {\tt a.out} is
+your program's name.
+
+If you're interested in where the match(es) are, use the {\tt n}
+switch to {\tt grep} to tell it to print line numbers. Use the {\tt v}
+switch if you want to see all the lines that {\em don't\/} match the
+specified expression.
+
+Another feature of {\tt grep} is that it matches only parts of a word,
+like my example above where {\tt iger} matched {\tt tiger}. To tell
+{\tt grep} to only match whole words, use the {\tt w}, and the {\tt x}
+switch will tell grep to only match whole lines.
+
+If you don't specify any files, {\tt grep} will examine stdin.
+
+\begin{command}
+  {\tt wc}\impttindex{wc} [-clw] [{\sl file1 file2 \ldots fileN\/}]
+\end{command}
+
+{\tt wc} stands for {\bf w}ord {\bf c}ount. It simply counts the
+number of words, lines, and characters in the file(s). If there aren't
+any files specified on the command line, it operates on stdin.
+
+The three parameters, {\tt clw}, stand for {\bf c}haracter, {\bf
+  l}ine, and {\bf w}ord respectively, and tell {\tt wc} which of the
+three to count. Thus, {\tt wc -cw} will count the number of characters
+and words, but not the number of lines. {\tt wc} defaults to counting
+everything---words, lines, and characters.
+
+One nice use of {\tt wc} is to find how many files are in the present
+directory: {\tt ls | wc -w}. If you wanted to see how many files that
+ended with {\tt .c} there are, try {\tt ls *.c | wc -w}.
+
+\begin{command}
+  {\tt spell}\impttindex{spell} [{\sl file1 file2 \ldots fileN\/}]
+\end{command}
+
+{\tt spell} is a very simple \unix\ spelling program, usually for
+American English.\footnote{While there are versions of this for
+  several other European languages, the copy on your \linux\ machine
+  is most likely for American English.} {\tt spell} is a filter, like
+most of the other programs we've talked about, which sucks in an ASCII
+text file and outputs all the words it considers misspellings.  {\tt
+  spell} operates on the files listed in the command line, or, if
+there weren't any there, stdin.
+
+A more sophisticated spelling program, {\tt ispell}\ttindex{ispell} is
+probably also available on your machine.  {\tt ispell} will offer
+possible correct spellings and a fancy menu interface if a filename is
+specified on the command line or will run as a filter-like program if
+no files are specified.
+
+While operation of {\tt ispell}\ttindex{ispell} should be fairly
+obvious, consult the man page if you need more help.
+
+\begin{command}
+  {\tt cmp}\impttindex{cmp} {\sl file1} [{\sl file2\/}]
+\end{command}
+
+{\tt cmp} {\bf c}o{\bf mp}ares two files. The first must be listed on
+the command line, while the second is either listed as the second
+parameter or is read in from standard input. {\tt cmp} is very simple,
+and merely tells you where the two files first differ.
+
+\begin{command}
+  {\tt diff}\impttindex{diff} {\sl file1 file2}
+\end{command}
+
+One of the most complicated standard \unix\ commands is called {\tt
+  diff}. The GNU\index{GNU Project} version of {\tt diff} has over
+twenty command line options! It is a much more powerful version of
+{\tt cmp} and shows you what the differences are instead of merely
+telling you where the first one is.
+
+Since talking about even a good portion of {\tt diff} is beyond the
+scope of this book, I'll just talk about the basic operation of {\tt
+  diff}.  In short, {\tt diff} takes two parameters and displays the
+differences between them on a line-by-line basis. For instance:
+
+\begin{screen}\begin{verbatim}
+/home/larry# cat frog
+Animals are very interesting creatures. One of my favorite animals is
+the tiger, a fearsome beast with large teeth.
+I also like the lion---it's really neat!
+/home/larry# cp frog toad
+/home/larry# diff frog toad
+/home/larry# cat dog
+Animals are very nteresting creatures. One of my favorite animals is
+
+the tiger, a fearsome beast with large teeth.
+I also   like the lion---it's really neat!
+/home/larry# diff frog dog
+1c1,2
+< Animals are very interesting creatures. One of my favorite animals is
+---
+> Animals are very nteresting creatures. One of my favorite animals is
+> 
+3c4
+< I also like the lion---it's really neat!
+---
+> I also   like the lion---it's really neat!
+/home/larry#
+\end{verbatim}\end{screen}
+
+As you can see, {\tt diff} outputs nothing when the two files are
+identical.  Then, when I compared two different files, it had a
+section header, {\tt 1c1,2} saying it was comparing line 1 of the left
+file, {\tt frog}, to lines 1--2 of {\tt dog} and what differences it
+noticed. Then it compared line 3 of {\tt frog} to line 4 of {\tt dog}.
+While it may seem strange at first to compare different line numbers,
+it is much more efficent then listing out every single line if there
+is an extra return early in one file.
+
+\begin{command}
+  {\tt gzip}\impttindex{gzip} [-v\#] [{\sl file1 file2 \ldots fileN}]\\
+  {\tt gunzip}\impttindex{gunzip} [-v] [{\sl file1 file2 \ldots
+    fileN}]\\
+  {\tt zcat}\impttindex{zcat} [{\sl file1 file2 \ldots fileN}]
+\end{command}
+
+These three programs are used to compress\glossary{compress} and
+decompress\glossary{decompress} data.  {\tt gzip}, or GNU Zip, is the
+program that reads in the original file(s) and outputs files that are
+smaller. {\tt gzip} deletes the files specified on the command line
+and replaces them with files that have an identical name except that
+they have ``{\tt .gz}'' appended to them.
+
+\begin{command}
+  {\tt tr}\impttindex{tt} {\sl string1} {\sl string2}
+\end{command}
+
+The ``translate characters'' command operates on standard input---it
+doesn't accept a filename as a parameter.  Instead, it's two
+parameters are arbitrary strings.  It replaces all occurences of {\sl
+  string1} in the input with {\sl string2}.  In addition to relatively
+simple commands such as {\tt tr frog toad}, {\tt tr} can accept more
+complicated commands.  For instance, here's a quick way of converting
+lowercase characters into uppercase ones:
+
+\begin{screen}\begin{verbatim}
+/home/larry# tr [:lower:] [:upper:]
+this is a WEIRD sentence.
+THIS IS A WEIRD SENTENCE.
+\end{verbatim}\end{screen}
+  
+{\tt tr} is fairly complex and usually used in small shell programs.
+
+
+% Local Variables: 
+% mode: latex
+% TeX-master: "guide"
+% TeX-master: "guide"
+% End: 

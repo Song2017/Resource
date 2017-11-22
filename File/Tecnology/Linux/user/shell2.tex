@@ -1,0 +1,805 @@
+\chapter{Working with \unix}\label{shell2-chapter}
+
+
+\begin{fortune}
+\begin{verse}
+A UNIX saleslady, Lenore,\\
+Enjoys work, but she likes the beach more.\\
+\hspace{0.5in}She found a good way\\
+\hspace{0.5in}To combine work and play:\\
+She sells C shells by the seashore.
+\end{verse}
+\end{fortune}
+\glossary{C shell}\glossary{Bourne shell}
+\glossary{file}\glossary{input}\glossary{output}
+
+
+\unix\ is a powerful system for those who know how to harness its
+power.  In this chapter, I'll try to describe various ways to use
+\unix's shell, {\tt bash}\ttindex{bash}, more efficently.
+
+\section{Wildcards}\bindex{shell!wildcards}
+\index{shell!globbing|see{shell, wildcards}}
+\index{wildcards|see{shell, wildcards}}
+
+In the previous chapter, you learned about the file maintence commands {\tt
+cp}, {\tt mv}, and {\tt rm}.  Occasionally, you want to deal with more than
+one file at once---in fact, you might want to deal with many files at once.
+For instance, you might want to copy all the files beginning with {\tt
+data} into a directory called {\tt \verb+~+/backup}.  You could do this by either
+running many {\tt cp} commands, or you could list every file on one command
+line. Both of these methods would take a long time, however, and you have a
+large chance of making an error.
+
+A better way of doing that task is to type:
+\begin{screen}\begin{verbatim}
+/home/larry/report# ls -F
+1993-1          1994-1          data1           data5
+1993-2          data-new        data2
+/home/larry/report# mkdir ~/backup
+/home/larry/report# cp data* ~/backup
+/home/larry/report# ls -F ~/backup
+data-new        data1           data2           data5
+/home/larry/report#
+\end{verbatim}\end{screen}
+
+As you can see, the asterix told {\tt cp} to take all of the files
+beginning with {\tt data} and copy them to {\tt \verb+~+/backup}. Can you guess
+what {\tt cp d*w \verb+~+/backup} would have done?
+
+\subsection{What {\em Really\/} Happens?}
+
+Good question. Actually, there are a couple of special characters
+intercepted by the shell, {\tt bash}\ttindex{bash}. The character
+``{\tt *}'', an asterix, says ``replace this word with all the files
+that will fit this specification''. So, the command {\tt cp data*
+  \verb+~+/backup}, like the one above, gets changed to {\tt cp
+  data-new data1 data2 data5 \verb+~+/backup} before it gets run.
+
+To illustrate this, let me introduce a new command, {\tt
+  echo}\impttindex{echo}. {\tt echo} is an extremely simple command;
+it echoes back, or prints out, any parameters. Thus:
+
+\begin{screen}\begin{verbatim}
+/home/larry# echo Hello!
+Hello!
+/home/larry# echo How are you?
+How are you?
+/home/larry# cd report
+/home/larry/report# ls -F
+1993-1          1994-1          data1           data5
+1993-2          data-new        data2
+/home/larry/report# echo 199*
+1993-1 1993-2 1994-1
+/home/larry/report# echo *4*
+1994-1
+/home/larry/report# echo *2*
+1993-2 data2
+/home/larry/report#
+\end{verbatim}
+\end{screen}
+
+As you can see, the shell expands the wildcard and passes all of the
+files to the program you tell it to run. This raises an interesting
+question: what happens if there are {\em no\/} files that meet the
+wildcard specification? Try {\tt echo /rc/fr*og} and {\tt
+  bash}\ttindex{bash} passes the wildcard specification verbatim to
+the program.
+
+Other shells, like {\tt tcsh}\ttindex{tcsh}, will, instead of just
+passing the wildcard verbatim, will reply {\tt No match.} Here's the
+same command run under {\tt tcsh}:
+
+\begin{screen}\begin{verbatim}
+mousehouse>echo /rc/fr*og
+echo: No match.
+mousehouse>
+\end{verbatim}\end{screen}
+
+The last question you might want to know is what if I wanted to have
+{\tt data*} echoed back at me, instead of the list of file names?
+Well, under both {\tt bash} and {\tt tcsh}, just include the string in
+quotes:
+
+\begin{minipage}{2.6in}\begin{screen}
+\begin{verbatim}
+/home/larry/report# echo "data*"
+data*
+/home/larry/report#
+\end{verbatim}\end{screen}\end{minipage}\ {\large OR}\ 
+\begin{minipage}{2.6in}\begin{screen}
+\begin{verbatim}
+mousehouse>echo "data*"
+data*
+mousehouse>
+\end{verbatim}\end{screen}\end{minipage}
+
+\subsection{The Question Mark}
+
+In addition to the asterix, the shell also interprets a question mark
+as a special character.  A question mark will match one, and only one
+character. For instance, {\tt ls /etc/??} will display all two letter
+files in the the {\tt /etc} directory.
+
+\eindex{shell!wildcards}
+
+\section{Time Saving with {\tt bash}}
+\index{command line editing|see{shell, editing}}
+
+\subsection{Command-Line Editing}\bindex{shell!editing}
+
+Occasionally, you've typed a long command to {\tt bash}\ttindex{bash} and,
+before you hit return, notice that there was a spelling mistake early in
+the line.  You could just delete all the way back and retype everything you
+need to, but that takes much too much effort! Instead, you can use the
+arrow keys to move back there, delete the bad character or two, and type
+the correct information.
+
+There are many special keys to help you edit your command line, most of
+them similar to the commands used in GNU Emacs\index{GNU Emacs}. For
+instance, \key{C-t} flips two adjacent characters.\footnote{\key{C-t} means
+hold down the key labeled ``Ctrl'', then press the ``t'' key. Then release
+the ``Ctrl'' key.} You'll be able to find most of the commands in the
+chapter on Emacs, Chapter~\ref{emacs-chapter}.
+
+\eindex{shell!editing}
+
+\subsection{Command and File Completion}\bindex{shell!completion}
+
+Another feature of {\tt bash}\ttindex{bash} is automatic completion of
+your command lines.  For instance, let's look at the following example
+of a typical {\tt cp} command:
+
+\begin{screen}\begin{verbatim}
+/home/larry# ls -F
+this-is-a-long-file
+/home/larry# cp this-is-a-long-file shorter
+/home/larry# ls -F
+shorter              this-is-a-long-file
+/home/larry# 
+\end{verbatim}\end{screen}
+
+It's a big pain to have to type every letter of {\tt
+  this-is-a-long-file} whenever you try to access it.  So, create {\tt
+  this-is-a-long-file} by copying {\tt /etc/passwd} to it\footnote{\tt cp
+  /etc/passwd this-is-a-long-file}. Now, we're going to do the above {\tt
+  cp} command very quickly and with a smaller chance of mistyping.
+
+Instead of typing the whole filename, type {\tt cp th} and press and
+release the \key{Tab}. Like magic, the rest of the filename shows up
+on the command line, and you can type in {\tt shorter}. Unfortunately,
+{\tt bash}\ttindex{bash} cannot read your thoughts, and you'll have to
+type all of {\tt shorter}.
+
+When you type \key{Tab}, {\tt bash} looks at what you've typed and
+looks for a file that starts like that. For instance, if I type {\tt
+  /usr/bin/ema} and then hit \key{Tab}, {\tt bash} will find {\tt
+  /usr/bin/emacs} since that's the only file that begins {\tt
+  /usr/bin/ema} on my system. However, if I type {\tt /usr/bin/ld} and
+hit \key{Tab}, {\tt bash} beeps at me. That's because three files,
+{\tt /usr/bin/ld}, {\tt /usr/bin/ldd}, and {\tt /usr/bin/ld86} all
+start with {\tt /usr/bin/ld} on my system.
+
+If you try a completion and {\tt bash} beeps, you can immediately hit
+\key{Tab} again to get a list of all the files your start matches so
+far. That way, if you aren't sure of the exact spelling of your file,
+you can start it and scan a much smaller list of files.
+
+\eindex{shell!completion}
+
+\section{The Standard Input and The Standard Output}
+
+% it might be nice to get some illustrations around here, with
+% pointers showing where all the output is going
+
+Let's try to tackle a simple problem: getting a listing of the {\tt
+  /usr/bin} directory. If all we do is {\tt ls /usr/bin}, some of the
+files scroll off the top of the screen. How can we see all of the
+files?
+
+\subsection{\unix\ Concepts}
+
+The \unix\ operating system makes it very easy for programs to use the
+terminal.  When a program writes something to your screen, it is using
+something called \concept{standard output}.  Standard output,
+abbreviated as stdout, is how the program writes things to a user. The
+name for what you tell a program is \concept{standard input} (stdin).
+It's possible for a program to communicate with the user without using
+standard input or output, but most of the commands I cover in this
+book use stdin and stdout.
+
+For example, the {\tt ls}\ttindex{ls} command prints the list of the
+directories to standard output, which is normally ``connected'' to
+your terminal.  An interactive command, such as your shell, {\tt
+  bash}\ttindex{bash}, reads your commands from standard input.
+
+It is also possible for a program to write to 
+\concept{standard error}, since it is very easy to make standard
+output point somewhere besides your terminal. Standard error (stderr)
+is almost always connected to a terminal so an actual human will read
+the message.
+
+In this section, we're going to examine three ways of fiddling with
+the standard input and output: input redirection, output redirection,
+and pipes.
+
+\subsection{Output Redirection}\bindex{output redirection}
+
+A very important feature of \unix\ is the ability to {\bf redirect}
+output. This allows you, instead of viewing the results of a command,
+to save it in a file or send it directly to a printer. For instance,
+to redirect the output of the command {\tt ls /usr/bin}, we place a
+{\tt >} sign at the end of the line, and say what file we want the
+output to be put in:
+
+\begin{screen}\begin{verbatim}
+/home/larry# ls
+/home/larry# ls -F /usr/bin > listing
+/home/larry# ls
+listing
+/home/larry#
+\end{verbatim}\end{screen}
+
+As you can see, instead of writing the names of all the files, the
+command created a totally new file in your home directory. Let's try
+to take a look at this file using the command {\tt cat}. If you think
+back, you'll remember {\tt cat} was a fairly useless command that
+copied what you typed (the standard input) to the terminal (the
+standard output). {\tt cat} can also print a file to the standard
+output if you list the file as a parameter to {\tt cat}:
+
+\begin{screen}\begin{verbatim}
+/home/larry# cat listing
+...
+/home/larry#
+\end{verbatim}\end{screen}
+
+The exact output of the command {\tt ls /usr/bin} appeared in the
+contents of {\tt listing}. All well and good, although it didn't solve
+the original problem.\footnote{For impatient readers, the command you
+  might want to try is {\tt more}. However, there's still a bit more
+  to talk about before we get there.}
+
+However, {\tt cat} does do some interesting things when it's output is
+redirected. What does the command {\tt cat listing > newfile} do?
+Normally, the {\tt > newfile} says ``take all the output of the
+command and put it in {\tt newfile}.'' The output of the command {\tt
+  cat listing} is the file {\tt listing}. So we've invented a new (and
+not so efficient) method of copying files.
+
+How about the command {\tt cat > fox}? {\tt cat} by itself reads in
+each line typed at the terminal (standard input) and prints it right
+back out (standard output) until it reads \key{Ctrl-d}. In this case,
+standard output has been redirected into the file {\tt fox}. Now {\tt
+  cat} is serving as a rudimentary editor:
+
+\begin{quote}{\tt 
+/home/larry\# cat > fox\\
+The quick brown fox jumps over the lazy dog.\\
+{\em press Ctrl-d}
+}\end{quote}
+
+We've now created the file {\tt fox} that contains the sentence ``The
+quick brown fox jumps over the lazy dog.'' One last use of the
+versitile {\tt cat} command is to con{\bf cat}enate files together.
+{\tt cat} will print out every file it was given as a parameter, one
+after another. So the command {\tt cat listing fox} will print out the
+directory listing of {\tt /usr/bin}, and then it will print out our
+silly sentence. Thus, the command {\tt cat listing fox > listandfox}
+will create a new file containing the contents of both {\tt listing}
+and {\tt fox}.
+
+\eindex{output redirection}
+
+\subsection{Input Redirection}\bindex{input redirection}
+
+Like redirecting standard output\index{standard output}, it is also
+possible to redirect standard input\index{standard input}. Instead of
+a program reading from your keyboard, it will read from a file.  Since
+input redirection is related to output redirection, it seems natural
+to make the special character for input redirection be {\tt <}. It
+too, is used after the command you wish to run.
+
+This is generally useful if you have a data file and a command that
+expects input from standard input.  Most commands also let you specify
+a file to operate on, so {\tt <} isn't used as much in day-to-day
+operations as other techniques.
+
+\eindex{input redirection}
+
+\subsection{The Pipe}\bindex{pipes}
+
+Many \unix\ commands produce a large amount of information. For instance,
+it is not uncommon for a command like {\tt ls /usr/bin} to produce more
+output than you can see on your screen. In order for you to be able to see
+all of the information that a command like {\tt ls /usr/bin}, it's
+necessary to use another \unix\ command, called {\tt
+more}\ttindex{more}.\footnote{{\tt more}\ttindex{more} is named because
+that's the prompt it originally displayed: {\tt --more--}. In many versions
+of \linux\ the {\tt more} command is identical to a more advanced command
+that does all that {\tt more} can do and more. Proving that computer
+programmers make bad comedians, they named this new program {\tt
+less}\ttindex{less}.} {\tt more} will pause once every screenful
+of information. For instance, {\tt more < /etc/rc} will display the file
+{\tt /etc/rc} just like {\tt cat /etc/rc} would, except that {\tt more}
+will let you read it.  {\tt more} also allows the command {\tt more
+/etc/rc}, and that's the normal way of invoking it.
+
+However, that doesn't help the problem that {\tt ls /usr/bin} displays more
+information than you can see. {\tt more < ls /usr/bin} won't work---input
+redirection only works with files, not commands! You {\em could\/} do this:
+
+\begin{screen}\begin{verbatim}
+/home/larry# ls /usr/bin > temp-ls
+/home/larry# more temp-ls
+...
+/home/larry# rm temp-ls
+\end{verbatim}\end{screen}
+
+However, \unix\ supplies a much cleaner way of doing that. You can just use
+the command {\tt ls /usr/bin | more}. The character ``{\tt |}'' indicates a
+{\bf pipe}. Like a water pipe, a \unix\ pipe controls flow. Instead of
+water, we're controlling the flow of information!
+
+A useful tool with pipes are programs called {\bf
+  filters}\index{filters}.  A filter is a program that reads the
+standard input, changes it in some way, and outputs to standard
+output. {\tt more} is a filter---it reads the data that it gets from
+standard input and displays it to standard output one screen at a
+time, letting you read the file.  {\tt more} isn't a great filter
+because its output isn't suitable for sending to another program.
+
+Other filters include the programs {\tt cat}\ttindex{cat}, {\tt
+sort}\ttindex{sort}, {\tt head}\ttindex{head}, and {\tt
+tail}\ttindex{tail}. For instance, if you wanted to read only the first ten
+lines of the output from {\tt ls}, you could use {\tt ls /usr/bin | head}.
+
+\eindex{pipes}
+
+\section{Multitasking}\label{section-multitasking}
+
+\subsection{Using Job Control}
+\index{job control|see{shell, job control}} 
+
+{\bf Job control}\index{shell!job control} refers to the ability to
+put processes (another word for programs, essentially) in the
+\concept{background} and bring them to the \concept{foreground} again.
+That is to say, you want to be able to make something run while you go
+and do other things, but have it be there again when you want to tell
+it something or stop it.  In Unix, the main tool for job control is
+the shell---it will keep track of jobs for you, if you learn how to
+speak its language.
+
+        The two most important words in that language are {\tt
+fg}\ttindex{fg}, for foreground, and {\tt bg}\ttindex{bg}, for
+background.  To find out how they work, use the command \ttindex{yes}
+{\tt yes} at a prompt.
+
+\begin{screen}\begin{verbatim}
+/home/larry# yes
+\end{verbatim}
+\end{screen}
+
+This will have the startling effect of running a long column of {\tt
+  y}'s down the left hand side of your screen, faster than you can
+follow.\footnote{There are good reasons for this strange command to
+  exist.  Occasional commands ask for confirmation---a ``yes'' answer
+  to a question.  The {\tt yes} command allows a programmer to
+  automate the response to these questions.} To get them to stop,
+you'd normally type \key{ctrl-c} to kill it, but instead you should
+type \key{ctrl-z} this time.  It appears to have stopped, but there
+will be a message before your prompt, looking more or less like this:
+
+\begin{screen}\begin{verbatim}
+[1]+   Stopped                  yes
+\end{verbatim}
+\end{screen}
+
+It means that the process {\tt yes} has been \concept{suspended} in
+the background.  You can get it running again by typing \ttindex{fg}
+\index{foreground} {\tt fg} at the prompt, which will put it into the
+foreground again.  If you wish, you can do other things first, while
+it's suspended.  Try a few {\tt ls}'s or something before you put it
+back in the foreground.
+
+        Once it's returned to the foreground, the {\tt y}'s will start
+coming again, as fast as before.  You do not need to worry that while
+you had it suspended it was ``storing up'' more {\tt y}'s to send to the
+screen: when a program is suspended the whole program doesn't run
+until you bring it back to life.  (Now type \key{ctrl-c} to
+kill it for good, once you've seen enough).
+
+        Let's pick apart that message we got from the shell:
+
+\begin{screen}\begin{verbatim}
+[1]+   Stopped                yes
+\end{verbatim}\end{screen}
+
+        The number in brackets is the \index{shell!job number} {\bf job
+number} of this job, and will be used when we need to refer to it
+specifically.  (Naturally, since job control is all about running
+multiple processes, we need some way to tell one from another).  The
+{\tt +} following it tells us that this is the ``current job'' ---
+that is, the one most recently moved from the foreground to the
+background.  If you were to type {\tt fg}, you would put the job with
+the {\tt +} in the foreground again.  (More on that later, when we discuss
+% kff: changed ``get into'' to ``discuss running''
+running multiple jobs at once).  The word {\tt Stopped} means that the
+job is ``stopped''.  The job isn't dead, but it isn't running right
+now.  \linux\ has saved it in a special suspended state, ready to jump
+back into the action should anyone request it.  Finally, the {\tt yes}
+is the name of the process that has been stopped.
+
+        Before we go on, let's kill this job and start it again in a
+different way.  The command is named \ttindex{kill} {\tt kill} and
+can be used in the following way:
+
+\begin{screen}\begin{verbatim}
+/home/larry# kill %1
+[1]+  Stopped                 yes
+/home/larry#
+\end{verbatim}\end{screen}
+\index{jobs|see{shell, jobs}}
+
+        That message about it being ``stopped'' again is misleading.
+To find out whether it's still alive (that is, either running or
+frozen in a suspended state), type \index{shell!jobs} {\tt jobs}:
+
+\begin{screen}\begin{verbatim}
+/home/larry# jobs
+[1]+  Terminated                 yes
+/home/larry#
+\end{verbatim}\end{screen}
+        
+        There you have it---the job has been \index{termination}
+terminated!  (It's possible that the {\tt jobs} command showed nothing
+at all, which just means that there are no jobs running in the
+background.  If you just killed a job, and typing {\tt jobs} shows
+nothing, then you know the kill was successful.  Usually it will tell
+you the job was ``terminated''.)
+
+        Now, start {\tt yes} running again, like this:
+
+\begin{screen}\begin{verbatim}
+/home/larry# yes > /dev/null
+\end{verbatim}\end{screen}
+
+        If you read the section about input and output redirection,
+you know that this is sending the output of {\tt yes} into the special
+file {\tt /dev/null}.  {\tt /dev/null} is a black hole that eats any
+output sent to it (you can imagine that stream of {\tt y}'s coming out
+the back of your computer and drilling a hole in the wall, if that
+makes you happy).
+        
+        After typing this, you will not get your prompt back, but you
+will not see that column of {\tt y}'s either.  Although output is
+being sent into {\tt /dev/null}, the job is still running in the
+foreground.  As usual, you can suspend it by hitting \key{ctrl-z}.  Do that
+now to get the prompt back.
+
+\begin{screen}\begin{verbatim}
+/home/larry# yes > /dev/null
+["yes" is running, and we just typed ctrl-z]
+[1]+  Stopped                 yes >/dev/null 
+
+/home/larry# 
+\end{verbatim}
+\end{screen}
+
+Hmm\ldots is there any way to get it to actually {\em run\/} in the
+background, while still leaving us the prompt for interactive work?
+The command to do that is \ttindex{bg}\index{background}{\tt bg}:
+
+\begin{screen}\begin{verbatim}
+/home/larry# bg
+[1]+ yes >/dev/null  &
+/home/larry# 
+\end{verbatim}
+\end{screen}
+
+Now, you'll have to trust me on this one: after you typed {\tt bg},
+{\tt yes > /dev/null} began to run again, but this time in the
+background.  In fact, if you do things at the prompt, like {\tt ls}
+and stuff, you might notice that your machine has been slowed down a
+little bit (endlessly generating and discarding a steady stream of y's
+does take some work, after all!)  Other than that, however, there are
+no effects.  You can do anything you want at the prompt, and {\tt yes}
+will happily continue to sending its output into the black hole.
+
+        There are now two different ways you can kill it: with the
+{\tt kill} command you just learned, or by putting the job in the
+foreground again and hitting it with an interrupt, \key{ctrl-c}.  Let's try
+the second way, just to understand the relationship between {\tt fg}
+and {\tt bg} a little better;
+
+\begin{screen}\begin{verbatim}
+/home/larry# fg
+yes >/dev/null 
+
+[now it's in the foreground again.  Imagine that I hit ctrl-c to terminate it]
+
+/home/larry#
+\end{verbatim}\end{screen}
+
+        There, it's gone.  Now, start up a few jobs running in
+simultaneously, like this:
+
+% lg: rephrase the above paragraph, maybe. It's a little awkward and
+% lg: too much a meta-paragraph: a paragraph about the document
+% kff: done, (good point).
+
+\begin{screen}\begin{verbatim}
+/home/larry# yes  > /dev/null &
+[1] 1024
+/home/larry# yes | sort > /dev/null &
+[2] 1026
+/home/larry# yes | uniq > /dev/null 
+[and here, type ctrl-z to suspend it, please]
+
+[3]+  Stopped                 yes | uniq >/dev/null
+/home/larry#
+\end{verbatim}\end{screen}
+
+The first thing you might notice about those commands is the trailing
+{\tt \&} at the end of the first two.  \index{\&} Putting an {\tt \&}
+after a command tells the shell to start in running in the background
+right from the very beginning.  (It's just a way to avoid having to
+start the program, type \key{ctrl-z}, and then type {\tt bg}.)  So, we
+started those two commands running in the background.  The third is
+suspended and inactive at the moment.  You may notice that the machine
+has become slower now, as the two running ones
+require some amount of CPU time.
+
+Each one told you it's job number.  The first two also showed you
+their \concept{process identification numbers}, or PID's, \index{PID}
+immediately following the job number.  The PID's are normally not
+something you need to know, but occasionally come in handy.
+
+        Let's kill the second one, since I think it's making your
+machine slow.  You could just type {\tt kill \%2}, but that would be
+too easy.  Instead, do this:
+
+\begin{screen}\begin{verbatim}
+/home/larry# fg %2
+yes | sort >/dev/null
+[type ctrl-c to kill it]
+
+/home/larry#
+\end{verbatim}\end{screen}
+
+        As this demonstrates, {\tt fg} takes parameters beginning with
+{\tt \%} as well.  In fact, you could just have typed this:
+
+\begin{screen}\begin{verbatim}
+/home/larry# %2
+yes | sort >/dev/null
+[type ctrl-c to kill it]
+
+/home/larry#
+\end{verbatim}\end{screen}
+
+        This works because the shell automatically interprets a job
+number as a request to put that job in the foreground.  It can tell
+job numbers from other numbers by the preceding \index{\%} {\tt \%}.
+Now type {\tt jobs} to see which jobs are left running:
+
+\begin{screen}\begin{verbatim}
+/home/larry# jobs
+[1]-  Running                 yes >/dev/null  &
+[3]+  Stopped                 yes | uniq >/dev/null
+/home/larry#
+\end{verbatim}
+\end{screen}
+        
+The ``{\tt -}'' means that job number 1 is
+second in line to be put in the foreground, if you just type {\tt fg}
+without giving it any parameters.  The ``{\tt +}'' means the specified job
+is first in line---a {\tt fg} without parameters will bring job number
+3 to the foreground.  However, you can get to it by
+naming it, if you wish:
+
+\begin{screen}\begin{verbatim}
+/home/larry# fg %1
+yes >/dev/null 
+[now type ctrl-z to suspend it]
+
+[1]+  Stopped                 yes >/dev/null
+/home/larry#
+\end{verbatim}
+\end{screen}
+
+Having changed to job number 1 and then suspending it has also changed
+the priorities of all your jobs.  You can see this with the {\tt jobs}
+command:
+
+\begin{screen}\begin{verbatim}
+/home/larry# jobs
+[1]+  Stopped                 yes >/dev/null
+[3]-  Stopped                 yes | uniq >/dev/null
+/home/larry#
+\end{verbatim}
+\end{screen}
+        
+Now they are both stopped (because both were suspended with
+\key{ctrl-z}), and number 1 is next in line to come to the foreground
+by default.  This is because you put it in the foreground manually,
+and then suspended it.  The ``{\tt +}'' always refers to the most
+recent job that was suspended from the foreground.  You can start it
+running again:
+
+\begin{screen}\begin{verbatim}
+/home/larry# bg
+[1]+ yes >/dev/null  &
+/home/larry# jobs
+[1]-  Running                 yes >/dev/null  
+[3]+  Stopped                 yes | uniq >/dev/null
+/home/larry#
+\end{verbatim}
+\end{screen}
+        
+Notice that now it is running, and the other job has moved back up in
+line and has the {\tt +}.  Now let's kill them all so your system
+isn't permanently slowed by processes doing nothing.
+
+\begin{screen}\begin{verbatim}
+/home/larry# kill %1 %3
+[3]   Terminated              yes | uniq >/dev/null 
+/home/larry# jobs
+[1]+  Terminated              yes >/dev/null 
+/home/larry#
+\end{verbatim}
+\end{screen}
+
+You should see various messages about termination of jobs---nothing
+dies quietly, it seems.  Figure~\vref{job-control} shows a quick
+summary of what you should know for job control.
+
+\begin{figure}[tb]
+\index{shell!job control!summary}
+\begin{dispitems}
+\item [{\tt fg} {\sl \%job}] This is a shell command that returns a
+  job to the foreground.  To find out which one this is by default,
+  type {\tt jobs} and look for the one with the {\tt +}.\\ Parameters:
+  Optional job number.  The default is the process identified
+  with {\tt +}.
+
+\item [{\tt \&}] When an {\tt \&} is added to the end of the command
+  line, it tells the command to run in the background automatically.
+  This process is then subject to all the usual methods of job control
+  detailed here.
+
+\item [{\tt bg} {\sl \%job}] This is a shell command that causes a
+  suspended job to run in the background.  To find out which one this
+  is by default, type {\tt jobs} and look for the one with the {\tt
+    +}.\\ Parameters: Optional job number.  The default is
+  the process identified with {\tt +}.
+
+\item [{\tt kill} {\sl \%job} {\sl PID}] This is a shell
+  command that causes a background job, either suspended or running,
+  to terminate.  You should always specify the job number or PID, and
+  if you are using job numbers, remember to precede them with a {\tt
+    \%}.\\ Parameters: Either the job number (preceded by {\tt \%}) or
+  PID (no {\tt \%} is necessary).  More than one process or job can be
+  specified on one line.
+
+\item [{\tt jobs}] This shell command just lists information about the
+  jobs currently running or suspending.  Sometimes it also tells you
+  about ones that have just exited or been terminated.
+
+\item [\key{ctrl-c}]
+        This is the generic interrupt character.  Usually, if you type
+it while a program is running in the foreground, it will kill the
+program (sometimes it takes a few tries).  However, not all programs
+will respond to this method of termination.
+
+\item [\key{ctrl-z}] This key combination usually causes a program to
+  suspend, although a few programs ignore it.  Once suspended, the job
+  can be run in the background or killed.
+\end{dispitems}
+\caption{A summary of commands and keys used in job control.}
+\label{job-control}
+\end{figure}
+
+\subsection{The Theory of Job Control}
+\index{shell!job control!concepts}
+
+        It is important to understand that job control is done by the
+shell.  There is no program on the system called {\tt fg}; rather,
+{\tt fg}, {\tt bg}, {\tt \&}, {\tt jobs}, and {\tt kill} are all
+shell-builtins (actually, sometimes {\tt kill} is an independent
+program, but the {\tt bash} shell used by Linux has it built in).
+This is a logical way to do it: since each user wants their own job
+control space, and each user already has their own shell, it is
+% lg: why the quotes?
+% kff: good question :-)... computer techies tend
+% to use the word "space" in a way unfamiliar to many people, but I
+% think readers can grok it from context, now that you bring it up, so
+% I have killed the quotes.
+easiest to just have the shell keep track of the user's jobs.
+Therefore, each user's job numbers are meaningful only to that user:
+my job number [1] and your job number [1] are probably two totally
+different processes.  In fact, if you are logged in more than once,
+each of your shells will have unique job control data, so you as a
+user might have two different jobs with the same number running in two
+different shells.
+
+        The way to tell for sure is to use the Process ID numbers
+({\tt PID}'s).  These are system-wide --- each process has its own
+unique {\tt PID} number.  Two different users can refer to a process
+by its {\tt PID} and know that they are talking about the same process
+(assuming that they are logged into the same machine!)
+
+Let's take a look at one more command to understand what {\tt PID}s
+are. The {\tt ps} command will list all running processes, including
+your shell. Try it out. It also has a few options, the most important
+of which (to many people) are {\tt a}, {\tt u}, and {\tt x}.  The {\tt
+  a} option will list processes belonging to any user, not just your
+own. The {\tt x} switch will list processes that don't have a terminal
+associated with them.\footnote{This only makes sense for certain
+  system programs that don't have to talk to users through a
+  keyboard.} Finally, the {\tt u} switch will give additionally
+information about the process that is frequently useful.
+
+To really get an idea of what your system is doing, put them all
+together: {\tt ps -aux}. You can then see the process that uses the
+more memory by looking at the {\tt \%MEM} column, and the most CPU
+by looking at the {\tt \%CPU} column. (The {\tt TIME} column lists the
+{\em total\/} amount of CPU time used.)\glossary{CPU time} 
+
+Another quick note about PIDs.  {\tt kill}, in addition to taking
+options of the form \%{\sl job\#}, will take options of raw PIDs. So,
+put a {\tt yes > /dev/null} in the background, run {\tt ps}, and look
+for {\tt yes}. Then type {\tt kill PID}.\footnote{In general, it's
+  easier to just kill the job number instead of using PIDs.}
+
+        If you start to program in C on your Linux system, you will
+soon learn that the shell's job control is just an interactive version
+of the function calls {\tt fork} and {\tt execl}.  This is too complex
+to go into here, but may be helpful to remember later on when you are
+programming and want to run multiple processes from a single program.
+
+\section{Virtual Consoles: Being in Many Places at Once}
+
+        Linux supports \index{virtual consoles} \index{VC|see{virtual
+consoles}} {\bf virtual consoles}.  These are a way of making your single
+machine seem like multiple terminals, all connected to one Linux kernel.
+Thankfully, using virtual consoles is one of the simplest things about
+Linux: there are ``hot keys'' for switching among the consoles quickly.  To
+try it, log in to your Linux system, hold down the left
+\key{Alt} key, and press \key{F2} (that is, the function key number
+2).\footnote{Make sure you are doing this from text consoles: if you
+are running X windows or some other graphical application, it probably
+won't work, although rumor has it that X Windows will soon allow
+virtual console switching under Linux.}  
+% I think it does now. -M ****
+
+        You should find yourself at another login prompt.  Don't
+panic: you are now on virtual console (VC) number 2!  Log in here and
+do some things --- a few {\tt ls}'s or whatever --- to confirm that
+this is a real login shell.  Now you can return to VC number 1, by
+holding down the left \key{Alt} and pressing \key{F1}.  Or you can
+move on to a {\em third} VC, in the obvious way (\key{Alt}-\key{F3}).
+
+        Linux systems generally come with four VC's enabled by
+default.  You can increase this all the way to eight; this should be
+covered in \ldpsa.  It involves
+editing a file in {\tt /etc} or two.  However, four should be enough
+for most people.
+% lg: just is more direct and better for both I&GS and UG
+% yup, shouldn't take up space here with this stuff, you're right.
+
+% Umm, the virtual consoles are enabled, there just aren't any
+% shells running in them - you can start programs with stdin from
+% other VCs and/or stdout to other VCs. -M ****
+
+        Once you get used to them, VC's will probably become an
+indispensable tool for getting many things done at once.  For example,
+I typically run Emacs on VC 1 (and do most of my work there), while
+having a communications program up on VC 3 (so I can be downloading or
+uploading files by modem while I work, or running jobs on remote
+machines), and keep a shell up on VC 2 just in case I want to run
+something else without tying up VC 1.  
+% Local Variables: 
+% mode: latex
+% TeX-master: "guide"
+% End: 

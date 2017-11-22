@@ -1,0 +1,63 @@
+Console: 16 point font, 400 scans
+Console: colour VGA+ 80x25, 1 virtual console (max 63)
+Calibrating delay loop.. ok - 33.28 BogoMIPS
+Memory: 23180k/24576k available (544k kernel code, 384k reserved, 468k data)
+This processor honours the WP bit even when in supervisor mode. Good.
+Swansea University Computer Society NET3.033 for Linux 1.3.50
+NET3: Unix domain sockets 0.10 BETA for Linux NET3.033.
+Swansea University Computer Society TCP/IP for NET3.033
+IP Protocols: ICMP, UDP, TCP
+Checking 386/387 coupling... Ok, fpu using exception 16 error reporting.
+Checking 'hlt' instruction... Ok.
+Linux version 1.3.55 (root@mousehouse) (gcc version 2.7.0) #1 Sun Jan 7 14:56:26 EST 1996
+Serial driver version 4.11 with no serial options enabled
+tty00 at 0x03f8 (irq = 4) is a 16450
+tty01 at 0x02f8 (irq = 3) is a 16450
+tty02 at 0x03e8 (irq = 4) is a 16450
+lp0 at 0x03bc, (polling)
+hda: WDC AC2340, 325MB w/127KB Cache, CHS=1010/12/55
+hdb: WDC AC2850F, 814MB w/64KB Cache, LBA, CHS=827/32/63
+ide0 at 0x1f0-0x1f7,0x3f6 on irq 14
+Floppy drive(s): fd0 is 1.44M, fd1 is 1.2M
+FDC 0 is a National Semiconductor PC87306
+SLIP: version 0.8.3-NET3.019-NEWTTY (dynamic channels, max=256) (6 bit encapsulation enabled)
+CSLIP: code copyright 1989 Regents of the University of California
+Partition check:
+  hda: hda1 hda2 hda3 hda4
+  hdb: hdb1
+VFS: Mounted root (ext2 filesystem) readonly.
+Adding Swap: 10556k swap-space
+Feb  3 14:16:47 mousehouse kernel: Kernel logging (proc) started.
+Feb  3 14:16:47 mousehouse named[83]: restarted 
+Feb  3 14:17:39 mousehouse kernel: <5>hdb: read_intr: status=0x59 { DriveReady SeekComplete DataRequest Error }
+Feb  3 16:34:32 mousehouse SLIP: larry started SLIP 
+Feb  3 16:44:32 mousehouse SLIP: idle time (600 sec) reached - SLIP stopped
+Feb  3 17:05:50 mousehouse SLIP: larry started SLIP 
+Feb  3 17:07:35 mousehouse SLIP: larry stopped SLIP 
+Feb  3 17:07:38 mousehouse SLIP: larry started SLIP 
+Feb  3 17:08:17 mousehouse SLIP: larry stopped SLIP 
+Feb  3 17:10:32 mousehouse SLIP: larry started SLIP 
+Feb  3 17:11:02 mousehouse dip[886]: larry dial-up 128.6.171.21/128.6.171.21 to remote 128.6.171.5/128.6.171.5  with CSLIP/192
+Feb  3 17:24:02 mousehouse SLIP: larry stopped SLIP 
+Feb  4 00:13:10 mousehouse SLIP: steve started SLIP 
+Feb  4 00:13:41 mousehouse dip[2426]: steve dial-up 128.6.171.24/128.6.171.24 to remote 128.6.171.5/128.6.171.5  with CSLIP/192
+Feb  4 00:21:51 mousehouse SLIP: steve stopped SLIP 
+Feb  4 00:34:30 mousehouse login: ROOT LOGIN ON ttyp3
+Feb  4 01:16:10 mousehouse SLIP: steve started SLIP 
+Feb  4 01:17:01 mousehouse SLIP: steve stopped SLIP 
+Feb  4 01:17:04 mousehouse SLIP: steve started SLIP 
+Feb  4 01:17:38 mousehouse SLIP: steve stopped SLIP 
+Feb  4 01:17:50 mousehouse SLIP: steve started SLIP 
+Feb  4 01:18:23 mousehouse SLIP: steve stopped SLIP 
+Feb  4 08:28:32 mousehouse SLIP: steve started SLIP 
+Feb  4 08:29:02 mousehouse dip[4446]: steve dial-up 128.6.171.11/128.6.171.11 to remote 128.6.171.5/128.6.171.5  with CSLIP/192
+Feb  4 09:45:00 mousehouse synctime: syncing time... 
+Feb  4 09:51:47 mousehouse synctime: The time is now Sun Feb  4 09:51:47 1996  
+Feb  4 14:12:09 mousehouse SLIP: steve stopped SLIP 
+Feb  4 16:53:06 mousehouse SLIP: steve started SLIP 
+Feb  4 17:18:55 mousehouse SLIP: steve stopped SLIP 
+Feb  4 17:18:58 mousehouse SLIP: steve started SLIP 
+Feb  4 17:19:19 mousehouse SLIP: steve stopped SLIP 
+Feb  4 17:21:34 mousehouse SLIP: steve started SLIP 
+Feb  4 17:53:20 mousehouse SLIP: steve stopped SLIP 
+Feb  4 17:53:22 mousehouse SLIP: steve started SLIP 
