@@ -14,3 +14,4 @@ python 3.6.1
 [Large Text File Viewer (read only)](https://web.archive.org/web/20140908181354fw_/http://swiftgear.com/ltfviewer/features.html)     
 gVim loads entire file into memory first.   
 [SQL Server Latest](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)   
+[dnSpy](https://github.com/0xd4d/dnSpy/releases)
