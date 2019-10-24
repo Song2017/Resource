@@ -1,1 +1,0 @@
-pbmtext < screen-shot-1 | pnmmargin -black 2 | pnmtops -noturn > screen-shot-1.ps
