@@ -1,87 +1,37 @@
-# 个人信息
+# 宋广顺(Ben)
 
- - 宋广顺/男/1992 
- - 本科/青岛大学-数学与应用数学 
- - 工作年限：5年
- - 技术博客：https://blog.csdn.net/sgs595595
- - Github：https://github.com/Song2017
- - Leetcode: https://leetcode-cn.com/u/song-19/ 
- - 手机/微信号：18765918310
- - Email：bensong2017@hotmail.com
+ - 18765918310 | bensong2017@hotmail.com
+ - Github：[https：//github.com/Song2017](https：//github.com/Song2017)
+ - 博客网站：[sjgo.online](http：//39.97.239.252/)，[CSDN Blog](https：//blog.csdn.net/sgs595595)，[Leetcode](https：//leetcode-cn.com/u/song-19/)
 
----
+### 技能
+ - 基础：全面理解面向对象，函数式编程; 服务化编程(Service); 解决中级算法题目
+ - 数据库：熟练使用及调优主流数据库：Oracle/MySQL/PGSql/redis
+ - 服务器：搭建Linux/Windows服务器及反向代理，Nginx/Tomcat/IIS/Gunicorn
+ - Web 前端：HTML5/CSS3/JS/TS及框架Vue/React/Jquery/Ag-grid
+ - Web 开发：精通ASP.NET Core MVC/Web API/Django/DRF
+ - 其他：应用程序容器化(Docker)，掌握压力测试(Jmeter)，自动化测试(Selenuim)
 
-# 开源项目和作品
-web API项目: [webAPI-AgGrid](https://github.com/Song2017/webAPI-AgGrid)     
-技术栈: Front End: Ag-grid + JavaScript <-> Server: Web API + .Net Core 2.2 <-> DataBase: procedure + Oracle
+### 项目经验
+ - 数据开放API    
+设计并开发了基于.NET Core Web API的网站项目，
+功能除Token验证模块及获取数据及下载，及Redis缓存平稳退化和访问限流等功能．
+ - 生鲜项目(未开源)    
+实践了Vue + Drf框架的网上商城．通过逐节课的学习及Coding，
+修改了原有模板中的bug并掌握了Drf框架的开发姿势，复习了前端开发流程．
 
-## 开源项目
+### 工作经历
+#### 中软国际 （ 2017年12月 ~ 至今 ）
+ - **VKC2项目**    
+2018年至今，进行网站的开发．参与需求分析和软件设计的同时，保证开发任务的交付率．升级Dev Express框架为JS框架Ag-grid，从一次性读取数据优化为服务器分页读取数据，页面加载时间从平均3s降低到1s．
 
- - [webAPI-AgGrid](https://github.com/Song2017/webAPI-AgGrid)：.Net Core 2.2平台, 采用WebApi+ Ag-grid, 实现了数据分页读取
- - [Leetcode](https://github.com/Song2017/Leetcode_python): 算法与数据结构训练, 包含*数据结构与算法之美*的总结与Leetcode的解题思路
- - [Docker Image for Python](https://github.com/Song2017/python): 参与Python在Azure Web App on Linux上的Docker镜像开发
+#### 上海微创软件股份有限公司 （ 2017年1月 ~ 2017年12月 ）
+ - **Web Gallery维护开发**         
+程序基于.NET Core MVC框架，任务包括后期开发及维护，优化．
+ - **Docker镜像开发**         
+快速学习并实践了Docker镜像开发，开发并优化一系列镜像.在镜像性能优化过程中，快速掌握并使用Jmeter进行测试，根据结果优化镜像．
 
+#### 青岛维富友软件技术有限公司 （ 2014年7月 ~ 2016年9月 ）
+ - **V8电商系统开发**    
+程序对接天猫商城数据，任务包括Winform客户端, Tomcat服务器及Oracle数据库的开发和设计．优化了订单报表分析的功能，将数据分页的逻辑计算从数据库存储过程分散到客户端， 解决了报表查询的数据库瓶颈．
 
-## 技术文章
-
-- [Concept with IIS 7.0 component](https://blog.csdn.net/sgs595595/article/details/75619023)
-- [栈是一个实现细节(翻译文章)](https://blog.csdn.net/sgs595595/article/details/78186457)
-
-## 演讲和讲义
-
- - Docker公司内部分享：[Docker](https://github.com/Song2017/Resource/blob/master/File/Tecnology/Docker/Docker.pptx)
-
----
-
-# 工作经历
-
-## 中软国际 （ 2017年12月 ~ 至今 ）
-
-### Data Share API
-设计并开发了共享数据的API项目, 功能包括Token验证模块及获取数据及下载等功能. 
-API程序使用.NET Core框架, 功能全部实现了服务化. 包括缓存功能, 限流功能等. 
-缓存功能封装了Redis缓存, 实现了平稳退化功能. 限流基于缓存和Token, 以中间件的方式实现按用户限制访问次数
-
-### VKC2项目 
-2018年至今, 我参与了Valve Keep Cloud网站的开发.参与需求分析和软件设计的同时, 保证开发任务的交付率. 
-在网站前端, 升级Dev Express框架为JS框架Ag-grid, 从一次性读取数据优化为服务器分页读取数据, 页面加载时间从平均3s降低到1s. 同时, 将计算从服务端转移为JavaScript计算, 减轻了服务端压力.
-
-### shell脚本实现程序自动发布
-客户内网服务器自动编译. 选定TFS及MSBuild的离线类库, 以此为依赖, 编写脚本实现代码的自动拉取, 编译及发布.
-3天时间完成winform程序, 实现根据TFS的任务状态发送邮件.
-
-## 上海微创软件股份有限公司 （ 2017年1月 ~ 2017年12月 ）
-
-### Docker镜像开发 
-基于Azure Web App on Linux服务的镜像开发. 快速学习并实践了 Docker Image的开发, 
-    基于Ubuntu 16.04镜像, 开发了镜像: nginx+uwsgi+django+pgsql, Apache-php-mysql-drupal
-在Azure云部署的过程中, 掌握了Docker-machine, Docker compose等Docker生态技术, 
-在镜像性能测试中, 熟练使用Jmeter工具, 快速掌握并使用Badboy编写Jmeter脚本进行测试, 根据结果优化镜像配置.
-
-### Azure Gallery/Web Gallery
-开发并维护了Asp.Net Core和Asp.Net网站. 采用Entity Framework, 通过Task编程, 提高网站处理速度. 
-期间学习并掌握了HTML/CSS及JavaScript前端语言. 
-
-## 青岛维富友软件技术有限公司 （ 2014年7月 ~ 2016年9月 ）
-
-### V8电商系统开发
-全程参与电商系统升级开发的过程, 包括仓储, 线上抓单, 财务等模块. 客户端程序采用WinForm, 参与到ERP业务逻辑设计并编写到存储过程.
-天猫抓单及数据库数据查询通过Java中间层控制实现.数据库主要采用SQL Server和Oracle. 
-优化了订单报表分析的功能, 将数据分页的逻辑计算从数据库存储过程分散到客户端, 解决报表查询的数据库瓶颈, 查询功能的速度取决于客户电脑性能.
-
----
-
-# 技能清单
-
-以下均为我熟练使用的技能
-
-- Web开发：C#/Python/Node
-- Web框架：Django/Asp.Net Core/Web Form/Web API/MVC
-- 前端框架：Bootstrap/Ag-grid/JS/HTML5
-- 数据库相关：Oracle/SQL Server/PgSQL/FireBird/SQLite
-- 版本管理、文档和自动化部署工具：Git/TFS
-- 单元测试：Jmeter/Selenium
-- 操作系统：Windows/Ubuntu
-- 云和开放平台：Azure/Aliyun
-
-      
